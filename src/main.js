@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import Card from "@/components/card";
+import VolunteerCollectionCard from "@/components/volunteer/collection/card"
+
 import './plugins/element.js'
 // 添加全局样式
 import './assets/css/global.css'
@@ -24,6 +26,7 @@ import store from "@/store";
 
 Vue.config.productionTip = false
 Vue.component(Card.name,Card)
+Vue.component(VolunteerCollectionCard.name,VolunteerCollectionCard)
 
 new Vue({
   router,

@@ -33,6 +33,10 @@
             <i class="el-icon-menu"></i>
             <span slot="title">主页</span>
           </el-menu-item>
+          <el-menu-item index="/volunteer/index">
+            <i class="el-icon-menu"></i>
+            <span slot="title">义工活动</span>
+          </el-menu-item>
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -41,10 +45,12 @@
             <el-menu-item index="/add/student/resume">成为老师</el-menu-item>
             <el-menu-item index="/add/parent/need">成为家长</el-menu-item>
           </el-submenu>
+
           <el-menu-item index="/student/help">
             <i class="el-icon-menu"></i>
             <span slot="title">学生帮扶</span>
           </el-menu-item>
+
           <el-menu-item index="/student/volunteer">
             <i class="el-icon-menu"></i>
             <span slot="title">社团发布</span>
@@ -94,15 +100,14 @@ export default {
   methods: {
     //登出
     logout: function () {
-      this.$http.get("/logout").then(res=>{
-        if(res.data.status==200){
+      this.$http.get("/logout").then(res => {
+        if (res.data.status == 200) {
           this.$message.success("退出成功")
           this.$router.push("/loginByCode");
-        }
-        else {
+        } else {
           this.$message.error("你还未登录")
         }
-      }).catch(err=>{
+      }).catch(err => {
         this.$message.error("你还未登录")
       })
     },
