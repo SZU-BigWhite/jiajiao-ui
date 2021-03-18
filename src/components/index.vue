@@ -1,0 +1,212 @@
+<template>
+  <el-container class="home_container">
+    <!--头部-->
+    <el-header class="home_header">
+      <div class="head_mid">
+        SZUFREE
+      </div>
+      <div class="head_right">
+        <!--用户头像相关-->
+        <el-dropdown trigger="click">
+          <!--图标-->
+          <i class="el-icon-user"></i>
+          <!--下拉框-->
+          <el-dropdown-menu slot="dropdown" class="dropdown_menu">
+            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item><a @click="logout">安全退出</a></el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+      <!--<div class="head_right" style="margin-right: 15px">-->
+      <!--  <el-button type="primary">-->
+      <!--    <a class="red-point">消息 <i class="el-icon-message"></i></a>-->
+      <!--  </el-button>-->
+      <!--</div>-->
+    </el-header>
+
+    <!--导航栏+内容-->
+    <el-container>
+      <!--导航栏-->
+      <el-aside width="200px" class="home_left" v-show="isShow">
+        <el-menu class="el-menu-vertical-demo" router>
+          <el-menu-item index="/index">
+            <i class="el-icon-menu"></i>
+            <span slot="title">主页</span>
+          </el-menu-item>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>家教</span>
+            </template>
+            <el-menu-item index="/add/student/resume">成为老师</el-menu-item>
+            <el-menu-item index="/add/parent/need">成为家长</el-menu-item>
+          </el-submenu>
+          <el-menu-item index="/student/help">
+            <i class="el-icon-menu"></i>
+            <span slot="title">学生帮扶</span>
+          </el-menu-item>
+          <el-menu-item index="/student/volunteer">
+            <i class="el-icon-menu"></i>
+            <span slot="title">社团发布</span>
+          </el-menu-item>
+          <el-menu-item index="/show/volunteer">
+            <i class="el-icon-menu"></i>
+            <span slot="title">义工活动</span>
+          </el-menu-item>
+          <el-menu-item index="/show/help">
+            <i class="el-icon-menu"></i>
+            <span slot="title">互助详细</span>
+          </el-menu-item>
+          <el-menu-item index="/show">
+            <i class="el-icon-setting"></i>
+            <span slot="title">推荐</span>
+          </el-menu-item>
+          <el-menu-item index="/detail/student">
+            <i class="el-icon-setting"></i>
+            <span slot="title">简历细节</span>
+          </el-menu-item>
+          <el-menu-item index="/detail/parent">
+            <i class="el-icon-setting"></i>
+            <span slot="title">需求详细</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+
+      <!-- 内容 -->
+      <el-container class="home_content">
+        <!-- 主内容 -->
+        <el-main class="home_main">
+          <router-view></router-view>
+        </el-main>
+
+      </el-container>
+    </el-container>
+  </el-container>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isShow: true,
+    }
+  },
+  methods: {
+    //登出
+    logout: function () {
+      this.$http.get("/logout").then(res=>{
+        if(res.data.status==200){
+          this.$message.success("退出成功")
+          this.$router.push("/loginByCode");
+        }
+        else {
+          this.$message.error("你还未登录")
+        }
+      }).catch(err=>{
+        this.$message.error("你还未登录")
+      })
+    },
+    //左边栏切换
+    toggleLeft() {
+      this.isShow = !this.isShow
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+@import "../assets/css/variables";
+
+.home_container {
+  height: 100%;
+  background-color: #F8F8F8;
+}
+
+.home_content {
+  background-color: #F8F8F8;
+}
+
+.home_main {
+  background-color: #F8F8F8;
+}
+
+//-----头部样式
+.home_header {
+  background-color: @color;
+  position: relative;
+  color: white !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  margin-bottom: 20px;
+}
+
+//头左
+.head_left {
+  float: left;
+  display: block;
+  line-height: 60px;
+}
+
+//头中
+.head_mid {
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  line-height: 60px;
+  color: white;
+  font-size: 32px;
+  transform: translate(-50%, 0%);
+}
+
+//头右
+.head_right {
+  float: right;
+  display: block;
+  line-height: 60px;
+}
+
+.el-popper {
+  margin-top: 0px !important;
+}
+
+//红点
+.red-point {
+  position: relative;
+}
+
+.red-point::before {
+  content: " ";
+  border: 3px solid #ff0000; /*设置红色*/
+  border-radius: 50%; /*设置圆角*/
+  position: absolute;
+  z-index: 1000;
+  right: 0%;
+  margin-right: -5px;
+  margin-top: -5px;
+}
+
+//------左部
+.home_left {
+  background-color: white;
+}
+
+//底部
+.home_footer {
+  background-color: #F7F7F7;
+}
+
+.el-main {
+  padding-top: 0px !important;
+}
+
+.el-dropdown {
+  position: relative;
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  line-height: 60px;
+  right: 150%;
+  cursor: pointer;
+}
+
+
+</style>

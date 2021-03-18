@@ -1,0 +1,61 @@
+.step {
+    margin-bottom: 30px;
+}
+
+.step1 {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 125, 255, .22), 0 0 6px rgba(0, 125, 255, .14);
+    padding: 40px 100px 30px 100px;
+    margin-right: 100px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+}
+
+.el-input {
+    /*width: white;*/
+}
+
+.el-form-item label {
+    font-size: 18px;
+}
+
+.s-name-input {
+    width: 150px !important;
+    left: 0px;
+    margin-right: 20px;
+}
+
+.s-wechat-input {
+    width: 250px !important;
+}
+
+.s-famous-input {
+    width: 450px !important;
+}
+
+.el-tag  {
+    margin-right: 10px;
+}
+
+.button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.input-new-tag {
+    width: 90px!important;
+    /*margin-left: 10px;*/
+    vertical-align: bottom;
+}
+
+.button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+}

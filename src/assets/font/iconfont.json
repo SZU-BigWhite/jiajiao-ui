@@ -1,0 +1,30 @@
+{
+  "id": "2219439",
+  "name": "jiajiao",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10972021",
+      "name": "log-in",
+      "font_class": "log-in",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "435928",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e7b8",
+      "unicode_decimal": 59320
+    },
+    {
+      "icon_id": "7090030",
+      "name": "登录",
+      "font_class": "denglu",
+      "unicode": "e70a",
+      "unicode_decimal": 59146
+    }
+  ]
+}
