@@ -4,27 +4,45 @@
       <div class="card-head">{{ volunteer.name }} </div>
       <div class="card-content">{{ volunteer.content }}</div>
       <div class="card-bottom">
-        <el-tag type="success">收到数量： {{ volunteerVo.count }}</el-tag>
+        <el-tag type="success">收到数量： {{ count }}</el-tag>
         <el-tag type="danger">结束时间： {{ volunteer.endTime }}</el-tag>
       </div>
     </div>
     <div v-if="dialogFormVisible">
-      <el-dialog title="发送内容" :visible.sync="dialogFormVisible">
+      <el-dialog title="捐赠内容" :visible.sync="dialogFormVisible">
         <el-form :model="form">
           <el-form-item class="must" label="微信号" :label-width="formLabelWidth">
             <el-input class="s-mini-input" v-model="form.wechat" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item class="must" label="学习成绩" :label-width="formLabelWidth">
-            <el-input class="s-mini-input" v-model="form.condiction" autocomplete="off"></el-input>
+          <el-form-item class="must" label="上门时间" :label-width="formLabelWidth">
+            <div class="block">
+              <el-date-picker
+                v-model="time"
+                type="date"
+                placeholder="选择日期">
+              </el-date-picker>
+            </div>
           </el-form-item>
-          <el-form-item class="must" label="教学方法" prop="showSelf" :label-width="formLabelWidth">
+          <el-form-item class="must" label="性格" prop="books"  :label-width="formLabelWidth">
+            <el-tag
+                :key="key"
+                v-for="(tag,key) in books"
+                closable
+                :disable-transitions="false"
+                @close="handleClose(tag)">
+              {{ tag }}
+            </el-tag>
             <el-input
-                class="s-mid-input"
-                type="textarea"
-                :autosize="{ minRows: 2, maxRows: 100}"
-                placeholder="你能够给予哪方面的帮助"
-                v-model="form.helpMethod">
+                class="input-new-tag"
+                v-if="tagVisible"
+                v-model="tagValue"
+                ref="saveTagInput"
+                size="small"
+                @keyup.enter.native="handleInputConfirm"
+                @blur="handleInputConfirm"
+            >
             </el-input>
+            <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 物品</el-button>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -43,34 +61,61 @@ export default {
   name: "collectionCard",
   data:function (){
     return  {
-      volunteer:{
-        name:"计软义工",
-        wechat:"wanmf0228",
-        content:"回收旧书,用于发放回给新生",
-        startTime:"2020-01-01",
-        endTime:"2020-012-01",
-        createTime:"2019-12-31"
-      },
-      count:null,
       form: {
-        helpId: 1,
-        condiction: "",
-        helpMethod: "",
-        wechat: ""
+        cId: 1,
+        wechat: "",
+        time:null,
       },
+      books:[],
+      tagValue: '',
+      tagVisible: false,
+      time:'',
       formLabelWidth: '120px',
       dialogFormVisible: false,
     }
   },
-  props:['volunteerVo'],
+  props:['volunteer','count'],
   methods:{
     send: function () {
       this.dialogFormVisible = false;
-      //todo 发送请求
+      this.$http.post("/add/volunteer/things",{
+        volunteerThings:{
+        cId:this.form.cId,
+        time:this.form.time,
+        wechet:this.form.wechat
+        },
+        books:this.books
+      }).then(res=>{
+        console.log(res);
+      }).catch(err=>{
+        console.log(err);
+      })
+    },
+    p(s) {
+      return s < 10 ? '0' + s : s
+    },
+    handleInputConfirm() {
+      let tagValue = this.tagValue;
+      if (tagValue) {
+        this.books.push(tagValue);
+      }
+      this.tagVisible = false;
+      this.tagValue = '';
+    },
+    showInput() {
+      this.tagVisible = true;
+      this.$nextTick(_ => {
+        this.$refs.saveTagInput.$refs.input.focus();
+      });
     },
   },
-  created() {
-    this.volunteer=volunteerVo.volunteerCollection
+  watch:{
+    time:function () {
+      const d = new Date(this.time);
+      this.form.time = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate());
+      this.form.cId=this.volunteer.id;
+      console.log(this.form)
+    }
   }
 }
 </script>
@@ -88,7 +133,7 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
 .s-mini-input {
-  width: 250px !important;
+  width: 220px !important;
 }
 .s-mid-input{
   width: 400px !important;
@@ -124,5 +169,11 @@ div .volunteer-card:hover {
 
 .el-tag {
   margin-right: 5px;
+}
+
+.input-new-tag {
+  width: 90px!important;
+  /*margin-left: 10px;*/
+  vertical-align: bottom;
 }
 </style>

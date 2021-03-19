@@ -1,21 +1,17 @@
 <template>
-  <div class="volunteer">
-    <div class="content">
+  <div class="card-inline">
       <div class="my-content" @click="toVolunteerCollectionList">
         捐赠项目
       </div>
       <div @click="toAddVolunteerCollection" class="my-content">
         新增捐赠项目
       </div>
-    </div>
-    <div class="content">
-      <div @click.native="toGetReceive" class="my-content">
+      <div @click="toMyDonateThings" class="my-content">
         捐赠的物品
       </div>
-      <div @click.native="toGetReceive" class="my-content">
+      <div @click="toGetReceive" class="my-content">
         我的捐赠项目
       </div>
-    </div>
   </div>
 </template>
 
@@ -35,58 +31,43 @@ export default {
     },
     toVolunteerCollectionList:function (){
       this.$router.push("/student/volunteer/collections")
+    },
+    toMyDonateThings:function () {
+      // body...
+      this.$router.push("/student/donate/things")
     }
   }
 }
 </script>
 
 <style scoped>
-.volunteer {
-  padding-top: 60px;
-}
-
-.home_content > .head > .el-col > .el-col {
-  padding: 20px 0;
-  border-right: solid 1px #fff;
-}
-
-.home_content .head {
-  text-align: center;
-  color: #fff;
-  font-size: 30px;
-  margin-bottom: 50px;
-  margin-right: 50px;
-  margin-left: 50px;
-}
-
-.home_content .content {
-  text-align: center;
-  margin-bottom: 50px;
-  margin-right: 100px;
-  margin-left: 100px;
+.card-inline {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  width: 93%;
+  height: 70%;
+  background-color: white;
+  border-radius: 6px;
+  margin: 0 auto;
+  padding: 30px 0px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
 
-.my-receive {
+.my-content{
   background: #3091F2;
-  padding: 40px 0;
+  width: 30%;
+  padding: 75px 90px;
   cursor: pointer;
-}
-
-.my-content {
-  background: #3091F2;
-  width: 300px;
-  padding: 60px 90px;
-  cursor: pointer;
-  margin: 0px 35px;
+  margin: 20px 35px;
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   color: white;
   font-weight: bold;
+  text-align: center;
+  height: 30%;
 }
-
-.my-content:hover {
+.my-content:hover{
   background: #2385e5;
 }
 </style>

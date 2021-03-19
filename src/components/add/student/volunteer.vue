@@ -21,7 +21,7 @@
             <h1 class="help-header">义工回收</h1>
 
             <div class="help-content">
-              <el-form label-position="left" label-width="108px" :model="studentHelp" :rules="studentHelp">
+              <el-form label-position="left" label-width="108px" :model="studentVolunteer" :rules="studentVolunteer">
 
                 <el-form-item class="must" label="社团名" prop="ademecy">
                   <el-input class="s-mini-input1" v-model="studentVolunteer.name"></el-input>
@@ -34,7 +34,7 @@
                   <div class="block">
                     <!--<span class="demonstration">默认</span>-->
                     <el-date-picker
-                        v-model="studentVolunteer.startTime"
+                        v-model="time"
                         type="daterange"
                         range-separator="-"
                         start-placeholder="开始日期"
@@ -43,11 +43,11 @@
                   </div>
                 </el-form-item>
 
-                <el-form-item class="must" label="回收物品" prop="showSelf">
+                <el-form-item class="must" label="回收策略" prop="showSelf">
                   <el-input
                       type="textarea"
-                      :autosize="{ minRows: 2, maxRows: 100}"
-                      placeholder="在这里描述一下，可回收的物品范围"
+                      :autosize="{ minRows: 5, maxRows: 100}"
+                      placeholder="回收的物品范围，回收的目的"
                       v-model="studentVolunteer.content">
                   </el-input>
                 </el-form-item>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+
 export default {
   name: "volunteer",
   data: function () {
@@ -73,11 +74,12 @@ export default {
       headerFixed: true,
       studentVolunteer:{
         name:"",
-        wechat:"",
+        wechet:"",
         content:"",
         startTime:"",
-        endTime:""
+        endTime:"",
       },
+      time:null,
     }
   },
   methods:{
@@ -85,8 +87,24 @@ export default {
       this.$router.go(-1);
     },
     handlePublish: function () {
-      console.log('subjectList');
+      this.$http.post("/add/volunteer/collection",this.studentVolunteer).then(res=>{
+        console.log(res);
+        this.$router.go(-1);
+      }).catch(err=>{
+        console.log(err);
+      });
     },
+    p(s) {
+      return s < 10 ? '0' + s : s
+    }
+  },
+  watch:{
+    time:function () {
+      const d = new Date(this.time[0]);
+      this.studentVolunteer.startTime = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate());
+      const d2= new Date(this.time[1]);
+      this.studentVolunteer.endTime = d2.getFullYear() + '-' + this.p((d2.getMonth() + 1)) + '-' + this.p(d2.getDate());
+    }
   }
 }
 </script>
@@ -119,7 +137,8 @@ export default {
 
 .help-header {
   color: #409EFF;
-  padding-left: 300px;
+  text-align: center;
+  padding-right: 50px;
 }
 
 /* 头部导航 */

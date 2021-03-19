@@ -2,7 +2,7 @@
   <div>
     <div class="card-inline">
       <div v-for="item in this.list" class="card-item">
-        <collection-card :volunteer="item.volunteerCollection" :count="item.count"></collection-card>
+        <thing-card :thing="item.volunteerThings" :books="item.books"></thing-card>
       </div>
     </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "list",
+  name: "thingList",
   data:function (){
     return {
       list:null,
@@ -21,7 +21,7 @@ export default {
 
   },
   created() {
-    this.$http.get("/get/all/volunteer/collection").then(res=>{
+    this.$http.get("/get/volunteer/things/by/uid").then(res=>{
       this.list=res.data.data;
       console.log(this.list)
     }).catch(err=>{

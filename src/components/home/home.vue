@@ -21,17 +21,14 @@
         <span>收到投递</span>
       </el-col>
     </el-row>
-    <div class="content">
+
+    <div class="card-inline">
       <div @click.native="toGetReceive"  class="my-content">
-        <div>
           学生简历库
-        </div>
       </div >
       <div   @click.native="toGetReceive" class="my-content">
         家长简历库
       </div>
-    </div>
-    <div class="content">
       <div @click.native="toGetReceive"  class="my-content">
         我的简历
       </div >
@@ -39,9 +36,6 @@
         个人信息
       </div>
     </div>
-
-
-
   </div>
 </template>
 
@@ -70,6 +64,18 @@ export default {
   padding: 20px 0;
   border-right: solid 1px #fff;
 }
+.card-inline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 93%;
+  height: 100%;
+  background-color: white;
+  border-radius: 6px;
+  margin: 0 auto;
+  padding: 30px 0px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
 
 .home_content .head {
   text-align: center;
@@ -95,14 +101,15 @@ export default {
 }
 .my-content{
   background: #3091F2;
-  width: 300px;
-  padding: 60px 90px;
+  width: 30%;
+  padding: 75px 90px;
   cursor: pointer;
-  margin: 0px 35px;
+  margin: 20px 35px;
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   color: white;
   font-weight: bold;
+  text-align: center;
 }
 .my-content:hover{
   background: #2385e5;

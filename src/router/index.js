@@ -21,6 +21,7 @@ import Volunteer from "@/components/add/student/volunteer";
 import volunteerCard from "@/components/volunteerCard";
 import VolunteerIndex from "@/components/volunteer/index";
 import VolunteerList from "@/components/volunteer/collection/list";
+import ThingList from "@/components/volunteer/things/thingList"
 
 Vue.use(VueRouter)
 
@@ -46,7 +47,8 @@ const routes = [
             {path: "/show/help", component: HelpCard},
             {path: "/show/volunteer", component: volunteerCard},
             {path: "/volunteer/index", component: VolunteerIndex},
-            {path: "/student/volunteer/collections",component: VolunteerList}
+            {path: "/student/volunteer/collections",component: VolunteerList},
+            {path: "/student/donate/things",component: ThingList},
         ]
     },
     {
