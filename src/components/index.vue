@@ -17,11 +17,6 @@
           </el-dropdown-menu>
         </el-dropdown>
       </div>
-      <!--<div class="head_right" style="margin-right: 15px">-->
-      <!--  <el-button type="primary">-->
-      <!--    <a class="red-point">消息 <i class="el-icon-message"></i></a>-->
-      <!--  </el-button>-->
-      <!--</div>-->
     </el-header>
 
     <!--导航栏+内容-->
@@ -37,6 +32,10 @@
             <i class="el-icon-menu"></i>
             <span slot="title">义工活动</span>
           </el-menu-item>
+          <el-menu-item index="/student/help">
+            <i class="el-icon-menu"></i>
+            <span slot="title">校内互助</span>
+          </el-menu-item>
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -46,23 +45,6 @@
             <el-menu-item index="/add/parent/need">成为家长</el-menu-item>
           </el-submenu>
 
-          <el-menu-item index="/student/help">
-            <i class="el-icon-menu"></i>
-            <span slot="title">学生帮扶</span>
-          </el-menu-item>
-
-          <el-menu-item index="/student/volunteer">
-            <i class="el-icon-menu"></i>
-            <span slot="title">社团发布</span>
-          </el-menu-item>
-          <el-menu-item index="/show/volunteer">
-            <i class="el-icon-menu"></i>
-            <span slot="title">义工活动</span>
-          </el-menu-item>
-          <el-menu-item index="/show/help">
-            <i class="el-icon-menu"></i>
-            <span slot="title">互助详细</span>
-          </el-menu-item>
           <el-menu-item index="/show">
             <i class="el-icon-setting"></i>
             <span slot="title">推荐</span>
@@ -87,6 +69,9 @@
 
       </el-container>
     </el-container>
+    <a class="back"  @click="back">
+      <i class="el-icon-back"></i> 返回
+    </a>
   </el-container>
 </template>
 
@@ -112,8 +97,8 @@ export default {
       })
     },
     //左边栏切换
-    toggleLeft() {
-      this.isShow = !this.isShow
+    back() {
+      this.$router.go(-1);
     }
   }
 }
@@ -211,6 +196,32 @@ export default {
   line-height: 60px;
   right: 150%;
   cursor: pointer;
+}
+.back {
+  cursor: pointer;
+  display: inline-block;
+  position: fixed;
+  z-index: 10;
+  bottom: 6px;
+  left: 50%;
+  margin-left: 520px;
+  padding: 0 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 26px;
+  color: #fff;
+  background-color: @color;
+  transition: all 0.2s ease-in-out;
+  animation: fade 1.6s;
+  i {
+    color: #fff;
+  }
+  @media screen and (max-width: 1246px) {
+    left: auto;
+    right: 8px;
+    margin-left: 0;
+  }
+  bottom: 20px;
 }
 
 

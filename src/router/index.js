@@ -15,13 +15,19 @@ import pstep1 from "@/components/add/parent/step1";
 import pstep2 from "@/components/add/parent/step2";
 import pstep3 from "@/components/add/parent/step3";
 import Need from "@/components/detail/parent/need";
-import Help from "@/components/add/student/help";
-import HelpCard from "@/components/helpCard";
-import Volunteer from "@/components/add/student/volunteer";
+import CollectionAdd from "@/components/volunteer/collection/add";
 import volunteerCard from "@/components/volunteerCard";
 import VolunteerIndex from "@/components/volunteer/index";
 import VolunteerList from "@/components/volunteer/collection/list";
 import ThingList from "@/components/volunteer/things/thingList"
+import MyCollection from "@/components/volunteer/collection/receive/list"
+import UpdateCollection from "@/components/volunteer/collection/update";
+import ReceiveThingList from "@/components/volunteer/collection/receive/thingList"
+import StudentHelpIndex from "@/components/help/index"
+import StudentHelpAdd from "@/components/help/add"
+import StudentHelpReqList from "@/components/help/req/list"
+import StudentHelpReceiveList from "@/components/help/receive/list"
+import StudentHelpUpdate from "@/components/help/update"
 
 Vue.use(VueRouter)
 
@@ -44,12 +50,20 @@ const routes = [
         children: [
             {path: "", component: Home},
             {path: "/show", component: Show},
-            {path: "/show/help", component: HelpCard},
             {path: "/show/volunteer", component: volunteerCard},
             {path: "/volunteer/index", component: VolunteerIndex},
             {path: "/student/volunteer/collections",component: VolunteerList},
             {path: "/student/donate/things",component: ThingList},
+            {path: "/collection/receive" , component: MyCollection},
+            {path: "/get/receive/things",component: ReceiveThingList},
+            {path: "/student/help",component: StudentHelpIndex},
+            {path: "/student/help/list",component: StudentHelpReqList},
+            {path: "/student/help/receive",component: StudentHelpReceiveList}
         ]
+    },
+    {
+        path: "/update/collection",
+        component: UpdateCollection
     },
     {
         path: "/add/student/resume",
@@ -72,13 +86,17 @@ const routes = [
         ]
     },
     {
-        path: "/student/help",
-        component: Help
+        path: "/student/help/add",
+        component: StudentHelpAdd
+    },
+    {
+        path: "/student/help/update",
+        component: StudentHelpUpdate
     },
 
     {
-        path: "/student/volunteer",
-        component: Volunteer
+        path: "/collection/add",
+        component: CollectionAdd
     },
     {
         path: "/detail/student",

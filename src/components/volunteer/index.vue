@@ -23,17 +23,15 @@ export default {
   },
   methods: {
     toGetReceive: function () {
-      this.$message.success("目前接收到的投递数量为" + this.totalActiveNum)
+      this.$router.push("/collection/receive")
     },
     toAddVolunteerCollection:function (){
-      console.log(123)
-      this.$router.push("/student/volunteer")
+      this.$router.push("/collection/add")
     },
     toVolunteerCollectionList:function (){
       this.$router.push("/student/volunteer/collections")
     },
     toMyDonateThings:function () {
-      // body...
       this.$router.push("/student/donate/things")
     }
   }
@@ -46,7 +44,6 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   width: 93%;
-  height: 70%;
   background-color: white;
   border-radius: 6px;
   margin: 0 auto;

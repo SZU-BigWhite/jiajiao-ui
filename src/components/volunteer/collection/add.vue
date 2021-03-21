@@ -1,5 +1,5 @@
 <template>
-  <div id="volunteer">
+  <div id="volunteer_add">
     <!-- 头部导航 -->
     <header class="header" :class="{ 'header-fixed' : headerFixed }">
       <el-row>
@@ -28,7 +28,7 @@
                 </el-form-item>
 
                 <el-form-item class="must" label="微信号" prop="subject">
-                  <el-input class="s-mini-input" v-model="studentVolunteer.wechat"></el-input>
+                  <el-input class="s-mini-input" v-model="studentVolunteer.wechet"></el-input>
                 </el-form-item>
                 <el-form-item class="must" label="回收时间" prop="subject">
                   <div class="block">
@@ -68,7 +68,7 @@
 <script>
 
 export default {
-  name: "volunteer",
+  name: "volunteerAdd",
   data: function () {
     return {
       headerFixed: true,
@@ -112,7 +112,7 @@ export default {
 </script>
 
 <style scoped>
-#volunteer {
+#volunteer_add {
   min-width: 1200px;
   margin: 0 auto;
   font-family: "Helvetica Neue", "PingFang SC", Arial, sans-serif;

@@ -1,5 +1,5 @@
 <template>
-  <div id="volunteer">
+  <div id="updateHelp">
     <!-- 头部导航 -->
     <header class="header" :class="{ 'header-fixed' : headerFixed }">
       <el-row>
@@ -18,45 +18,45 @@
       <div class="main-right">
         <transition name="fade">
           <div class="activePublic ">
-            <h1 class="help-header">义工回收</h1>
+            <h1 class="help-header">学生帮扶更新</h1>
 
             <div class="help-content">
-              <el-form label-position="left" label-width="108px" :model="studentVolunteer" :rules="studentVolunteer">
+              <el-form label-position="left" label-width="108px" :model="studentHelp" :rules="studentHelp">
 
-                <el-form-item class="must" label="社团名" prop="ademecy">
-                  <el-input class="s-mini-input1" v-model="studentVolunteer.name"></el-input>
+                <el-form-item class="must" label="学院" prop="ademecy">
+                  <el-input class="s-mini-input1" v-model="studentHelp.ademecy"></el-input>
                 </el-form-item>
 
-                <el-form-item class="must" label="微信号" prop="subject">
-                  <el-input class="s-mini-input" v-model="studentVolunteer.wechat"></el-input>
+                <el-form-item class="must" label="帮扶科目" prop="subject">
+                  <el-input class="s-mini-input" v-model="studentHelp.subject"></el-input>
                 </el-form-item>
-                <el-form-item class="must" label="回收时间" prop="subject">
-                  <div class="block">
-                    <!--<span class="demonstration">默认</span>-->
-                    <el-date-picker
-                        v-model="time"
-                        type="daterange"
-                        range-separator="-"
-                        start-placeholder="开始日期"
-                        end-placeholder="结束日期">
-                    </el-date-picker>
-                  </div>
+                <el-form-item class="must" label="帮扶补偿" prop="salary">
+                  <el-input class="s-mini-input" v-model.number="studentHelp.salary"></el-input>
+                  元/小时
                 </el-form-item>
 
-                <el-form-item class="must" label="回收策略" prop="showSelf">
+                <el-form-item class="must" label="学习现状" prop="showSelf">
                   <el-input
                       type="textarea"
-                      :autosize="{ minRows: 5, maxRows: 100}"
-                      placeholder="回收的物品范围，回收的目的"
-                      v-model="studentVolunteer.content">
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      placeholder="在这里描述一下，学习该科目面临的主要的问题"
+                      v-model="studentHelp.condiction">
+                  </el-input>
+                </el-form-item>
+                <el-form-item class="must" label="求助内容" prop="showSelf">
+                  <el-input
+                      type="textarea"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      placeholder="你希望得到怎样的帮助"
+                      v-model="studentHelp.helpReq">
                   </el-input>
                 </el-form-item>
               </el-form>
             </div>
 
             <div class="but-group">
-              <el-button @click.native.prevent="handlePreview">返回</el-button>
-              <el-button @click.native.prevent="handlePublish" type="primary">提交表单</el-button>
+              <el-button @click.native.prevent="handlePreview" >返回</el-button>
+              <el-button @click.native.prevent="handlePublish" type="primary">确认修改</el-button>
             </div>
           </div>
         </transition>
@@ -66,20 +66,19 @@
 </template>
 
 <script>
-
 export default {
-  name: "volunteer",
+  name: "updateHelp",
   data: function () {
     return {
       headerFixed: true,
-      studentVolunteer:{
-        name:"",
-        wechet:"",
-        content:"",
-        startTime:"",
-        endTime:"",
+      studentHelp:{
+        id:null,
+        ademecy:"",
+        subject:"",
+        condiction:"",
+        helpReq:"",
+        salary:null,
       },
-      time:null,
     }
   },
   methods:{
@@ -87,43 +86,44 @@ export default {
       this.$router.go(-1);
     },
     handlePublish: function () {
-      this.$http.post("/add/volunteer/collection",this.studentVolunteer).then(res=>{
-        this.$message.success(res.data.msg);
+      this.$http.post("/update/student/help",this.studentHelp).then(res=>{
+        console.log(res)
+        this.$message.success(res.data.msg)
         setTimeout(()=>{
           this.$router.go(-1)
-        },2000);
+        },1000)
       }).catch(err=>{
         console.log(err);
-      });
+      })
     },
-    p(s) {
-      return s < 10 ? '0' + s : s
-    }
   },
-  watch:{
-    time:function () {
-      const d = new Date(this.time[0]);
-      this.studentVolunteer.startTime = d.getFullYear() + '-' + this.p((d.getMonth() + 1)) + '-' + this.p(d.getDate());
-      const d2= new Date(this.time[1]);
-      this.studentVolunteer.endTime = d2.getFullYear() + '-' + this.p((d2.getMonth() + 1)) + '-' + this.p(d2.getDate());
-    }
+  created() {
+    this.id=this.$route.query.id;
+    this.$http.get("/get/student/help/by/id",{
+      params:{
+        id:this.id
+      }
+    }).then(res=>{
+      console.log(res)
+      Object.assign(this.studentHelp,res.data.data)
+    }).catch(err=>{
+      console.log(err);
+    })
   }
 }
 </script>
 
 <style scoped>
-#volunteer {
+#updateHelp {
   min-width: 1200px;
   margin: 0 auto;
   font-family: "Helvetica Neue", "PingFang SC", Arial, sans-serif;
 
 }
-
-.s-mini-input {
+.s-mini-input{
   width: 250px !important;
 }
-
-.s-mini-input1 {
+.s-mini-input1{
   width: 250px !important;
   margin-right: 100px;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div id="volunteer">
+  <div id="volunteer_update">
     <!-- 头部导航 -->
     <header class="header" :class="{ 'header-fixed' : headerFixed }">
       <el-row>
@@ -28,11 +28,10 @@
                 </el-form-item>
 
                 <el-form-item class="must" label="微信号" prop="subject">
-                  <el-input class="s-mini-input" v-model="studentVolunteer.wechat"></el-input>
+                  <el-input class="s-mini-input" v-model="studentVolunteer.wechet"></el-input>
                 </el-form-item>
                 <el-form-item class="must" label="回收时间" prop="subject">
                   <div class="block">
-                    <!--<span class="demonstration">默认</span>-->
                     <el-date-picker
                         v-model="time"
                         type="daterange"
@@ -56,7 +55,7 @@
 
             <div class="but-group">
               <el-button @click.native.prevent="handlePreview">返回</el-button>
-              <el-button @click.native.prevent="handlePublish" type="primary">提交表单</el-button>
+              <el-button @click.native.prevent="handlePublish" type="primary">更新</el-button>
             </div>
           </div>
         </transition>
@@ -66,13 +65,15 @@
 </template>
 
 <script>
+import store from "@/store";
 
 export default {
-  name: "volunteer",
+  name: "volunteerUpdate",
   data: function () {
     return {
       headerFixed: true,
       studentVolunteer:{
+        id:"",
         name:"",
         wechet:"",
         content:"",
@@ -87,11 +88,11 @@ export default {
       this.$router.go(-1);
     },
     handlePublish: function () {
-      this.$http.post("/add/volunteer/collection",this.studentVolunteer).then(res=>{
+      this.$http.post("/update/volunteer/collection",this.studentVolunteer).then(res=>{
         this.$message.success(res.data.msg);
         setTimeout(()=>{
           this.$router.go(-1)
-        },2000);
+        },1000);
       }).catch(err=>{
         console.log(err);
       });
@@ -107,12 +108,22 @@ export default {
       const d2= new Date(this.time[1]);
       this.studentVolunteer.endTime = d2.getFullYear() + '-' + this.p((d2.getMonth() + 1)) + '-' + this.p(d2.getDate());
     }
+  },
+  created() {
+    this.studentVolunteer.id=this.$route.query.id
+    this.$http.get("/get/volunteer/collection/by/id",{
+      params:{
+        id:this.studentVolunteer.id
+      }
+    }).then(res=>{
+      Object.assign(this.studentVolunteer, res.data.data.volunteerCollection)
+    })
   }
 }
 </script>
 
 <style scoped>
-#volunteer {
+#volunteer_update {
   min-width: 1200px;
   margin: 0 auto;
   font-family: "Helvetica Neue", "PingFang SC", Arial, sans-serif;

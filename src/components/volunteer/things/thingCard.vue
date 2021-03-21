@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import volunteer from "@/components/add/student/volunteer";
 
 export default {
   name: "thingCard",
@@ -25,25 +24,15 @@ export default {
   methods:{
     
   },
-  computed:{
-    name:function () {
-      this.$http.get("/get/volunteer/collection/by/id",{id:thing.cId}).then(res=>{
-        console.log(res);
-      })
-    }
-  },
   created() {
-    setTimeout(()=>{
-      this.$http.get("/get/volunteer/collection/by/id",{
-        params:{
-          id:this.thing.cId
-        }
-      }).then(res=>{
-        this.name=res.data.data.volunteerCollection.name
-        console.log(res);
-      })
-    },500)
-    console.log(123123)
+    this.$http.get("/get/volunteer/collection/by/id",{
+      params:{
+        id:this.thing.cId
+      }
+    }).then(res=>{
+      this.name=res.data.data.volunteerCollection.name
+      console.log(res);
+    })
   }
 }
 </script>

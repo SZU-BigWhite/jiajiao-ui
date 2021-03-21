@@ -31,7 +31,7 @@
                   <el-input class="s-mini-input" v-model="studentHelp.subject"></el-input>
                 </el-form-item>
                 <el-form-item class="must" label="帮扶补偿" prop="salary">
-                  <el-input class="s-mini-input" v-model="studentHelp.salary"></el-input>
+                  <el-input class="s-mini-input" v-model.number="studentHelp.salary"></el-input>
                   元/小时
                 </el-form-item>
 
@@ -67,7 +67,7 @@
 
 <script>
 export default {
-  name: "help",
+  name: "addHelp",
   data: function () {
     return {
       headerFixed: true,
@@ -85,7 +85,15 @@ export default {
       this.$router.go(-1);
     },
     handlePublish: function () {
-      console.log('subjectList');
+      this.$http.post("/add/student/help",this.studentHelp).then(res=>{
+        console.log(res)
+        this.$message.success(res.data.msg)
+        setTimeout(()=>{
+          this.$router.go(-1)
+        },1000)
+      }).catch(err=>{
+        console.log(err);
+      })
     },
   }
 }
@@ -117,7 +125,8 @@ export default {
 
 .help-header {
   color: #409EFF;
-  padding-left: 250px;
+  text-align: center;
+  padding-right: 50px;
 }
 
 /* 头部导航 */

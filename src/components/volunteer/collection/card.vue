@@ -23,7 +23,7 @@
               </el-date-picker>
             </div>
           </el-form-item>
-          <el-form-item class="must" label="性格" prop="books"  :label-width="formLabelWidth">
+          <el-form-item class="must" label="捐赠物品" prop="books"  :label-width="formLabelWidth">
             <el-tag
                 :key="key"
                 v-for="(tag,key) in books"
@@ -62,7 +62,7 @@ export default {
   data:function (){
     return  {
       form: {
-        cId: 1,
+        cId: null,
         wechat: "",
         time:null,
       },
@@ -86,7 +86,7 @@ export default {
         },
         books:this.books
       }).then(res=>{
-        console.log(res);
+        this.$message.success(res.data.msg)
       }).catch(err=>{
         console.log(err);
       })
