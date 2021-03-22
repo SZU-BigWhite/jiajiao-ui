@@ -36,14 +36,14 @@
             <i class="el-icon-menu"></i>
             <span slot="title">校内互助</span>
           </el-menu-item>
-          <el-submenu index="1">
+          <!-- <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>家教</span>
             </template>
             <el-menu-item index="/add/student/resume">成为老师</el-menu-item>
             <el-menu-item index="/add/parent/need">成为家长</el-menu-item>
-          </el-submenu>
+          </el-submenu> -->
 
           <el-menu-item index="/show">
             <i class="el-icon-setting"></i>
@@ -203,8 +203,7 @@ export default {
   position: fixed;
   z-index: 10;
   bottom: 6px;
-  left: 50%;
-  margin-left: 520px;
+  right: 5%;
   padding: 0 8px;
   border-radius: 3px;
   font-size: 12px;

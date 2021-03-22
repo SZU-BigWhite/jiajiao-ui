@@ -10,10 +10,6 @@ import step3 from "@/components/add/student/step3";
 import Index from "@/components/index";
 import Home from "@/components/home/home";
 import Resume from "@/components/detail/student/resume";
-import AddParentNeed from "@/components/add/parent/need";
-import pstep1 from "@/components/add/parent/step1";
-import pstep2 from "@/components/add/parent/step2";
-import pstep3 from "@/components/add/parent/step3";
 import Need from "@/components/detail/parent/need";
 import CollectionAdd from "@/components/volunteer/collection/add";
 import volunteerCard from "@/components/volunteerCard";
@@ -28,6 +24,19 @@ import StudentHelpAdd from "@/components/help/add"
 import StudentHelpReqList from "@/components/help/req/list"
 import StudentHelpReceiveList from "@/components/help/receive/list"
 import StudentHelpUpdate from "@/components/help/update"
+import TeachNeed from "@/components/teach/need/index.vue"
+import TeachNeedAdd from "@/components/teach/need/add/need.vue"
+import TeachNeedStep1 from "@/components/teach/need/add/step1.vue"
+import TeachNeedStep2 from "@/components/teach/need/add/step2.vue"
+import TeachNeedStep3 from "@/components/teach/need/add/step3.vue"
+
+import TeachResume from "@/components/teach/resume/index.vue"
+import TeachResumeAdd from "@/components/teach/resume/add/resume.vue"
+import TeachResumeStep1 from "@/components/teach/resume/add/step1.vue"
+import TeachResumeStep2 from "@/components/teach/resume/add/step2.vue"
+import TeachResumeStep3 from "@/components/teach/resume/add/step3.vue"
+import TeachResumeShow from "@/components/teach/resume/show.vue"
+
 
 Vue.use(VueRouter)
 
@@ -58,7 +67,11 @@ const routes = [
             {path: "/get/receive/things",component: ReceiveThingList},
             {path: "/student/help",component: StudentHelpIndex},
             {path: "/student/help/list",component: StudentHelpReqList},
-            {path: "/student/help/receive",component: StudentHelpReceiveList}
+            {path: "/student/help/receive",component: StudentHelpReceiveList},
+			{path: "/teach/need",component: TeachNeed},
+			{path: "/teach/resume",component: TeachResume},
+			{path: "/teach/resume/show",component: TeachResumeShow}
+			
         ]
     },
     {
@@ -66,23 +79,23 @@ const routes = [
         component: UpdateCollection
     },
     {
-        path: "/add/student/resume",
-        component: AddStudentResume,
+        path: "/teach/resume/add",
+        component: TeachResumeAdd,
         children: [
-            {path: '', component: step1},
-            {path: 'step1', component: step1},
-            {path: 'step2', component: step2},
-            {path: 'step3', component: step3},
+            {path: '', component: TeachResumeStep1},
+            {path: 'step1', component: TeachResumeStep1},
+            {path: 'step2', component: TeachResumeStep2},
+            {path: 'step3', component: TeachResumeStep3},
         ]
     },
     {
-        path: "/add/parent/need",
-        component: AddParentNeed,
+        path: "/teach/need/add",
+        component: TeachNeedAdd,
         children: [
-            {path: '', component: pstep1},
-            {path: 'step1', component: pstep1},
-            {path: 'step2', component: pstep2},
-            {path: 'step3', component: pstep3},
+            {path: '', component: TeachNeedStep1},
+            {path: 'step1', component: TeachNeedStep1},
+            {path: 'step2', component: TeachNeedStep2},
+            {path: 'step3', component: TeachNeedStep3},
         ]
     },
     {

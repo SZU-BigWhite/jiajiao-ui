@@ -66,7 +66,7 @@
       <el-form-item class="must" label="教学目标" prop="salary">
         <el-input
             type="textarea"
-            autosize
+            :autosize="{ minRows: 2, maxRows: 100}"
             placeholder="能够学生带来怎样的提升"
             v-model="teachPlan.teachGoal">
         </el-input>
@@ -74,7 +74,7 @@
       <el-form-item class="must" label="教学重点" prop="salary">
         <el-input
             type="textarea"
-            autosize
+            :autosize="{ minRows: 2, maxRows: 100}"
             placeholder="教学的时候着重思维，还是方法，还是其他的"
             v-model="teachPlan.teachStress">
         </el-input>
@@ -82,11 +82,12 @@
       <el-form-item class="must" label="教学反馈" prop="salary">
         <el-input
             type="textarea"
-            autosize
+            :autosize="{ minRows: 2, maxRows: 100}"
             placeholder="每次家教完后，会跟家长沟通什么内容呢"
             v-model="teachPlan.feedback">
         </el-input>
       </el-form-item>
+	  
     </el-form>
 
 
@@ -155,7 +156,7 @@ export default {
 }
 </script>
 <style scoped>
-@import "../../../assets/css/step-css.css";
+@import "/assets/css/step-css.css";
 
 .step1 {
   box-shadow: 0 2px 4px rgba(0, 125, 255, .22), 0 0 6px rgba(0, 125, 255, .14);

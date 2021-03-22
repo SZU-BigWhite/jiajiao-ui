@@ -30,7 +30,7 @@
               </el-form-item>
               <el-form-item label="时间" label-width="120px">
                 <el-select v-model="date.time" placeholder="请选择时间">
-                  <el-option label="上午" value="上午"></el-option>
+                  <el-option label="早上" value="早上"></el-option>
                   <el-option label="下午" value="下午"></el-option>
                   <el-option label="晚上" value="晚上"></el-option>
                 </el-select>
@@ -43,18 +43,18 @@
           </el-dialog>
         </div>
       </el-form-item>
-      <el-form-item class="must" label="期望时薪" prop="salary">
-        <el-input class="s-salary-input" v-model.number="teachPlan.salary"></el-input>
+
+      <el-form-item class="must" label="时薪" prop="salary">
+        <el-input placeholder="能接收的最高时薪" class="s-salary-input" v-model="teachPlan.salary"></el-input>
         元/小时
       </el-form-item>
-      <el-form-item class="must" label="可辅导年级" prop="academyId">
-        <el-select style="width: 130px" v-model="teachPlan.ableClass" placeholder="请选择年级">
-          <el-option v-for="item in sAbleClass" :label="item" :value="item"></el-option>
-        </el-select>
-        及以下
+      <el-form-item class="must" label="辅导次数" prop="salary">
+        <el-input placeholder="每周希望辅导次数" class="s-salary-input" v-model="teachPlan.times"></el-input> 次
       </el-form-item>
-
-      <el-form-item label="可辅导科目" prop="wechat">
+      <el-form-item class="must" label="平均时长" prop="salary">
+        <el-input placeholder="每次辅导时长" class="s-salary-input" v-model="teachPlan.duration"></el-input> 小时
+      </el-form-item>
+      <el-form-item label="辅导科目" prop="wechat">
         <div>
           <el-checkbox-group v-model="teachPlan.subjectList" size="small">
             <el-checkbox-button v-for="subject in sSubject" :label="subject" :key="subject">{{ subject }}
@@ -63,28 +63,12 @@
         </div>
       </el-form-item>
 
-      <el-form-item class="must" label="教学目标" prop="salary">
+      <el-form-item class="must" label="辅导要求" prop="salary">
         <el-input
             type="textarea"
-            autosize
-            placeholder="能够学生带来怎样的提升"
-            v-model="teachPlan.teachGoal">
-        </el-input>
-      </el-form-item>
-      <el-form-item class="must" label="教学重点" prop="salary">
-        <el-input
-            type="textarea"
-            autosize
-            placeholder="教学的时候着重思维，还是方法，还是其他的"
-            v-model="teachPlan.teachStress">
-        </el-input>
-      </el-form-item>
-      <el-form-item class="must" label="教学反馈" prop="salary">
-        <el-input
-            type="textarea"
-            autosize
-            placeholder="每次家教完后，会跟家长沟通什么内容呢"
-            v-model="teachPlan.feedback">
+            :autosize="{ minRows: 2, maxRows: 100}"
+            placeholder="希望老师教的时候的着重点"
+            v-model="teachPlan.teachReq">
         </el-input>
       </el-form-item>
     </el-form>
@@ -102,11 +86,11 @@ export default {
       teachPlan: {
         timeList: [],      //空闲时间 周一：上午
         salary: null,
-        ableClass: "",   //小学，初/高一-三
+        duration: null,
+        times: null,
         subjectList: [],       //科目
-        teachGoal: '',
-        teachStress: '',
-        feedback: '',
+        education:null,   //学历
+        teachReq:null
       },
       sSubject: ['作业辅导', '语文', '数学', '英语', '历史', '地理', '生物', '政治', '物理', '化学', '音乐', '美术', '舞蹈', '计算机', '体育'],
       sAbleClass: ['小学', '初一', '初二', '初三', '高一', '高二', '高三'],
@@ -119,9 +103,9 @@ export default {
     }
   },
   watch: {
-    teachPlan: {
+    signForm: {
       handler: function () {
-        store.commit('addTeachPlan', {teachPlan:this.teachPlan});
+        // store.commit('setSignForm', this.signForm);
       },
       deep: true
     }
@@ -150,12 +134,13 @@ export default {
 
   },
   created: function () {
-    Object.assign(this.teachPlan, store.state.teachPlan);
+    console.log(store.state.studentDetail.name)
+    console.log(this.$store.state.test)
   }
 }
 </script>
 <style scoped>
-@import "../../../assets/css/step-css.css";
+/* @import "/assets/css/step-css.css"; */
 
 .step1 {
   box-shadow: 0 2px 4px rgba(0, 125, 255, .22), 0 0 6px rgba(0, 125, 255, .14);
@@ -170,6 +155,6 @@ export default {
 }
 
 .s-salary-input {
-  width: 130px !important;
+  width: 180px !important;
 }
 </style>

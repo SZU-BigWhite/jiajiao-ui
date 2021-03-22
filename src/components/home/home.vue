@@ -23,16 +23,16 @@
     </el-row>
 
     <div class="card-inline">
-      <div @click.native="toGetReceive"  class="my-content">
+      <div @click="toStudentResume"  class="my-content">
           学生简历库
       </div >
-      <div   @click.native="toGetReceive" class="my-content">
-        家长简历库
+      <div   @click="toParentNeed" class="my-content">
+        家长需求库
       </div>
-      <div @click.native="toGetReceive"  class="my-content">
+      <div @click="toGetReceive"  class="my-content">
         我的简历
       </div >
-      <div  @click.native="toGetReceive" class="my-content">
+      <div  @click="toGetReceive" class="my-content">
         个人信息
       </div>
     </div>
@@ -54,7 +54,13 @@ export default {
   methods: {
     toGetReceive: function () {
       this.$message.success("目前接收到的投递数量为"+this.totalActiveNum)
-    }
+    },
+	toParentNeed:function()	{
+		this.$router.push("/teach/need")
+	},
+	toStudentResume: function()	{
+		this.$router.push("/teach/resume")
+	}
   }
 }
 </script>
