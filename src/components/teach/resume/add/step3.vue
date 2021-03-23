@@ -32,14 +32,6 @@
             v-model="educationDetail.showSelf">
         </el-input>
       </el-form-item>
-	  <el-form-item class="must" label="教学反馈" prop="salary">
-	    <el-input
-	        type="textarea"
-	        :autosize="{ minRows: 2, maxRows: 100}"
-	        placeholder="每次家教完后，会跟家长沟通什么内容呢"
-	        v-model="educationDetail.showSelf">
-	    </el-input>
-	  </el-form-item>
     </el-form>
   </div>
 </template>

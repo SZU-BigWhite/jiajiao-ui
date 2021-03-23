@@ -30,7 +30,7 @@
               </el-form-item>
               <el-form-item label="时间" label-width="120px">
                 <el-select v-model="date.time" placeholder="请选择时间">
-                  <el-option label="早上" value="早上"></el-option>
+                  <el-option label="上午" value="上午"></el-option>
                   <el-option label="下午" value="下午"></el-option>
                   <el-option label="晚上" value="晚上"></el-option>
                 </el-select>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import Card from "@/components/card";
+import ResumeCard from "@/components/teach/resume/card"
 import VolunteerCollectionCard from "@/components/volunteer/collection/card"
 import ThingCard from "@/components/volunteer/things/thingCard"
 import MyCollectionCard from "@/components/volunteer/collection/receive/card"
@@ -9,6 +9,7 @@ import ReceiveThingCard from "@/components/volunteer/collection/receive/thingCar
 import HelpCard from "@/components/help/req/helpCard"
 import HelpReceiveCard from "@/components/help/receive/card"
 import HelpReceiveCards from "@/components/help/receive/cards"
+
 
 import './plugins/element.js'
 // 添加全局样式
@@ -31,7 +32,7 @@ Vue.prototype.$http  = axios.create({
 import store from "@/store";
 
 Vue.config.productionTip = false
-Vue.component(Card.name,Card)
+Vue.component(ResumeCard.name,ResumeCard)
 Vue.component(VolunteerCollectionCard.name,VolunteerCollectionCard)
 Vue.component(ThingCard.name,ThingCard)
 Vue.component(MyCollectionCard.name,MyCollectionCard)

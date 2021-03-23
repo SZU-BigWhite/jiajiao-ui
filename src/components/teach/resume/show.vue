@@ -19,7 +19,7 @@
 	  </div>
 	</div>
     <div class="select-subject">
-      <el-checkbox-group v-model="selectedSubject" size="small">
+      <el-checkbox-group v-model="selectedSubject" size="small" @change="selectSubject">
         <el-checkbox-button  v-for="subject in sSubject" :label="subject" :key="subject">{{subject}}</el-checkbox-button>
       </el-checkbox-group>
     </div>
@@ -50,7 +50,7 @@
             </el-form-item>
             <el-form-item label="时间" :label-width="formLabelWidth">
               <el-select v-model="form.time" placeholder="请选择时间">
-                <el-option label="早上" value="早上"></el-option>
+                <el-option label="上午" value="上午"></el-option>
                 <el-option label="下午" value="下午"></el-option>
                 <el-option label="晚上" value="晚上"></el-option>
               </el-select>
@@ -74,7 +74,7 @@
 
     <div class="card-inline">
       <div v-for="item in this.resumeDataList" class="card-item">
-        <card :resume="item"></card>
+        <resume-card :resume="item"></resume-card>
       </div>
     </div>
     <div class="page-info-bg">
@@ -123,6 +123,8 @@ export default {
 		updateTime:0,
 		ableClass:0,
 		academyId:null,
+		freeTimeString:[],
+		name:[],
 	  }
     }
   },
@@ -146,7 +148,8 @@ export default {
 	  this.getList()
     },
     selectSubject: function (i) {
-      this.selectedSubject = i;
+	  this.filter.name=this.selectedSubject
+	  this.getList()
     },
 	selectSex:function (i) {
       this.selectedSex = i;
@@ -171,6 +174,8 @@ export default {
 	},
     handleCloseTag(tag) {
       this.selectedTime.splice(this.selectedTime.indexOf(tag), 1);
+	  this.filter.freeTimeString=this.selectedTime;
+	  this.getList()
     },
     confirmTime:function (){
 
@@ -184,23 +189,25 @@ export default {
       }
       this.dialogFormVisible = false;
       this.selectedTime.push(this.form.week+" : "+this.form.time);
+	  this.filter.freeTimeString=this.selectedTime;
       this.form.week="";
       this.form.time="";
+	  this.getList()
     },
 	handleCurrentChange:function ()	{
 		this.getListByCurrentPageNum()
 	},
 	getListByCurrentPageNum:function(){
-		this.$http.get("/get/students/resumelist/order",{
-			params:{
-				pageNum:this.filter.pageNum,
-				pageSize:this.filter.pageSize,
-				sex:this.filter.sex,
-				salary:this.filter.salary,
-				updateTime:this.filter.updateTime,
-				ableClass:this.filter.ableClass,
-				academyId:this.filter.academyId
-			}
+		this.$http.post("/get/students/resumelist/order",{
+			pageNum:this.filter.pageNum,
+			pageSize:this.filter.pageSize,
+			sex:this.filter.sex,
+			salary:this.filter.salary,
+			updateTime:this.filter.updateTime,
+			ableClass:this.filter.ableClass,
+			academyId:this.filter.academyId,
+			freeTimeString:this.filter.freeTimeString,
+			name:this.filter.name
 		}).then(res=>{
 		  this.resumeTotal=parseInt(res.data.msg);
 		  this.resumeDataList=res.data.data.list;

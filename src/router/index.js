@@ -36,6 +36,7 @@ import TeachResumeStep1 from "@/components/teach/resume/add/step1.vue"
 import TeachResumeStep2 from "@/components/teach/resume/add/step2.vue"
 import TeachResumeStep3 from "@/components/teach/resume/add/step3.vue"
 import TeachResumeShow from "@/components/teach/resume/show.vue"
+import TeachResumeDetail from "@/components/teach/resume/detail"
 
 
 Vue.use(VueRouter)
@@ -115,6 +116,10 @@ const routes = [
         path: "/detail/student",
         component: Resume,
     },
+	{
+		path: "/resume/detail",
+		component: TeachResumeDetail,
+	},
     {
         path: "/detail/parent",
         component: Need,

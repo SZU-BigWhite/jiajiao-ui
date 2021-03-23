@@ -106,7 +106,7 @@
       <div class="intro"><h5>为你推荐</h5></div>
       <el-carousel :interval="4000" type="card" height="215px">
         <el-carousel-item v-for="item in 6" :key="item">
-          <card></card>
+          <resume-card></resume-card>
         </el-carousel-item>
       </el-carousel>
       <a class="pdf"  @click="send">
