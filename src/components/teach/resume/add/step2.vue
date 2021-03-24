@@ -44,7 +44,7 @@
         </div>
       </el-form-item>
       <el-form-item class="must" label="期望时薪" prop="salary">
-        <el-input class="s-salary-input" v-model.number="teachPlan.salary"></el-input>
+        <el-input class="s-salary-input" v-model.number="teachPlan.salary" placeholder="期望待遇"></el-input>
         元/小时
       </el-form-item>
       <el-form-item class="must" label="可辅导年级" prop="academyId">
@@ -67,7 +67,7 @@
         <el-input
             type="textarea"
             :autosize="{ minRows: 2, maxRows: 100}"
-            placeholder="能够学生带来怎样的提升"
+            placeholder="能给孩子带来什么,成绩上的提升,学习方法的掌握,还是学习的积极性的提高？"
             v-model="teachPlan.teachGoal">
         </el-input>
       </el-form-item>
@@ -75,7 +75,7 @@
         <el-input
             type="textarea"
             :autosize="{ minRows: 2, maxRows: 100}"
-            placeholder="教学的时候着重思维，还是方法，还是其他的"
+            placeholder="你将怎么教学,如何给学生讲解问题,教学的重点在哪"
             v-model="teachPlan.teachStress">
         </el-input>
       </el-form-item>
@@ -83,7 +83,7 @@
         <el-input
             type="textarea"
             :autosize="{ minRows: 2, maxRows: 100}"
-            placeholder="每次家教完后，会跟家长沟通什么内容呢"
+            placeholder="每次家教完后，会跟家长反馈孩子哪方面的不足,需如何引导孩子等等"
             v-model="teachPlan.feedback">
         </el-input>
       </el-form-item>

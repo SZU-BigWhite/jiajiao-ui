@@ -24,11 +24,14 @@ import StudentHelpAdd from "@/components/help/add"
 import StudentHelpReqList from "@/components/help/req/list"
 import StudentHelpReceiveList from "@/components/help/receive/list"
 import StudentHelpUpdate from "@/components/help/update"
+
 import TeachNeed from "@/components/teach/need/index.vue"
 import TeachNeedAdd from "@/components/teach/need/add/need.vue"
 import TeachNeedStep1 from "@/components/teach/need/add/step1.vue"
 import TeachNeedStep2 from "@/components/teach/need/add/step2.vue"
 import TeachNeedStep3 from "@/components/teach/need/add/step3.vue"
+import TeachNeedShow from "@/components/teach/need/show"
+import TeachNeedDetail from "@/components/teach/need/detail/detail"
 
 import TeachResume from "@/components/teach/resume/index.vue"
 import TeachResumeAdd from "@/components/teach/resume/add/resume.vue"
@@ -36,8 +39,8 @@ import TeachResumeStep1 from "@/components/teach/resume/add/step1.vue"
 import TeachResumeStep2 from "@/components/teach/resume/add/step2.vue"
 import TeachResumeStep3 from "@/components/teach/resume/add/step3.vue"
 import TeachResumeShow from "@/components/teach/resume/show.vue"
-import TeachResumeDetail from "@/components/teach/resume/detail"
-
+import TeachResumeDetail from "@/components/teach/resume/detail/detail"
+import TeachMyResume from "@/components/teach/resume/owner/resume"
 
 Vue.use(VueRouter)
 
@@ -70,6 +73,7 @@ const routes = [
             {path: "/student/help/list",component: StudentHelpReqList},
             {path: "/student/help/receive",component: StudentHelpReceiveList},
 			{path: "/teach/need",component: TeachNeed},
+			{path: "/teach/need/show",component: TeachNeedShow},
 			{path: "/teach/resume",component: TeachResume},
 			{path: "/teach/resume/show",component: TeachResumeShow}
 			
@@ -99,6 +103,10 @@ const routes = [
             {path: 'step3', component: TeachNeedStep3},
         ]
     },
+	{
+		path:"/teach/my/resume",
+		component: TeachMyResume,
+	},
     {
         path: "/student/help/add",
         component: StudentHelpAdd
@@ -107,7 +115,6 @@ const routes = [
         path: "/student/help/update",
         component: StudentHelpUpdate
     },
-
     {
         path: "/collection/add",
         component: CollectionAdd
@@ -116,6 +123,10 @@ const routes = [
         path: "/detail/student",
         component: Resume,
     },
+	{
+		path: "/need/detail",
+		component: TeachNeedDetail,
+	},
 	{
 		path: "/resume/detail",
 		component: TeachResumeDetail,

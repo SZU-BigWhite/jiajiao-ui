@@ -16,7 +16,7 @@
 export default {
   data: function () {
     return {
-		education:null,
+		// education:null,
     }
   },
   name: "resumeCard",
@@ -32,15 +32,21 @@ export default {
 		  location.reload()
 	  }
   },
+  computed:{
+	  education:function(){
+		  if (this.resume.studentResume.education == 1) {
+		  	return '本科';
+		  } else if (this.resume.studentResume.education == 2) {
+		  	return '研究生';
+		  } else if (this.resume.studentResume.education == 3) {
+		  	return '博士生';
+		  }
+	  }
+  },
   created:function(){
-  	//转换学历
-	if (this.resume.studentResume.education == 1) {
-		this.education = '本科';
-	} else if (this.resume.studentResume.education == 2) {
-		this.education = '研究生';
-	} else if (this.resume.studentResume.education == 3) {
-		this.education = '博士生';
-	}
+	  console.log(this.resume)
+  	
+	
   },
   props:['resume']
 

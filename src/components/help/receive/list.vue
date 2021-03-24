@@ -1,6 +1,11 @@
 <template>
   <div>
+	<div class="card-inline-head">
+		收到的帮助 
+		<span class="back el-icon-back" @click="toBack" ></span>
+	</div>
     <div class="card-inline">
+		
       <el-collapse v-model="activeNames">
 
         <el-collapse-item v-for="(item,key) in list">
@@ -34,6 +39,9 @@ export default {
     })
   },
   methods: {
+	toBack:function(){
+		this.$router.go(-1);
+	}
   },
 
 }
@@ -50,9 +58,32 @@ export default {
   background-color: white;
   border-radius: 6px;
   margin: 0 auto;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  padding-top: 15px;
 }
+.card-inline-head {
+  text-align: center;
+  width: 93%;
+  background-color: white;
+  border-radius: 6px;
+  margin: 0 auto;
+  background-color: #3091F2;
+  color: white;
+  font-size: 24px;
+  line-height: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.back {
+  position: absolute;
+  top: 13px;
+  left: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .receive-h1{
   margin-right: 50px;
   width: 100%;
@@ -65,5 +96,7 @@ export default {
 }
 .el-collapse {
   width: 90%;
+  border-top: 0px;
+  border-bottom: 0px;
 }
 </style>

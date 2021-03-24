@@ -44,6 +44,7 @@
 
 <script>
 import $ from "jquery";
+import store from "@/store";
 
 export default {
   name: "need.vue",
@@ -80,7 +81,41 @@ export default {
       $('html,body').animate({scrollTop: 0}, 500);
     },
     handlePublish: function () {
-      console.log('发布');
+	  this.$http.post("/add/parent/need",{
+		parentNeed:{
+			name:store.state.parentNeedDetail.name,
+			wechat:store.state.parentNeedDetail.wechat,
+			location:store.state.parentNeedDetail.location,
+			arriveHours:store.state.parentNeedDetail.arriveHours,
+			teachBySelf:store.state.parentNeedDetail.teachBySelf,
+			
+			duration:store.state.parentReqDetail.duration,
+			education:store.state.parentReqDetail.education,
+			salary:store.state.parentReqDetail.salary,
+			teachReq:store.state.parentReqDetail.teachReq,
+			times:store.state.parentReqDetail.times,
+			
+			expectFeedback:store.state.parentConditionDetail.expectFeedback,
+			expectGoal:store.state.parentConditionDetail.expectGoal,
+			gradeCondiction:store.state.parentConditionDetail.gradeCondiction,
+			learnCondiction:store.state.parentConditionDetail.learnCondiction,
+		},
+		studentClassString:store.state.parentNeedDetail.studentClass,
+		subjectList:store.state.parentReqDetail.subjectList,
+		timeList:store.state.parentReqDetail.timeList,
+		
+	  }).then(res=>{
+		  console.log(res)
+		  this.$message.success("需求添加成功"),
+		  setTimeout(()=>{
+			  this.$router.push("/teach/need")
+		  },500)
+	  }).catch(err=>{
+		  console.log(err)
+	  })
+      console.log(store.state.parentNeedDetail);
+	  console.log(store.state.parentReqDetail);
+	  console.log(store.state.parentConditionDetail);
     },
     goStep: function (n) {
       switch (n) {

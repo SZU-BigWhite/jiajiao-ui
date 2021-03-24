@@ -1,6 +1,6 @@
 <template>
 	<div class="card-inline">
-		<div class="my-content" @click="toVolunteerCollectionList">查找需求</div>
+		<div class="my-content" @click="toNeedShow">查找需求</div>
 		<div @click="toAddTeachNeed" class="my-content">新增需求</div>
 		<div @click="toMyDonateThings" class="my-content">我的简历</div>
 		<div @click="toGetReceive" class="my-content">需求推荐</div>
@@ -20,8 +20,8 @@ export default {
 		toAddTeachNeed:function (){
 		  this.$router.push("/teach/need/add")
 		},
-		toVolunteerCollectionList:function (){
-		  this.$router.push("/student/volunteer/collections")
+		toNeedShow:function (){
+		  this.$router.push("/teach/need/show")
 		},
 		toMyDonateThings:function () {
 		  this.$router.push("/student/donate/things")

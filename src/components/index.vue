@@ -3,7 +3,7 @@
     <!--头部-->
     <el-header class="home_header">
       <div class="head_mid">
-        SZUFREE
+        深大家教
       </div>
       <div class="head_right">
         <!--用户头像相关-->
@@ -69,9 +69,6 @@
 
       </el-container>
     </el-container>
-    <a class="back"  @click="back">
-      <i class="el-icon-back"></i> 返回
-    </a>
   </el-container>
 </template>
 
@@ -96,10 +93,6 @@ export default {
         this.$message.error("你还未登录")
       })
     },
-    //左边栏切换
-    back() {
-      this.$router.go(-1);
-    }
   }
 }
 </script>
@@ -143,7 +136,8 @@ export default {
   height: 100%;
   line-height: 60px;
   color: white;
-  font-size: 32px;
+  font-size: 28px;
+  font-weight: bold;
   transform: translate(-50%, 0%);
 }
 

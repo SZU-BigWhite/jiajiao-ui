@@ -1,6 +1,7 @@
 <template>
   <div class="content-card">
-    <div class="select-class">
+    
+	<div class="select-class">
       <span>选择年级 </span>
       <div @click="selectClass(i)" class="s-class-span" :class="{'s-active':i==selectedClass}"
            v-for="(item,i) in sClass">{{ item }}
@@ -18,11 +19,13 @@
 	       v-for="(item,i) in sSex">{{ item }}
 	  </div>
 	</div>
-    <div class="select-subject">
+    
+	<div class="select-subject">
       <el-checkbox-group v-model="selectedSubject" size="small" @change="selectSubject">
         <el-checkbox-button  v-for="subject in sSubject" :label="subject" :key="subject">{{subject}}</el-checkbox-button>
       </el-checkbox-group>
     </div>
+	
     <div class="select-time">
       <el-tag
           :key="tag"
@@ -69,6 +72,7 @@
              >
       <el-menu-item index="1" @click="orderBySalary">{{salaryText[filter.salary]}}</el-menu-item>
       <el-menu-item index="2" @click="orderByUpdateTime">{{updateTimeText[filter.updateTime]}}</el-menu-item>
+	  <el-menu-item index="3" @click="orderByEducation">{{educationText[filter.education]}}</el-menu-item>
     </el-menu>
     <div class="line"></div>
 
@@ -77,7 +81,7 @@
         <resume-card :resume="item"></resume-card>
       </div>
     </div>
-    <div class="page-info-bg">
+    <div v-if="resumeTotal>filter.pageSize" class="page-info-bg">
       <el-pagination
           background
           layout="prev, pager, next"
@@ -92,7 +96,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'resumeShow',
   data: function () {
     return {
       activeIndex: '1',
@@ -107,6 +111,7 @@ export default {
       selectedTime: [],
 	  salaryText:['按价格',"价格降序",'价格升序'],
 	  updateTimeText:['按更新时间',"最近更新","最早发布"],
+	  educationText:['按学历排序',"本科优先",'高学历优先'],
       form: {
         week: '',
         time: '',
@@ -125,6 +130,7 @@ export default {
 		academyId:null,
 		freeTimeString:[],
 		name:[],
+		education:0,
 	  }
     }
   },
@@ -158,6 +164,7 @@ export default {
     },
 	orderBySalary:function(){
 		this.filter.updateTime=0;
+		this.filter.education=0;
 		this.filter.salary++;
 		if(this.filter.salary>=3){
 			this.filter.salary=0;
@@ -166,11 +173,21 @@ export default {
 	},
 	orderByUpdateTime:function(){
 		this.filter.salary=0;
+		this.filter.education=0;
 		this.filter.updateTime++;
 		if(this.filter.updateTime>=3){
 			this.filter.updateTime=0;
 		}
 		this.getList()
+	},
+	orderByEducation:function(){
+		this.filter.salary=0;
+		this.filter.updateTime=0;
+		this.filter.education++;
+		if(this.filter.education>=3){
+			this.filter.education=0;
+		}
+		this.getList();
 	},
     handleCloseTag(tag) {
       this.selectedTime.splice(this.selectedTime.indexOf(tag), 1);
@@ -207,7 +224,8 @@ export default {
 			ableClass:this.filter.ableClass,
 			academyId:this.filter.academyId,
 			freeTimeString:this.filter.freeTimeString,
-			name:this.filter.name
+			name:this.filter.name,
+			education:this.filter.education,
 		}).then(res=>{
 		  this.resumeTotal=parseInt(res.data.msg);
 		  this.resumeDataList=res.data.data.list;
@@ -230,7 +248,7 @@ export default {
 
 
 .button-new-tag {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   height: 32px;
   line-height: 30px;
   padding-top: 0;

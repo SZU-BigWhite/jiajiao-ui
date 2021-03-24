@@ -20,7 +20,7 @@
         <el-input
             type="textarea"
             :autosize="{ minRows: 2, maxRows: 100}"
-            placeholder="考上大学，依靠的是怎样的一个学习方法"
+            placeholder="考上大学，依靠的是怎样的一个学习方法,有无学习经验总结"
             v-model="educationDetail.learnMethods">
         </el-input>
       </el-form-item>
@@ -28,7 +28,7 @@
         <el-input
             type="textarea"
             :autosize="{ minRows: 2, maxRows: 100}"
-            placeholder="在这里，你可以总结一下自己，让自己脱颖而出！"
+            placeholder="介绍一下自己,是怎样的一个人,从哪来,到哪去,怎样的一个人生观,有什么优点,参加过什么比赛等等"
             v-model="educationDetail.showSelf">
         </el-input>
       </el-form-item>

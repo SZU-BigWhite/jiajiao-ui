@@ -2,8 +2,8 @@
 	<div class="card-inline">
 		<div class="my-content" @click="toShowTeachResume">查找简历</div>
 		<div @click="toAddTeachResume" class="my-content">新增简历</div>
-		<div @click="toMyDonateThings" class="my-content">我的需求</div>
-		<div @click="toGetReceive" class="my-content">简历推荐</div>
+		<div @click="toMyResume" class="my-content">我的简历</div>
+		<div @click="toRecommend" class="my-content">简历匹配需求</div>
 	</div>
 </template>
 
@@ -15,16 +15,31 @@ export default {
   },
   methods: {
 	toShowTeachResume: function () {
-	this.$router.push("/teach/resume/show")
+		this.$router.push("/teach/resume/show")
 	},
 	toAddTeachResume:function (){
-	this.$router.push("/teach/resume/add")
+		this.$router.push("/teach/resume/add")
 	},
-	toVolunteerCollectionList:function (){
-	this.$router.push("/student/volunteer/collections")
+	toRecommend:function () {
+		this.$router.push("/recommend/need/to/resume")
 	},
-	toMyDonateThings:function () {
-	this.$router.push("/student/donate/things")
+	toMyResume:function () {
+		this.$http.get("/get/student/resumes").then(res=>{
+			console.log(res);
+			if(res.data.data.length==0){
+				this.$message.error("你还无简历，请先新建自己的简历")
+				return ;
+			}
+			this.$router.push({
+				path:"/teach/my/resume",
+				query:{
+					id:res.data.data[0].studentResume.id
+				}
+			})
+		}).catch(err=>{
+			console.log(err);
+		})
+		
 	}
   }
 }

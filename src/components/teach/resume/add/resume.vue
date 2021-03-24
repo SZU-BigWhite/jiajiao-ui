@@ -106,7 +106,11 @@ export default {
         hobby: store.state.studentDetail.hobby,
         ableClassString: store.state.teachPlan.ableClass
       })
-      console.log('subjectList');
+	  this.$message.success("添加简历成功")
+	  setTimeout(()=>{
+		  this.$router.push("/teach/resume")
+	  },500)
+      // console.log('subjectList');
     },
     goStep: function (n) {
       switch (n) {

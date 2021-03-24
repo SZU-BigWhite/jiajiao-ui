@@ -8,6 +8,9 @@ const state = {
     teachPlan:{},
     educationDetail:{},
     test: 9096,
+	parentNeedDetail:{},
+	parentReqDetail:{},
+	parentConditionDetail:{},
 }
 
 const mutations = {
@@ -22,7 +25,16 @@ const mutations = {
     },
     addEducationDetail(state,payload){
         state.educationDetail=payload.educationDetail;
-    }
+    },
+	addParentNeedDetail(state,payload){
+	    state.parentNeedDetail=payload.parentNeedDetail;
+	},
+	addParentReqDetail(state,payload){
+	    state.parentReqDetail=payload.parentReqDetail;
+	},
+	addParentConditionDetail(state,payload){
+	    state.parentConditionDetail=payload.parentConditionDetail;
+	},
 }
 
 export default new Vuex.Store({

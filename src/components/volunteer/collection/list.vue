@@ -1,5 +1,9 @@
 <template>
   <div>
+	<div class="card-inline-head">
+		捐赠项目
+		<span class="back el-icon-back" @click="toBack" ></span>
+	</div>
     <div class="card-inline">
       <div v-for="item in this.list" class="card-item">
         <collection-card :volunteer="item.volunteerCollection" :count="item.count"></collection-card>
@@ -17,7 +21,10 @@ export default {
     }
   },
 
-  methods:function (){
+  methods:{
+	toBack:function(){
+		this.$router.go(-1);
+	}
 
   },
   created() {
@@ -47,4 +54,26 @@ export default {
 .page-info-bg {
   background-color: #ffffff;
 }
+.card-inline-head {
+  text-align: center;
+  width: 93%;
+  background-color: white;
+  border-radius: 6px;
+  margin: 0 auto;
+  background-color: #3091F2;
+  color: white;
+  font-size: 24px;
+  line-height: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.back {
+  position: absolute;
+  top: 13px;
+  left: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 </style>

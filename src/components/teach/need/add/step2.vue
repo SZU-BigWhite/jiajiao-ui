@@ -1,12 +1,12 @@
 <template>
   <div class="step1">
 
-    <el-form label-position="left" label-width="120px" :model="teachPlan" :rules="teachPlanRules">
+    <el-form label-position="left" label-width="120px" :model="parentReqDetail" :rules="parentReqDetailRules">
 
       <el-form-item label="空闲时间" prop="timeList">
         <el-tag
             :key="tag"
-            v-for="tag in teachPlan.timeList"
+            v-for="tag in parentReqDetail.timeList"
             closable
             :disable-transitions="false"
             @close="handleClose(tag)">
@@ -43,20 +43,27 @@
           </el-dialog>
         </div>
       </el-form-item>
-
+	  
+	  
       <el-form-item class="must" label="时薪" prop="salary">
-        <el-input placeholder="能接收的最高时薪" class="s-salary-input" v-model="teachPlan.salary"></el-input>
+        <el-input placeholder="能接收的最高时薪" class="s-salary-input" v-model.number="parentReqDetail.salary"></el-input>
         元/小时
       </el-form-item>
+	  
       <el-form-item class="must" label="辅导次数" prop="salary">
-        <el-input placeholder="每周希望辅导次数" class="s-salary-input" v-model="teachPlan.times"></el-input> 次
+        <el-input placeholder="每周希望辅导次数" class="s-salary-input" v-model.number="parentReqDetail.times"></el-input> 次
       </el-form-item>
       <el-form-item class="must" label="平均时长" prop="salary">
-        <el-input placeholder="每次辅导时长" class="s-salary-input" v-model="teachPlan.duration"></el-input> 小时
+        <el-input placeholder="每次辅导时长" class="s-salary-input" v-model.number="parentReqDetail.duration"></el-input> 小时
       </el-form-item>
+	  <el-form-item class="must" label="学历要求" prop="education">
+	    <el-select style="width: 250px" v-model.number="parentReqDetail.education" placeholder="要求最低学历">
+	      <el-option v-for="(item,key) in sEducation" :label="item" :value="key"></el-option>
+	    </el-select>
+	  </el-form-item>
       <el-form-item label="辅导科目" prop="wechat">
         <div>
-          <el-checkbox-group v-model="teachPlan.subjectList" size="small">
+          <el-checkbox-group v-model="parentReqDetail.subjectList" size="small">
             <el-checkbox-button v-for="subject in sSubject" :label="subject" :key="subject">{{ subject }}
             </el-checkbox-button>
           </el-checkbox-group>
@@ -67,8 +74,8 @@
         <el-input
             type="textarea"
             :autosize="{ minRows: 2, maxRows: 100}"
-            placeholder="希望老师教的时候的着重点"
-            v-model="teachPlan.teachReq">
+            placeholder="对老师的要求,希望老师在讲课的时候,应该以什么样的态度,怎样的一个方式去教孩子"
+            v-model="parentReqDetail.teachReq">
         </el-input>
       </el-form-item>
     </el-form>
@@ -83,7 +90,7 @@ export default {
   name: 'step2',
   data: function () {
     return {
-      teachPlan: {
+      parentReqDetail: {
         timeList: [],      //空闲时间 周一：上午
         salary: null,
         duration: null,
@@ -92,6 +99,7 @@ export default {
         education:null,   //学历
         teachReq:null
       },
+	  sEducation:['本科','研究生','博士生'],
       sSubject: ['作业辅导', '语文', '数学', '英语', '历史', '地理', '生物', '政治', '物理', '化学', '音乐', '美术', '舞蹈', '计算机', '体育'],
       sAbleClass: ['小学', '初一', '初二', '初三', '高一', '高二', '高三'],
       dialogFormVisible: false,
@@ -99,21 +107,22 @@ export default {
         week: '',
         time: '',
       },
-      teachPlanRules: {}
+      parentReqDetailRules: {}
     }
   },
   watch: {
-    signForm: {
-      handler: function () {
-        // store.commit('setSignForm', this.signForm);
+    parentReqDetail:{
+      handler(){
+        console.log(store.state.parentReqDetail)
+        store.commit('addParentReqDetail',{parentReqDetail:this.parentReqDetail})
       },
-      deep: true
+      deep:true
     }
   },
 
   methods: {
     handleClose(tag) {
-      this.teachPlan.timeList.splice(this.teachPlan.timeList.indexOf(tag), 1);
+      this.parentReqDetail.timeList.splice(this.parentReqDetail.timeList.indexOf(tag), 1);
     },
     confirmTime: function () {
 
@@ -127,20 +136,19 @@ export default {
       }
 
       this.dialogFormVisible = false;
-      this.teachPlan.timeList.push(this.date.week + " : " + this.date.time);
+      this.parentReqDetail.timeList.push(this.date.week + " : " + this.date.time);
       this.date.week = "";
       this.date.time = "";
     },
 
   },
   created: function () {
-    console.log(store.state.studentDetail.name)
-    console.log(this.$store.state.test)
-  }
+    Object.assign(this.parentReqDetail, store.state.parentReqDetail);
+  },
 }
 </script>
 <style scoped>
-/* @import "/assets/css/step-css.css"; */
+@import "/assets/css/step-css.css";
 
 .step1 {
   box-shadow: 0 2px 4px rgba(0, 125, 255, .22), 0 0 6px rgba(0, 125, 255, .14);

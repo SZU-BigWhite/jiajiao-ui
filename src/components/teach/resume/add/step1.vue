@@ -3,7 +3,7 @@
     <!-- element表单组件 -->
     <el-form label-position="left" label-width="98px" :model="studentDetail" :rules="studentDetailRules">
       <el-form-item class="must" label="姓名" prop="name">
-        <el-input class="s-name-input" v-model="studentDetail.name"></el-input>
+        <el-input class="s-name-input" v-model="studentDetail.name" placeholder="姓名"></el-input>
         <el-select style="width: 80px" v-model.number="sexTemp" placeholder="性别">
           <el-option label="男" value="男"></el-option>
           <el-option label="女" value="女"></el-option>
@@ -11,13 +11,13 @@
       </el-form-item>
 
       <el-form-item class="must" label="微信号" prop="wechat">
-        <el-input class="s-wechat-input" v-model="studentDetail.wechat"></el-input>
+        <el-input class="s-wechat-input" v-model="studentDetail.wechat" placeholder="微信号/手机号"></el-input>
       </el-form-item>
       <el-form-item class="must" label="高考总分" prop="grade">
-        <el-input  class="s-grade-input" v-model.number="studentDetail.grade"></el-input>
+        <el-input  class="s-grade-input" v-model.number="studentDetail.grade" placeholder="高考总分"></el-input>
       </el-form-item>
       <el-form-item class="must" label="座右铭" prop="motto">
-        <el-input class="s-motto-input" v-model="studentDetail.motto"></el-input>
+        <el-input class="s-motto-input" v-model="studentDetail.motto" placeholder="激励自己的一句话"></el-input>
       </el-form-item>
       <el-form-item class="must" label="性格" prop="tags">
         <el-tag

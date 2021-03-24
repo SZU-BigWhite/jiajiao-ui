@@ -1,5 +1,10 @@
 <template>
   <div>
+	<div class="card-inline-head">
+		收到的捐赠物 
+		<span class="back el-icon-back" @click="toBack" ></span>
+	</div>
+
     <el-menu active-text-color="#0665d0"
              background-color="#ffffff" :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
              @select="handleSelect">
@@ -31,6 +36,10 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
+	toBack:function(){
+		this.$router.go(-1);
+	},
+
     getList:function (status){
       var temp=null;
       if(status!=-1){
@@ -74,9 +83,29 @@ export default {
   border-radius: 6px;
   margin: 0 auto;
   padding-bottom: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
 .page-info-bg {
   background-color: #ffffff;
 }
+.card-inline-head {
+  text-align: center;
+  background-color: white;
+  border-radius: 6px;
+  margin: 0 auto;
+  background-color: #3091F2;
+  color: white;
+  font-size: 24px;
+  line-height: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.back {
+  position: absolute;
+  top: 13px;
+  left: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 </style>
