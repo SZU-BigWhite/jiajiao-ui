@@ -16,17 +16,22 @@
 export default {
   data: function () {
     return {
-		// education:null,
     }
   },
   name: "resumeCard",
   methods:{
 	  toDetail:function(){
-		  var that=this
+		  if(this.path==null){
+			  let to="/resume/detail"
+		  }else{
+			  to=this.path
+		  }
+		  
 		  this.$router.push({
-			  path:"/resume/detail",
+			  path:to,
 			  query:{
-				  id:that.resume.studentResume.id
+				  id:this.resume.studentResume.id,
+				  wechat:this.resume.studentResume.wechat,
 			  }
 		  })
 		  location.reload()
@@ -45,10 +50,9 @@ export default {
   },
   created:function(){
 	  console.log(this.resume)
-  	
-	
+	  this.log(this.path)
   },
-  props:['resume']
+  props:['resume','path']
 
 }
 </script>

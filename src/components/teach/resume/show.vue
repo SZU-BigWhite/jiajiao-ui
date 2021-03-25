@@ -246,7 +246,6 @@ export default {
   padding: 0px;
 }
 
-
 .button-new-tag {
   /* margin-left: 10px; */
   height: 32px;

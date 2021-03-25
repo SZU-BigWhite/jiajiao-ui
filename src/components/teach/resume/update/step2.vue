@@ -170,7 +170,7 @@ export default {
   margin-bottom: 22px !important;
 }
 .el-tag{
-	margin-right: 12px;
+	margin-right: 12px!important;
 }
 .s-salary-input {
   width: 130px !important;

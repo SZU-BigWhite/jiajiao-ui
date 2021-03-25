@@ -186,6 +186,8 @@ export default {
 .inner-content {
 	margin: 15px;
 	font-size: 18px;
+	line-height: 24px;
+	letter-spacing: 1px;
 }
 .comment-head {
 	font-weight: bold;

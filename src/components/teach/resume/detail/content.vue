@@ -33,11 +33,11 @@
 			</div>
 			<div class="skill">
 				<h5>个人简介</h5>
-				<div class="inner-content">{{ studentResume.showSelf }}</div>
+				<div class="inner-content" v-html="studentResume.showSelf"></div>
 			</div>
 			<div class="project">
 				<h5>学习方法</h5>
-				<div class="inner-content">{{ studentResume.learnMethods }}</div>
+				<div class="inner-content" v-html="studentResume.learnMethods"></div>
 				<div class="inner-content stack">
 					<b>可辅导科目：</b>
 					<el-tag class="my-tag" effect="dark" type="danger" v-for="item in subjectList">{{ item.name }}</el-tag>
@@ -45,11 +45,11 @@
 			</div>
 			<div class="project">
 				<h5>教学重点</h5>
-				<div class="inner-content">{{ studentResume.teachStress }}</div>
+				<div class="inner-content" v-html="studentResume.teachStress"></div>
 			</div>
 			<div class="project">
 				<h5>教学目标</h5>
-				<div class="inner-content">{{ studentResume.teachGoal }}</div>
+				<div class="inner-content" v-html="studentResume.teachGoal"></div>
 				<div class="inner-content stack">
 					<b>空闲时间：</b>
 					<el-tag class="my-tag" effect="dark" v-for="item in timeShowList">{{ item }}</el-tag>
@@ -57,7 +57,7 @@
 			</div>
 			<div class="project">
 				<h5>家教反馈</h5>
-				<div class="inner-content">{{ studentResume.feedback }}</div>
+				<div class="inner-content" v-html="studentResume.feedback"></div>
 			</div>
 		</div>
 		
@@ -80,7 +80,6 @@ export default {
   props:["id"],
   created() {
   	this.getResumeDetail()
-	console.log(this.id)
   },
   methods: {
 	getResumeDetail:function(){
@@ -97,9 +96,18 @@ export default {
 			this.convertSubject();
 			//处理空闲时间问题
 			this.convertTime();
+			//处理换行
+			this.convertNextLine();
 		}).catch(err => {
 			console.log(err);
 		});
+	},
+	convertNextLine:function(){
+		this.studentResume.feedback=this.studentResume.feedback.replace(/\n/g, '<br />');
+		this.studentResume.learnMethods=this.studentResume.learnMethods.replace(/\n/g, '<br />');
+		this.studentResume.showSelf=this.studentResume.showSelf.replace(/\n/g, '<br />');
+		this.studentResume.teachGoal=this.studentResume.teachGoal.replace(/\n/g, '<br />');
+		this.studentResume.teachStress=this.studentResume.teachStress.replace(/\n/g, '<br />');
 	},
 	convertTime: function() {
 		let temp;
@@ -165,6 +173,8 @@ export default {
 .inner-content {
 	margin: 15px;
 	font-size: 18px;
+	line-height: 24px;
+	letter-spacing: 1px;
 }
 .comment-head {
 	font-weight: bold;

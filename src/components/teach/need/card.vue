@@ -51,23 +51,25 @@ export default {
   },
   methods: {
 	toDetail:function(){
-		var that=this
+		let to;
+		if(this.path==null){
+			to="/need/detail"
+		}else {
+			to=this.path;
+		}
 		this.$router.push({
-			path:"/need/detail",
+			path:to,
 			query:{
-			  id:that.need.parentNeed.id
+			  id:this.need.parentNeed.id,
+			  wechat:this.need.parentNeed.wechat,
 			}
 		})
 		location.reload()
 	},
-	convertClass:function(){
-		
-	}
   },
-  props:["need"],
+  props:["need",'path'],
   created(){
 	console.log(this.need)
-	this.convertClass()
   }
 }
 </script>

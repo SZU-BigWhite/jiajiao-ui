@@ -3,10 +3,6 @@ import VueRouter from 'vue-router'
 import LoginByPwd from "../components/LoginByPwd.vue";
 import LoginByCode from "@/components/LoginByCode";
 import Show from "@/components/home/show"
-import AddStudentResume from "@/components/add/student/resume";
-import step1 from "@/components/add/student/step1";
-import step2 from "@/components/add/student/step2";
-import step3 from "@/components/add/student/step3";
 import Index from "@/components/index";
 import Home from "@/components/home/home";
 import Resume from "@/components/detail/student/resume";
@@ -30,6 +26,10 @@ import TeachNeedAdd from "@/components/teach/need/add/need.vue"
 import TeachNeedStep1 from "@/components/teach/need/add/step1.vue"
 import TeachNeedStep2 from "@/components/teach/need/add/step2.vue"
 import TeachNeedStep3 from "@/components/teach/need/add/step3.vue"
+// import TeachNeedUpdate from "@/components/teach/need/update/need.vue"
+// import TeachNeedUpdateStep1 from "@/components/teach/need/update/step1.vue"
+// import TeachNeedUpdateStep2 from "@/components/teach/need/update/step2.vue"
+// import TeachNeedUpdateStep3 from "@/components/teach/need/update/step3.vue"
 import TeachNeedShow from "@/components/teach/need/show"
 import TeachNeedDetail from "@/components/teach/need/detail/detail"
 
@@ -38,9 +38,15 @@ import TeachResumeAdd from "@/components/teach/resume/add/resume.vue"
 import TeachResumeStep1 from "@/components/teach/resume/add/step1.vue"
 import TeachResumeStep2 from "@/components/teach/resume/add/step2.vue"
 import TeachResumeStep3 from "@/components/teach/resume/add/step3.vue"
+import TeachResumeUpdate from "@/components/teach/resume/update/resume.vue"
+import TeachResumeUpdateStep1 from "@/components/teach/resume/update/step1.vue"
+import TeachResumeUpdateStep2 from "@/components/teach/resume/update/step2.vue"
+import TeachResumeUpdateStep3 from "@/components/teach/resume/update/step3.vue"
 import TeachResumeShow from "@/components/teach/resume/show.vue"
 import TeachResumeDetail from "@/components/teach/resume/detail/detail"
 import TeachMyResume from "@/components/teach/resume/owner/resume"
+import TeachResumeGet from "@/components/teach/resume/get/get"
+import TeachResumeGetDetail from "@/components/teach/resume/get/detail"
 
 Vue.use(VueRouter)
 
@@ -75,8 +81,8 @@ const routes = [
 			{path: "/teach/need",component: TeachNeed},
 			{path: "/teach/need/show",component: TeachNeedShow},
 			{path: "/teach/resume",component: TeachResume},
-			{path: "/teach/resume/show",component: TeachResumeShow}
-			
+			{path: "/teach/resume/show",component: TeachResumeShow},
+			{path: "/teach/resume/get",component: TeachResumeGet}
         ]
     },
     {
@@ -93,6 +99,20 @@ const routes = [
             {path: 'step3', component: TeachResumeStep3},
         ]
     },
+	{
+		path: "/teach/resume/get/detail",
+		component: TeachResumeGetDetail,
+	},
+	{
+	    path: "/teach/resume/update",
+	    component: TeachResumeUpdate,
+	    children: [
+	        {path: '', component: TeachResumeUpdateStep1},
+	        {path: 'step1', component: TeachResumeUpdateStep1},
+	        {path: 'step2', component: TeachResumeUpdateStep2},
+	        {path: 'step3', component: TeachResumeUpdateStep3},
+	    ]
+	},
     {
         path: "/teach/need/add",
         component: TeachNeedAdd,
@@ -103,6 +123,16 @@ const routes = [
             {path: 'step3', component: TeachNeedStep3},
         ]
     },
+	// {
+	//     path: "/teach/need/update",
+	//     component: TeachNeedAdd,
+	//     children: [
+	//         {path: '', component: TeachNeedUpdateStep1},
+	//         {path: 'step1', component: TeachNeedUpdateStep1},
+	//         {path: 'step2', component: TeachNeedUpdateStep2},
+	//         {path: 'step3', component: TeachNeedUpdateStep3},
+	//     ]
+	// },
 	{
 		path:"/teach/my/resume",
 		component: TeachMyResume,

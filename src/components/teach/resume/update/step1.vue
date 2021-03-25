@@ -181,7 +181,15 @@ export default {
 
   },
   created: function () {
-    Object.assign(this.studentDetail, store.state.studentDetail);
+    setTimeout(()=>{
+		Object.assign(this.studentDetail, store.state.studentDetail);
+		if(this.studentDetail.sex==1){
+			this.sexTemp="男";
+		}else if(this.studentDetail.sex==1){
+			this.sexTemp="女";
+		}
+	},500)
+	
   },
   beforeRouteLeave: function (to, from, next) {
     if (to.path == '/activePublic/step2') {

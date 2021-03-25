@@ -19,14 +19,21 @@ export default {
 	data: function() {
 		return {
 			id:null,
-			
+			resumeId:null,
 		};
 	},
 	created() {
 		this.id=this.$route.query.id
+		this.getResumeId()
 	},
 	methods: {
-		
+		getResumeId:function(){
+			this.$http.get("/get/student/resumes").then(res=>{
+				this.resumeId=res.data.data[0].studentResume.id
+			}).catch(err=>{
+				console.log(err);
+			})
+		},
 		send: function() {
 			this.$confirm('你确定需求到投递到该简历中？', '提示', {
 				confirmButtonText: '确定',
@@ -34,8 +41,15 @@ export default {
 				type: 'success'
 			})
 			.then(() => {
-				this.$message.success("成功投递");
-				//todo 调用投递接口
+				this.$http.post("/send/student/resume",{
+					sResumeId:this.resumeId,
+					pNeedId:this.id,
+				}).then(res=>{
+					this.$message.success(res.data.msg);
+				}).catch(err=>{
+					console.log(err);
+				})
+				
 			})
 			.catch(() => {
 				this.$message.error("取消投递");
