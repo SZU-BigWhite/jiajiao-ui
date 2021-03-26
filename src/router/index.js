@@ -5,7 +5,6 @@ import LoginByCode from "@/components/LoginByCode";
 import Index from "@/components/index";
 import Home from "@/components/home/home";
 import CollectionAdd from "@/components/volunteer/collection/add";
-import volunteerCard from "@/components/volunteerCard";
 import VolunteerIndex from "@/components/volunteer/index";
 import VolunteerList from "@/components/volunteer/collection/list";
 import ThingList from "@/components/volunteer/things/thingList"
@@ -23,10 +22,10 @@ import TeachNeedAdd from "@/components/teach/need/add/need.vue"
 import TeachNeedStep1 from "@/components/teach/need/add/step1.vue"
 import TeachNeedStep2 from "@/components/teach/need/add/step2.vue"
 import TeachNeedStep3 from "@/components/teach/need/add/step3.vue"
-// import TeachNeedUpdate from "@/components/teach/need/update/need.vue"
-// import TeachNeedUpdateStep1 from "@/components/teach/need/update/step1.vue"
-// import TeachNeedUpdateStep2 from "@/components/teach/need/update/step2.vue"
-// import TeachNeedUpdateStep3 from "@/components/teach/need/update/step3.vue"
+import TeachNeedUpdate from "@/components/teach/need/update/need.vue"
+import TeachNeedUpdateStep1 from "@/components/teach/need/update/step1.vue"
+import TeachNeedUpdateStep2 from "@/components/teach/need/update/step2.vue"
+import TeachNeedUpdateStep3 from "@/components/teach/need/update/step3.vue"
 import TeachNeedShow from "@/components/teach/need/show"
 import TeachNeedDetail from "@/components/teach/need/detail/detail"
 import TeachMyNeed from "@/components/teach/need/owner/need"
@@ -72,7 +71,6 @@ const routes = [
         component: Index,
         children: [
             {path: "", component: Home},
-            {path: "/show/volunteer", component: volunteerCard},
             {path: "/volunteer/index", component: VolunteerIndex},
             {path: "/student/volunteer/collections",component: VolunteerList},
             {path: "/student/donate/things",component: ThingList},
@@ -146,16 +144,16 @@ const routes = [
 		path: "/teach/need/send/detail",
 		component: TeachNeedSendDetail,
 	},
-	// {
-	//     path: "/teach/need/update",
-	//     component: TeachNeedAdd,
-	//     children: [
-	//         {path: '', component: TeachNeedUpdateStep1},
-	//         {path: 'step1', component: TeachNeedUpdateStep1},
-	//         {path: 'step2', component: TeachNeedUpdateStep2},
-	//         {path: 'step3', component: TeachNeedUpdateStep3},
-	//     ]
-	// },
+	{
+	    path: "/teach/need/update",
+	    component: TeachNeedUpdate,
+	    children: [
+	        {path: '', component: TeachNeedUpdateStep1},
+	        {path: 'step1', component: TeachNeedUpdateStep1},
+	        {path: 'step2', component: TeachNeedUpdateStep2},
+	        {path: 'step3', component: TeachNeedUpdateStep3},
+	    ]
+	},
 	{
 		path:"/teach/my/resume",
 		component: TeachMyResume,
