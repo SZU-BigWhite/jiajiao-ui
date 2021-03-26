@@ -1,20 +1,20 @@
 <template>
 	<div>
 		<div class="card-inline-head">
-			收到的需求
+			收到的简历
 			<span class="back el-icon-back" @click="toBack" ></span>
 		</div>
 		<div class="card-inline">
-			<div v-for="item in this.needReceiveDataList" class="card-item">
-				  <need-card :need="item" :path="getPath" ></need-card>
+			<div v-for="item in this.resumeReceiveDataList" class="card-item">
+				  <resume-card :resume="item" :path="getPath" ></resume-card>
 			</div>
 		</div>
 		<div class="card-inline-head">
-			投递的需求
+			投递的简历
 		</div>
 		<div class="card-inline">
-			<div v-for="item in this.needSendDataList" class="card-item">
-			  <need-card :need="item" :path="sendPath" ></need-card>
+			<div v-for="item in this.resumeSendDataList" class="card-item">
+			  <resume-card :resume="item" :path="sendPath" ></resume-card>
 			</div>
 		</div>
 	</div>
@@ -22,44 +22,44 @@
 
 <script>
 export default {
-  name: "resumeGet",
+  name: "needGet",
   data: function () {
     return {
-		resumeId:null,
-		needSendDataList:[],
-		needReceiveDataList:[],
-		getPath:"/teach/resume/get/detail",
-		sendPath:"/teach/resume/send/detail"
+		needId:null,
+		resumeSendDataList:[],
+		resumeReceiveDataList:[],
+		getPath:"/teach/need/get/detail",
+		sendPath:"/teach/need/send/detail"
 	}
   },
   created() {
-  	this.resumeId=this.$route.query.id
-	this.getResumeReceive();
-	this.getReusmeSend()
+  	this.needId=this.$route.query.id
+	this.getNeedReceive();
+	this.getNeedSend()
   },
   methods: {
 	toBack:function(){
 		this.$router.go(-1);
 	},
-	getResumeReceive:function(){
-		this.$http.get("/get/student/receive",{
+	getNeedReceive:function(){
+		this.$http.get("/get/parent/receive",{
 			params:{
-				id:this.resumeId
+				id:this.needId
 			}
 		}).then(res=>{
-			this.needReceiveDataList=res.data.data
+			this.resumeReceiveDataList=res.data.data
 			console.log(res);
 		}).catch(err=>{
 			console.log(err);
 		})
 	},
-	getReusmeSend:function(){
-		this.$http.get("/get/student/sent",{
+	getNeedSend:function(){
+		this.$http.get("/get/parent/sent",{
 			params:{
-				id:this.resumeId
+				id:this.needId
 			}
 		}).then(res=>{
-			this.needSendDataList=res.data.data
+			this.resumeSendDataList=res.data.data
 			console.log(res);
 		}).catch(err=>{
 			console.log(err);

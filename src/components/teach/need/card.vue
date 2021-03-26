@@ -57,14 +57,13 @@ export default {
 		}else {
 			to=this.path;
 		}
-		this.$router.push({
+		let routeUrl=this.$router.resolve({
 			path:to,
 			query:{
 			  id:this.need.parentNeed.id,
-			  wechat:this.need.parentNeed.wechat,
 			}
 		})
-		location.reload()
+		window.open(routeUrl.href,"_blank")
 	},
   },
   props:["need",'path'],

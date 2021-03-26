@@ -5,18 +5,12 @@
 			<span class="back el-icon-back" @click="toBack" ></span>
 		</div>
 		<div class="card-inline">
-		  <div class="my-content" @click="toStudentHelpList">
-		    求助列表 
-		  </div>
-		  <div @click="toAddStudentHelp" class="my-content">
-		    请求他人帮助
-		  </div>
-		  <div @click="toHelpReceiveList" class="my-content">
-		    收到的帮助
-		  </div>
-		  <div @click="" class="my-content">
-		    心理咨询（未完待续）
-		  </div>
+			<div class="my-resume-btn">
+			  <el-button type="primary" @click="toStudentHelpList">求助列表</el-button>
+			  <el-button type="success" @click="toAddStudentHelp">请求他人帮助</el-button>
+			  <el-button type="warning"  @click="toHelpReceiveList">收到的帮助</el-button>
+			  <el-button type="danger"  @click="" >心理咨询（未完待续）</el-button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -53,20 +47,6 @@ export default {
   padding: 30px 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
-
-.my-content {
-  background: #3091F2;
-  width: 30%;
-  padding: 75px 90px;
-  cursor: pointer;
-  margin: 20px 35px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  height: 30%;
-}
 .card-inline-head {
   text-align: center;
   width: 93%;
@@ -88,7 +68,19 @@ export default {
   cursor: pointer;
   font-weight: bold;
 }
-.my-content:hover {
-  background: #2385e5;
+.my-resume-btn{
+	margin: 20px 0px;
+	text-align: center;
+}
+.el-button{
+	padding: 75px 90px;
+	width: 30%;
+	margin: 20px 35px!important;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 24px;
 }
 </style>

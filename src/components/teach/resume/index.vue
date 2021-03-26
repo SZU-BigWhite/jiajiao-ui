@@ -33,15 +33,15 @@ export default {
 		this.$router.push("/teach/resume/show")
 	},
 	toAddTeachResume:function (){
-		if(this.data.length!=0){
+		if(this.data.length==0){
+			this.$router.push("/teach/resume/add")
+		}else {
 			this.$router.push({
-				path:"/teach/resume/update",
+				path:"/teach/resume/recommend",
 				query:{
-					id:this.resumeId,
+					id:this.resumeId
 				}
 			})
-		}else {
-			this.$router.push("/teach/resume/add")
 		}
 	},
 	toResumeGet:function () {
@@ -55,25 +55,27 @@ export default {
 				id:this.resumeId,
 			}
 		})
+		
 	},
 	toMyResume:function () {
 		if(this.data.length==0){
 			this.$message.error("你还无简历，请先新建自己的简历")
 			return ;
 		}
-		this.$router.push({
+		let routerUrl=this.$router.resolve({
 			path:"/teach/my/resume",
 			query:{
 				id:this.resumeId
 			}
 		})
+		window.open(routerUrl.href,"_blank");
 	}
   },
   created() {
   	this.$http.get("/get/student/resumes").then(res=>{
 		this.data=res.data.data;
 		this.resumeId=this.data[0].studentResume.id
-		this.text="修改简历";
+		this.text="简历匹配";
   	}).catch(err=>{
   		console.log(err);
   	})
@@ -85,6 +87,17 @@ export default {
 .my-resume-btn{
 	margin: 20px 0px;
 	text-align: center;
+}
+.el-button{
+	padding: 75px 90px;
+	width: 30%;
+	margin: 20px 35px!important;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 24px;
 }
 .card-inline-head {
   text-align: center;
@@ -108,17 +121,7 @@ export default {
   font-weight: bold;
 }
 
-.el-button{
-	padding: 75px 90px;
-	width: 30%;
-	margin: 20px 35px!important;
-	border-radius: 6px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-	color: white;
-	font-weight: bold;
-	text-align: center;
-	font-size: 24px;
-}
+
 .card-inline {
 	display: flex;
 	flex-wrap: wrap;

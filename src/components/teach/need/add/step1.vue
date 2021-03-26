@@ -72,11 +72,14 @@ export default {
 }
 </script>
 <style scoped>
+
 .step {
   margin-bottom: 30px;
 }
 
 .step1 {
+  display: flex;
+  justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 125, 255, .22), 0 0 6px rgba(0, 125, 255, .14);
   padding: 40px 100px 30px 100px;
   margin-right: 100px;
@@ -122,7 +125,11 @@ export default {
 .s-motto-input {
   width: 450px !important;
 }
-
+.input-new-tag {
+  width: 90px!important;
+  /*margin-left: 10px;*/
+  vertical-align: bottom;
+}
 .el-tag  {
   margin-right: 10px;
 }
@@ -135,11 +142,6 @@ export default {
   padding-bottom: 0;
 }
 
-.input-new-tag {
-  width: 90px!important;
-  /*margin-left: 10px;*/
-  vertical-align: bottom;
-}
 
 .button-new-tag {
   margin-left: 10px;

@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<need-content :id="id"></need-content>
+		<resume-content :id="id"></resume-content>
 		
-		<need-comment :id="id"></need-comment>
+		<resume-comment :id="id"></resume-comment>
 		
 		<a class="fixed-left cursor" @click="deleteReceive">
 			<i class="el-icon-remove"></i>
@@ -20,25 +20,26 @@ export default {
   name: "index",
   data:function(){
 	  return{
-		resumeId:null,
+		needId:null,
 		id:null,
 		wechat:null,
 	  }
   },
   created() {
   	this.id=this.$route.query.id
-	this.$http.get("/get/student/resumes").then(res=>{
-		this.resumeId=res.data.data[0].studentResume.id
+	//获取自身的needId
+	this.$http.get("/get/parent/need").then(res=>{
+		this.needId=res.data.data[0].parentNeed.id
 	}).catch(err=>{
 		console.log(err);
 	})
-	this.$http.get('/get/parent/nedd/by/id', {
+	//获取联系方式
+	this.$http.get('/get/student/resume/by/id', {
 		params: {
 			id: this.id
 		}
 	}).then(res => {
-		this.wechat=res.data.data.parentNeed.wechat;
-		console.log(res);
+		this.wechat=res.data.data.studentResume.wechat;
 	}).catch(err => {
 		console.log(err);
 	});
@@ -46,9 +47,9 @@ export default {
   methods: {
 	deleteReceive:function(){
 		
-		this.$http.post("/delete/send/parent/need",{
-			pNeedId:this.id,
-			sResumeId:this.resumeId,
+		this.$http.post("/delete/send/student/resume",{
+			pNeedId:this.needId,
+			sResumeId:this.id,
 		}).then(res=>{
 			this.$message.success("拒绝成功")
 			setTimeout(()=>{

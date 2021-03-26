@@ -2,39 +2,33 @@
   <div class="home_content">
     <!--头部统计内容-->
     <el-row class="head">
-      <el-col :span="18" style="padding:20px 0;background: #33CCCC;">
-        <el-col :span="8">
-          {{ totalActiveNum }}<br>
+      <el-col style="padding:20px 0;background: #33CCCC;">
+        <el-col :span="6">
+          {{ sum.resumeSum }}<br>
           <span>学生简历</span>
         </el-col>
-        <el-col :span="8">
-          {{ totalActiveNum }}<br>
+        <el-col :span="6">
+          {{ sum.needSum }}<br>
           <span>家长需求</span>
         </el-col>
-        <el-col :span="8" style="border: none;">
-          {{ auditNum }}<br>
-          <span>匹配成功</span>
+        <el-col :span="6">
+          {{ sum.volunteerSum }}<br>
+          <span>义工活动</span>
         </el-col>
-      </el-col>
-      <el-col :span="5" @click.native="toGetReceive" :offset="1" class="my-receive">
-        {{ totalActiveNum }}<br>
-        <span>收到投递</span>
+		<el-col :span="6" style="border: none;">
+		  {{ sum.helpSum }}<br>
+		  <span>校内求助</span>
+		</el-col>
       </el-col>
     </el-row>
 
     <div class="card-inline">
-      <div @click="toStudentResume"  class="my-content">
-          学生简历库
-      </div >
-      <div   @click="toParentNeed" class="my-content">
-        家长需求库
-      </div>
-      <div @click="toGetReceive"  class="my-content">
-        我的简历
-      </div >
-      <div  @click="toGetReceive" class="my-content">
-        个人信息
-      </div>
+		<div class="my-resume-btn">
+		  <el-button type="primary" @click="toStudentResume">学生简历库</el-button>
+		  <el-button type="success" @click="toParentNeed">家长需求库</el-button>
+		  <el-button type="warning"  @click="toStudentHelp">义工活动</el-button>
+		  <el-button type="danger"  @click="toStudentHelp" >校内互助</el-button>
+		</div>
     </div>
   </div>
 </template>
@@ -44,23 +38,30 @@ export default {
   name: "home",
   data: function () {
     return {
-      //标签数值
-      totalActiveNum: 3,
-      totalSignUp: 204,
-      auditNum: 15,
-      activeNum: 0,
+      sum:null,
     }
   },
   methods: {
-    toGetReceive: function () {
-      this.$message.success("目前接收到的投递数量为"+this.totalActiveNum)
-    },
 	toParentNeed:function()	{
 		this.$router.push("/teach/need")
 	},
 	toStudentResume: function()	{
 		this.$router.push("/teach/resume")
+	},
+	toStudentHelp:function(){
+		this.$router.push("/student/help")
+	},
+	toStudentVolunteer:function(){
+		this.$router.push("/volunteer/index")
 	}
+  },
+  created() {
+  	this.$http.get("/get/data/sum").then(res=>{
+		console.log(res);
+		this.sum=res.data.data;
+	}).catch(err=>{
+		console.log(err);
+	})
   }
 }
 </script>
@@ -105,19 +106,19 @@ export default {
   padding: 40px 0;
   cursor: pointer;
 }
-.my-content{
-  background: #3091F2;
-  width: 30%;
-  padding: 75px 90px;
-  cursor: pointer;
-  margin: 20px 35px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  color: white;
-  font-weight: bold;
-  text-align: center;
+.my-resume-btn{
+	margin: 20px 0px;
+	text-align: center;
 }
-.my-content:hover{
-  background: #2385e5;
+.el-button{
+	padding: 75px 90px;
+	width: 30%;
+	margin: 20px 35px!important;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 24px;
 }
 </style>

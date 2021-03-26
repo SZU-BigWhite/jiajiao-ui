@@ -5,7 +5,7 @@
     <div class="card-content"><span class="content-span">教学方法</span>{{ studentHelp.helpMethod }}
     </div>
     <div class="card-bottom">
-      <el-tag type="warning">创建时间：{{ studentHelp.createTime }}</el-tag>
+      <el-tag type="warning">发送时间：{{ studentHelp.createTime }}</el-tag>
     </div>
   </div>
 </template>

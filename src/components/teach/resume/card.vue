@@ -21,20 +21,20 @@ export default {
   name: "resumeCard",
   methods:{
 	  toDetail:function(){
+		  let  to;
 		  if(this.path==null){
-			  let to="/resume/detail"
+			  to="/resume/detail"
 		  }else{
 			  to=this.path
 		  }
 		  
-		  this.$router.push({
+		  let routerUrl=this.$router.resolve({
 			  path:to,
 			  query:{
 				  id:this.resume.studentResume.id,
-				  wechat:this.resume.studentResume.wechat,
 			  }
 		  })
-		  location.reload()
+		  window.open(routerUrl.href,"_blank");
 	  }
   },
   computed:{
@@ -50,7 +50,6 @@ export default {
   },
   created:function(){
 	  console.log(this.resume)
-	  this.log(this.path)
   },
   props:['resume','path']
 

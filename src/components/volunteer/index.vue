@@ -6,18 +6,12 @@
 		</div>
 		
 		<div class="card-inline">
-		    <div class="my-content" @click="toVolunteerCollectionList">
-		      捐赠项目
-		    </div>
-		    <div @click="toAddVolunteerCollection" class="my-content">
-		      新增捐赠项目
-		    </div>
-		    <div @click="toMyDonateThings" class="my-content">
-		      捐赠的物品
-		    </div>
-		    <div @click="toGetReceive" class="my-content">
-		      我的捐赠项目
-		    </div>
+			<div class="my-resume-btn">
+			  <el-button type="primary" @click="toVolunteerCollectionList">捐赠项目</el-button>
+			  <el-button type="success" @click="toAddVolunteerCollection">新增捐赠项目</el-button>
+			  <el-button type="warning"  @click="toMyDonateThings">捐赠的物品</el-button>
+			  <el-button type="danger"  @click="toGetReceive" >我的捐赠项目</el-button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -82,21 +76,19 @@ export default {
   cursor: pointer;
   font-weight: bold;
 }
-
-.my-content{
-  background: #3091F2;
-  width: 30%;
-  padding: 75px 90px;
-  cursor: pointer;
-  margin: 20px 35px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  height: 30%;
+.my-resume-btn{
+	margin: 20px 0px;
+	text-align: center;
 }
-.my-content:hover{
-  background: #2385e5;
+.el-button{
+	padding: 75px 90px;
+	width: 30%;
+	margin: 20px 35px!important;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 24px;
 }
 </style>

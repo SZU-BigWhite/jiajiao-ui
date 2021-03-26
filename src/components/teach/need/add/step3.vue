@@ -77,6 +77,8 @@ export default {
 @import "/assets/css/step-css.css";
 
 .step1 {
+  display: flex;
+  justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 125, 255, .22), 0 0 6px rgba(0, 125, 255, .14);
   padding: 40px 100px 30px 100px;
   margin-right: 100px;

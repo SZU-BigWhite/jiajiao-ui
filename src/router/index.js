@@ -2,11 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginByPwd from "../components/LoginByPwd.vue";
 import LoginByCode from "@/components/LoginByCode";
-import Show from "@/components/home/show"
 import Index from "@/components/index";
 import Home from "@/components/home/home";
-import Resume from "@/components/detail/student/resume";
-import Need from "@/components/detail/parent/need";
 import CollectionAdd from "@/components/volunteer/collection/add";
 import volunteerCard from "@/components/volunteerCard";
 import VolunteerIndex from "@/components/volunteer/index";
@@ -32,6 +29,11 @@ import TeachNeedStep3 from "@/components/teach/need/add/step3.vue"
 // import TeachNeedUpdateStep3 from "@/components/teach/need/update/step3.vue"
 import TeachNeedShow from "@/components/teach/need/show"
 import TeachNeedDetail from "@/components/teach/need/detail/detail"
+import TeachMyNeed from "@/components/teach/need/owner/need"
+import TeachNeedGet from "@/components/teach/need/get/get"
+import TeachNeedGetDetail from "@/components/teach/need/get/detail"
+import TeachNeedSendDetail from "@/components/teach/need/get/cancel"
+import TeachNeedRecommend from "@/components/teach/need/owner/recommend"
 
 import TeachResume from "@/components/teach/resume/index.vue"
 import TeachResumeAdd from "@/components/teach/resume/add/resume.vue"
@@ -47,6 +49,8 @@ import TeachResumeDetail from "@/components/teach/resume/detail/detail"
 import TeachMyResume from "@/components/teach/resume/owner/resume"
 import TeachResumeGet from "@/components/teach/resume/get/get"
 import TeachResumeGetDetail from "@/components/teach/resume/get/detail"
+import TeachResumeSendDetail from "@/components/teach/resume/get/cancel"
+import TeachResumeRecommend from "@/components/teach/resume/owner/recommend"
 
 Vue.use(VueRouter)
 
@@ -68,7 +72,6 @@ const routes = [
         component: Index,
         children: [
             {path: "", component: Home},
-            {path: "/show", component: Show},
             {path: "/show/volunteer", component: volunteerCard},
             {path: "/volunteer/index", component: VolunteerIndex},
             {path: "/student/volunteer/collections",component: VolunteerList},
@@ -80,9 +83,13 @@ const routes = [
             {path: "/student/help/receive",component: StudentHelpReceiveList},
 			{path: "/teach/need",component: TeachNeed},
 			{path: "/teach/need/show",component: TeachNeedShow},
+			{path: "/teach/need/get",component: TeachNeedGet},
+			{path: "/teach/need/recommend",component: TeachNeedRecommend},
 			{path: "/teach/resume",component: TeachResume},
 			{path: "/teach/resume/show",component: TeachResumeShow},
-			{path: "/teach/resume/get",component: TeachResumeGet}
+			{path: "/teach/resume/get",component: TeachResumeGet},
+			{path: "/teach/resume/recommend",component: TeachResumeRecommend},
+			
         ]
     },
     {
@@ -104,6 +111,10 @@ const routes = [
 		component: TeachResumeGetDetail,
 	},
 	{
+		path: "/teach/resume/send/detail",
+		component: TeachResumeSendDetail,
+	},
+	{
 	    path: "/teach/resume/update",
 	    component: TeachResumeUpdate,
 	    children: [
@@ -123,6 +134,18 @@ const routes = [
             {path: 'step3', component: TeachNeedStep3},
         ]
     },
+	{
+		path: "/teach/my/need",
+		component: TeachMyNeed,
+	},
+	{
+		path: "/teach/need/get/detail",
+		component: TeachNeedGetDetail,
+	},
+	{
+		path: "/teach/need/send/detail",
+		component: TeachNeedSendDetail,
+	},
 	// {
 	//     path: "/teach/need/update",
 	//     component: TeachNeedAdd,
@@ -149,10 +172,6 @@ const routes = [
         path: "/collection/add",
         component: CollectionAdd
     },
-    {
-        path: "/detail/student",
-        component: Resume,
-    },
 	{
 		path: "/need/detail",
 		component: TeachNeedDetail,
@@ -161,10 +180,6 @@ const routes = [
 		path: "/resume/detail",
 		component: TeachResumeDetail,
 	},
-    {
-        path: "/detail/parent",
-        component: Need,
-    }
 ]
 
 const router = new VueRouter({

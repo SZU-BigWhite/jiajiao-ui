@@ -10,9 +10,12 @@
 
         <el-collapse-item v-for="(item,key) in list">
           <template slot="title">
-            <h1 class="receive-h1">{{ item.studentHelp.subject }}</h1><el-tag type="success">收到的数量：{{ item.count }}</el-tag>
+            <h1 class="receive-h1">{{ item.studentHelp.subject }}</h1>
+			<el-button type="primary" @click="updateHelp(item.studentHelp.id)">修改内容</el-button>
+			<el-button type="danger" @click="deleteHelp(item.studentHelp.id)">删除</el-button>
+			<el-tag type="success">收到的数量：{{ item.count }}</el-tag>
           </template>
-          <help-receive-cards :id="item.studentHelp.id"></help-receive-cards>
+          <help-receive-cards :id="item.studentHelp.id" ></help-receive-cards>
         </el-collapse-item>
 
       </el-collapse>
@@ -41,6 +44,29 @@ export default {
   methods: {
 	toBack:function(){
 		this.$router.go(-1);
+	},
+	updateHelp:function (id){
+	  this.$router.push({
+	    path: "/student/help/update",
+	    query: {
+	      id: id
+	    }
+	  })
+	},
+	deleteHelp:function (id){
+	  this.$http.delete("/delete/student/help",{
+	    params:{
+	      id:id
+	    }
+	  }).then(res=>{
+	    this.$message.success("删除成功")
+	    setTimeout(()=>{
+	      this.$router.go(-1)
+	    },1000)
+	    console.log(res)
+	  }).catch(err=>{
+	    console.log(err);
+	  })
 	}
   },
 
@@ -98,5 +124,12 @@ export default {
   width: 90%;
   border-top: 0px;
   border-bottom: 0px;
+}
+.el-button{
+	margin-right: 10px;
+	margin-left: 0px!important;
+}
+.el-tag{
+	margin-right: 10px;
 }
 </style>

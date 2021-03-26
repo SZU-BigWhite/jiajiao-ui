@@ -25,15 +25,23 @@
       <el-aside width="200px" class="home_left" v-show="isShow">
         <el-menu class="el-menu-vertical-demo" router>
           <el-menu-item index="/index">
-            <i class="el-icon-menu"></i>
+            <i class="el-icon-house"></i>
             <span slot="title">主页</span>
           </el-menu-item>
+		  <el-menu-item index="/teach/resume">
+		    <i class="el-icon-tickets"></i>
+		    <span slot="title">学生简历库</span>
+		  </el-menu-item>
+		  <el-menu-item index="/teach/need">
+		    <i class="el-icon-bell"></i>
+		    <span slot="title">家长需求库</span>
+		  </el-menu-item>
           <el-menu-item index="/volunteer/index">
-            <i class="el-icon-menu"></i>
+            <i class="el-icon-first-aid-kit"></i>
             <span slot="title">义工活动</span>
           </el-menu-item>
           <el-menu-item index="/student/help">
-            <i class="el-icon-menu"></i>
+            <i class="el-icon-school"></i>
             <span slot="title">校内互助</span>
           </el-menu-item>
           <!-- <el-submenu index="1">
@@ -45,18 +53,6 @@
             <el-menu-item index="/add/parent/need">成为家长</el-menu-item>
           </el-submenu> -->
 
-          <el-menu-item index="/show">
-            <i class="el-icon-setting"></i>
-            <span slot="title">推荐</span>
-          </el-menu-item>
-          <el-menu-item index="/detail/student">
-            <i class="el-icon-setting"></i>
-            <span slot="title">简历细节</span>
-          </el-menu-item>
-          <el-menu-item index="/detail/parent">
-            <i class="el-icon-setting"></i>
-            <span slot="title">需求详细</span>
-          </el-menu-item>
         </el-menu>
       </el-aside>
 
