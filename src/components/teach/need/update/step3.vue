@@ -53,6 +53,7 @@ export default {
         expectGoal:'',
         gradeCondiction:'',
       },
+
       parentConditionDetailRules: {
 
       }
@@ -90,9 +91,8 @@ export default {
 }
 .el-form-item {
   margin-bottom: 22px !important;
-  min-width: 800px;
+  width: 450px !important;
 }
-
 
 
 </style>

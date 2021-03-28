@@ -87,10 +87,6 @@ export default {
   border-radius: 5px;
 }
 
-.el-input {
-  /*width: white;*/
-}
-
 .el-form-item{
   width: 500px;
 }
@@ -125,31 +121,7 @@ export default {
 .s-motto-input {
   width: 450px !important;
 }
-.input-new-tag {
-  width: 90px!important;
-  /*margin-left: 10px;*/
-  vertical-align: bottom;
-}
-.el-tag  {
-  margin-right: 10px;
-}
 
-.button-new-tag {
-  margin-left: 10px;
-  height: 32px;
-  line-height: 30px;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-
-.button-new-tag {
-  margin-left: 10px;
-  height: 32px;
-  line-height: 30px;
-  padding-top: 0;
-  padding-bottom: 0;
-}
 .s-grade-input {
   width: 250px !important;
 }

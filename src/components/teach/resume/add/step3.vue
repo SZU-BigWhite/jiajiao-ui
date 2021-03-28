@@ -1,7 +1,7 @@
 <template>
 	<div class="step1">
 	
-	  <el-form label-position="left" label-width="120px" :model="educationDetail" :rules="educationDetailRules">
+	  <el-form label-position="left" label-width="100px" :model="educationDetail" :rules="educationDetailRules">
       <el-form-item class="must" label="院校" prop="wechat">
         <el-input class="s-wechat-input" v-model="educationDetail.university"></el-input>
       </el-form-item>
@@ -78,21 +78,26 @@ export default {
 <style scoped>
 @import "/assets/css/step-css.css";
 
+.step {
+  margin-bottom: 30px;
+}
+
 .step1 {
+  display: flex;
+  justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 125, 255, .22), 0 0 6px rgba(0, 125, 255, .14);
   padding: 40px 100px 30px 100px;
   margin-right: 100px;
   margin-bottom: 25px;
   border-radius: 5px;
 }
+
+.el-form-item {
+  width: 540px;
+}
+
 .s-wechat-input {
   width: 250px !important;
 }
-
-.el-form-item {
-  margin-bottom: 22px !important;
-  min-width: 800px;
-}
-
 
 </style>

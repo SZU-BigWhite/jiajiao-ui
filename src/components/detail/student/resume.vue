@@ -192,7 +192,6 @@ export default {
           type: 'success',
           message: '投递成功!'
         });
-        //todo 调用投递接口
       }).catch(() => {
         this.$message({
           type: 'success',

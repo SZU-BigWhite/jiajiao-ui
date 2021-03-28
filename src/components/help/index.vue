@@ -9,7 +9,7 @@
 			  <el-button type="primary" @click="toStudentHelpList">求助列表</el-button>
 			  <el-button type="success" @click="toAddStudentHelp">请求他人帮助</el-button>
 			  <el-button type="warning"  @click="toHelpReceiveList">收到的帮助</el-button>
-			  <el-button type="danger"  @click="" >心理咨询（未完待续）</el-button>
+			  <el-button type="danger"  @click="" >未完待续</el-button>
 			</div>
 		</div>
 	</div>

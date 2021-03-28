@@ -99,7 +99,6 @@ export default {
 
       if (this.timer == null) {
         console.log("发送验证码成功")
-        //TODO 发送短信验证码请求
         this.$http.get("/get/phone/code", {
           params: {
             phone: this.loginForm.phone

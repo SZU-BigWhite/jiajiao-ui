@@ -30,6 +30,8 @@ import "font-awesome/css/font-awesome.css";
 //导入axios
 import axios from 'axios'
 //挂在axios
+
+//todo 上线该成http://42.193.177.25:8888/
 Vue.prototype.$http  = axios.create({
   baseURL:  "http://localhost:8888/",
   withCredentials:  true,

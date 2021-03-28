@@ -122,7 +122,6 @@
       <div>
         <div class="comment-head">评论列表</div>
         <div v-for="item in 6" class="comment-content">
-          <!--//todo 未解决-->
           <div>
             asdasdadasdadasdasdadasdad
             asdasdadasdad
@@ -217,7 +216,6 @@ export default {
           type: 'success',
           message: '投递成功!'
         });
-        //todo 调用投递接口
       }).catch(() => {
         this.$message({
           type: 'success',

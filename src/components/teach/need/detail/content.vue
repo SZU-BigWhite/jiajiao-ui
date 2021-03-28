@@ -33,7 +33,7 @@
 			</div>
 			<div class="project">
 				<h5>成绩情况</h5>
-				<div class="inner-content">{{ parentNeed.gradeCondiction }}</div>
+				<div class="inner-content" v-html="parentNeed.gradeCondiction"></div>
 				<div class="inner-content stack">
 					<b>需辅导科目：</b>
 					<el-tag class="my-tag" effect="dark" type="danger" v-for="item in subjectList">{{ item.name }}</el-tag>
@@ -41,13 +41,13 @@
 			</div>
 			<div class="skill">
 				<h5>学习状态</h5>
-				<div class="inner-content">{{ parentNeed.learnCondiction }}</div>
+				<div class="inner-content" v-html="parentNeed.learnCondiction"></div>
 			</div>
 			
 			
 			<div class="project">
 				<h5>辅导要求</h5>
-				<div class="inner-content">{{ parentNeed.teachReq }}</div>
+				<div class="inner-content" v-html="parentNeed.teachReq"></div>
 				<div class="inner-content stack">
 					<b>空闲时间：</b>
 					<el-tag class="my-tag" effect="dark" v-for="item in timeShowList">{{ item }}</el-tag>
@@ -55,11 +55,11 @@
 			</div>
 			<div class="project">
 				<h5>每周反馈要求</h5>
-				<div class="inner-content">{{ parentNeed.expectFeedback }}</div>
+				<div class="inner-content" v-html="parentNeed.expectFeedback"></div>
 			</div>
 			<div class="project">
 				<h5>期待效果</h5>
-				<div class="inner-content">{{ parentNeed.expectGoal }}</div>
+				<div class="inner-content" v-html="parentNeed.expectGoal"></div>
 			</div>
 		</div>
 		
@@ -112,7 +112,8 @@ export default {
   props:["id"],
   created() {
   	this.getResumeDetail()
-	console.log(this.id)
+
+	// console.log(this.id)
   },
   methods: {
 	getResumeDetail:function(){
@@ -127,6 +128,7 @@ export default {
 			this.timeList = res.data.data.timeList;
 			//处理空闲时间问题
 			this.convertTime();
+      this.convertNextLine();
 		}).catch(err => {
 			console.log(err);
 		});
@@ -162,6 +164,13 @@ export default {
 			this.timeShowList.push(res);
 		}
 	},
+  convertNextLine:function(){
+    this.parentNeed.expectGoal=this.parentNeed.expectGoal.replace(/\n/g, '<br />');
+    this.parentNeed.expectFeedback=this.parentNeed.expectFeedback.replace(/\n/g, '<br />');
+    this.parentNeed.teachReq=this.parentNeed.teachReq.replace(/\n/g, '<br />');
+    this.parentNeed.learnCondiction=this.parentNeed.learnCondiction.replace(/\n/g, '<br />');
+    this.parentNeed.gradeCondiction=this.parentNeed.gradeCondiction.replace(/\n/g, '<br />');
+  },
   }
 }
 </script>

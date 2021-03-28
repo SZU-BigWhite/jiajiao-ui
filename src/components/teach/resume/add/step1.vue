@@ -14,7 +14,7 @@
         <el-input class="s-wechat-input" v-model="studentDetail.wechat" placeholder="微信号/手机号"></el-input>
       </el-form-item>
       <el-form-item class="must" label="高考总分" prop="grade">
-        <el-input  class="s-grade-input" v-model.number="studentDetail.grade" placeholder="高考总分"></el-input>
+        <el-input class="s-grade-input" v-model.number="studentDetail.grade" placeholder="高考总分"></el-input>
       </el-form-item>
       <el-form-item class="must" label="座右铭" prop="motto">
         <el-input class="s-motto-input" v-model="studentDetail.motto" placeholder="激励自己的一句话"></el-input>
@@ -40,7 +40,7 @@
         </el-input>
         <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 性格</el-button>
       </el-form-item>
-      <el-form-item class="must" label="爱好"  prop="hobby">
+      <el-form-item class="must" label="爱好" prop="hobby">
         <el-tag
             :key="key"
             v-for="(tag,key) in studentDetail.hobby"
@@ -87,7 +87,7 @@ export default {
         tags: [],       //性格
         hobby: [],      //爱好
       },
-      sexTemp:null,
+      sexTemp: null,
       tagValue: '',
       tagVisible: false,
       hobbyValue: '',
@@ -108,10 +108,10 @@ export default {
         motto: [
           {required: true, message: '请输入座右铭', trigger: 'blur'}
         ],
-        hobby:[
+        hobby: [
           {required: true, message: '请添加爱好', trigger: 'blur'}
         ],
-        tags:[
+        tags: [
           {required: true, message: '请添加性格', trigger: 'blur'}
         ]
       },
@@ -119,17 +119,17 @@ export default {
   },
   watch: {
     studentDetail: {
-      handler(){
+      handler() {
         console.log(store.state.studentDetail)
-        store.commit('addStudentDetail',{studentDetail:this.studentDetail})
+        store.commit('addStudentDetail', {studentDetail: this.studentDetail})
       },
-      deep:true
+      deep: true
     },
-    sexTemp:function (){
+    sexTemp: function () {
       if (this.sexTemp == "男") {
-        this.studentDetail.sex=1;
-      }else {
-        this.studentDetail.sex=2;
+        this.studentDetail.sex = 1;
+      } else {
+        this.studentDetail.sex = 2;
       }
     }
   },
@@ -137,14 +137,14 @@ export default {
     handleClose(tag) {
       this.studentDetail.tags.splice(this.studentDetail.tags.indexOf(tag), 1);
     },
-    handleCloseHobby(tag){
+    handleCloseHobby(tag) {
       this.studentDetail.hobby.splice(this.studentDetail.hobby.indexOf(tag), 1);
     },
 
     showInput() {
-      if(this.studentDetail.tags.length>=4){
+      if (this.studentDetail.tags.length >= 4) {
         this.$message.warning("最多设置4个标签")
-        return ;
+        return;
       }
       this.tagVisible = true;
       this.$nextTick(_ => {
@@ -152,9 +152,9 @@ export default {
       });
     },
     showHobbyInput() {
-      if(this.studentDetail.hobby.length>=4){
+      if (this.studentDetail.hobby.length >= 4) {
         this.$message.warning("最多设置4个标签")
-        return ;
+        return;
       }
       this.hobbyVisible = true;
       this.$nextTick(_ => {
@@ -212,10 +212,6 @@ export default {
   border-radius: 5px;
 }
 
-.el-input {
-  /*width: white;*/
-}
-
 .el-form-item label {
   font-size: 18px;
 }
@@ -243,7 +239,7 @@ export default {
   width: 450px !important;
 }
 
-.el-tag  {
+.el-tag {
   margin-right: 10px;
 }
 
@@ -255,7 +251,7 @@ export default {
 }
 
 .input-new-tag {
-  width: 90px!important;
+  width: 90px !important;
   /*margin-left: 10px;*/
   vertical-align: bottom;
 }
@@ -263,7 +259,6 @@ export default {
 .s-grade-input {
   width: 250px !important;
 }
-
 
 
 </style>

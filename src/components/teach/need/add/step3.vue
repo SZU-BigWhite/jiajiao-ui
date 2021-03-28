@@ -89,8 +89,7 @@ export default {
   width: 250px !important;
 }
 .el-form-item {
-  margin-bottom: 22px !important;
-  min-width: 800px;
+  width: 540px !important;
 }
 
 

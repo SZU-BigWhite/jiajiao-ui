@@ -43,24 +43,26 @@
           </el-dialog>
         </div>
       </el-form-item>
-	  
-	  
+
+
       <el-form-item class="must" label="时薪" prop="salary">
         <el-input placeholder="能接收的最高时薪" class="s-salary-input" v-model.number="parentReqDetail.salary"></el-input>
         元/小时
       </el-form-item>
-	  
+
       <el-form-item class="must" label="辅导次数" prop="salary">
-        <el-input placeholder="每周希望辅导次数" class="s-salary-input" v-model.number="parentReqDetail.times"></el-input> 次
+        <el-input placeholder="每周希望辅导次数" class="s-salary-input" v-model.number="parentReqDetail.times"></el-input>
+        次
       </el-form-item>
       <el-form-item class="must" label="平均时长" prop="salary">
-        <el-input placeholder="每次辅导时长" class="s-salary-input" v-model.number="parentReqDetail.duration"></el-input> 小时
+        <el-input placeholder="每次辅导时长" class="s-salary-input" v-model.number="parentReqDetail.duration"></el-input>
+        小时
       </el-form-item>
-	  <el-form-item class="must" label="学历要求" prop="education">
-	    <el-select style="width: 250px" v-model.number="parentReqDetail.education" placeholder="要求最低学历">
-	      <el-option v-for="(item,key) in sEducation" :label="item" :value="key"></el-option>
-	    </el-select>
-	  </el-form-item>
+      <el-form-item class="must" label="学历要求" prop="education">
+        <el-select style="width: 250px" v-model.number="parentReqDetail.education" placeholder="要求最低学历">
+          <el-option v-for="(item,key) in sEducation" :label="item" :value="key"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="辅导科目" prop="wechat">
         <div>
           <el-checkbox-group v-model="parentReqDetail.subjectList" size="small">
@@ -96,10 +98,10 @@ export default {
         duration: null,
         times: null,
         subjectList: [],       //科目
-        education:null,   //学历
-        teachReq:null
+        education: null,   //学历
+        teachReq: null
       },
-	  sEducation:['本科','研究生','博士生'],
+      sEducation: ['本科', '研究生', '博士生'],
       sSubject: ['作业辅导', '语文', '数学', '英语', '历史', '地理', '生物', '政治', '物理', '化学', '音乐', '美术', '舞蹈', '计算机', '体育'],
       sAbleClass: ['小学', '初一', '初二', '初三', '高一', '高二', '高三'],
       dialogFormVisible: false,
@@ -111,12 +113,12 @@ export default {
     }
   },
   watch: {
-    parentReqDetail:{
-      handler(){
+    parentReqDetail: {
+      handler() {
         console.log(store.state.parentReqDetail)
-        store.commit('addParentReqDetail',{parentReqDetail:this.parentReqDetail})
+        store.commit('addParentReqDetail', {parentReqDetail: this.parentReqDetail})
       },
-      deep:true
+      deep: true
     }
   },
 
@@ -166,5 +168,30 @@ export default {
 
 .s-salary-input {
   width: 180px !important;
+}
+.must label:after {
+  content: " *";
+  color: red;
+}
+
+.must label:before {
+  content: "" !important;
+}
+
+.el-tag {
+  margin-right: 10px !important;
+}
+
+.button-new-tag {
+  height: 32px;
+  line-height: 30px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.input-new-tag {
+  width: 90px !important;
+  /*margin-left: 10px;*/
+  vertical-align: bottom;
 }
 </style>
