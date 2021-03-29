@@ -35,25 +35,40 @@ export default {
 			})
 		},
 		send: function() {
-			this.$confirm('你确定需求到投递到该简历中？', '提示', {
-				confirmButtonText: '确定',
-				cancelButtonText: '取消',
-				type: 'success'
-			})
-			.then(() => {
-				this.$http.post("/send/student/resume",{
-					sResumeId:this.resumeId,
-					pNeedId:this.id,
-				}).then(res=>{
-					this.$message.success(res.data.msg);
-				}).catch(err=>{
-					console.log(err);
+			if(this.resumeId==null){
+				this.$confirm("你还没有简历，是否新建简历？","提示",{
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'success'
+				}).then(()=>{
+					let routerUrl=this.$router.resolve({
+						path:"/teach/resume/add",
+					})
+					window.open(routerUrl.href,"_blank");
+				}).catch(() => {
+					this.$message.error("取消新建");
+				});
+			}else{
+				this.$confirm('你确定简历到投递到该需求中？', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'success'
 				})
-				
-			})
-			.catch(() => {
-				this.$message.error("取消投递");
-			});
+				.then(() => {
+					this.$http.post("/send/student/resume",{
+						sResumeId:this.resumeId,
+						pNeedId:this.id,
+					}).then(res=>{
+						// console.log(res)
+						this.$message.success(res.data.msg);
+					}).catch(err=>{
+						console.log(err);
+					})
+				})
+				.catch(() => {
+					this.$message.error("取消投递");
+				});
+			}
 		},
 	}
 };

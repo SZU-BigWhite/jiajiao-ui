@@ -1,71 +1,73 @@
 <template>
-  <el-container class="home_container">
-    <!--头部-->
-    <el-header class="home_header">
-      <div class="head_mid">
-        深大家教
-      </div>
-      <div class="head_right">
-        <!--用户头像相关-->
-        <el-dropdown trigger="click">
-          <!--图标-->
-          <i class="el-icon-user"></i>
-          <!--下拉框-->
-          <el-dropdown-menu slot="dropdown" class="dropdown_menu">
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item><a @click="logout">安全退出</a></el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
-    </el-header>
-
-    <!--导航栏+内容-->
-    <el-container>
-      <!--导航栏-->
-      <el-aside width="200px" class="home_left" v-show="isShow">
-        <el-menu class="el-menu-vertical-demo" router>
-          <el-menu-item index="/index">
-            <i class="el-icon-house"></i>
-            <span slot="title">主页</span>
-          </el-menu-item>
-		  <el-menu-item index="/teach/resume">
-		    <i class="el-icon-tickets"></i>
-		    <span slot="title">学生简历库</span>
-		  </el-menu-item>
-		  <el-menu-item index="/teach/need">
-		    <i class="el-icon-bell"></i>
-		    <span slot="title">家长需求库</span>
-		  </el-menu-item>
-          <el-menu-item index="/volunteer/index">
-            <i class="el-icon-first-aid-kit"></i>
-            <span slot="title">义工活动</span>
-          </el-menu-item>
-          <el-menu-item index="/student/help">
-            <i class="el-icon-school"></i>
-            <span slot="title">校内互助</span>
-          </el-menu-item>
-          <!-- <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>家教</span>
-            </template>
-            <el-menu-item index="/add/student/resume">成为老师</el-menu-item>
-            <el-menu-item index="/add/parent/need">成为家长</el-menu-item>
-          </el-submenu> -->
-
-        </el-menu>
-      </el-aside>
-
-      <!-- 内容 -->
-      <el-container class="home_content">
-        <!-- 主内容 -->
-        <el-main class="home_main">
-          <router-view></router-view>
-        </el-main>
-
-      </el-container>
-    </el-container>
-  </el-container>
+  <div style="background-color: red;">
+	<el-container class="home_container">
+	  <!--头部-->
+	  <el-header class="home_header">
+	    <div class="head_mid">
+	      深大家教
+	    </div>
+	    <div class="head_right">
+	      <!--用户头像相关-->
+	      <el-dropdown trigger="click">
+	        <!--图标-->
+	        <i class="el-icon-user"></i>
+	        <!--下拉框-->
+	        <el-dropdown-menu slot="dropdown" class="dropdown_menu">
+	          <el-dropdown-item>个人中心</el-dropdown-item>
+	          <el-dropdown-item><a @click="logout">安全退出</a></el-dropdown-item>
+	        </el-dropdown-menu>
+	      </el-dropdown>
+	    </div>
+	  </el-header>
+	
+	  <!--导航栏+内容-->
+	  <el-container>
+	    <!--导航栏-->
+	    <el-aside width="200px" class="home_left" v-show="isShow">
+	      <el-menu class="el-menu-vertical-demo" router>
+	        <el-menu-item index="/index">
+	          <i class="el-icon-house"></i>
+	          <span slot="title">主页</span>
+	        </el-menu-item>
+			  <el-menu-item index="/teach/resume">
+			    <i class="el-icon-tickets"></i>
+			    <span slot="title">学生简历库</span>
+			  </el-menu-item>
+			  <el-menu-item index="/teach/need/show">
+			    <i class="el-icon-bell"></i>
+			    <span slot="title">家长需求库</span>
+			  </el-menu-item>
+	        <el-menu-item index="/student/volunteer/collections">
+	          <i class="el-icon-first-aid-kit"></i>
+	          <span slot="title">义工活动</span>
+	        </el-menu-item>
+	        <el-menu-item index="/student/help/list">
+	          <i class="el-icon-school"></i>
+	          <span slot="title">校内互助</span>
+	        </el-menu-item>
+	        <!-- <el-submenu index="1">
+	          <template slot="title">
+	            <i class="el-icon-location"></i>
+	            <span>家教</span>
+	          </template>
+	          <el-menu-item index="/add/student/resume">成为老师</el-menu-item>
+	          <el-menu-item index="/add/parent/need">成为家长</el-menu-item>
+	        </el-submenu> -->
+	
+	      </el-menu>
+	    </el-aside>
+	
+	    <!-- 内容 -->
+	    <el-container class="home_content">
+	      <!-- 主内容 -->
+	      <el-main>
+	        <router-view></router-view>
+	      </el-main>
+	
+	    </el-container>
+	  </el-container>
+	</el-container>
+  </div>
 </template>
 
 <script>
@@ -99,15 +101,13 @@ export default {
 .home_container {
   height: 100%;
   background-color: #F8F8F8;
+  
 }
 
 .home_content {
   background-color: #F8F8F8;
 }
 
-.home_main {
-  background-color: #F8F8F8;
-}
 
 //-----头部样式
 .home_header {

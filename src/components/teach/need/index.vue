@@ -13,12 +13,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="card-inline">
-		<div class="my-content" @click="toNeedShow">查找需求</div>
-		<div @click="toAddTeachNeed" class="my-content">新增需求</div>
-		<div @click="toMyDonateThings" class="my-content">我的简历</div>
-		<div @click="toGetReceive" class="my-content">需求推荐</div>
-	</div> -->
 </template>
 
 <script>

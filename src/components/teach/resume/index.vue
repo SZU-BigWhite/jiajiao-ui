@@ -5,12 +5,15 @@
 			<span class="back el-icon-back" @click="toBack" ></span>
 		</div>
 
-		<div class="card-inline">
+		<div class="card-inline bg-img">
 			<div class="my-resume-btn">
-			  <el-button type="primary" @click="toShowTeachResume">查找简历</el-button>
-			  <el-button type="success" @click="toAddTeachResume">{{text}}</el-button>
+			  <el-button type="primary" @click="toShowTeachResume" >查找简历</el-button>
+			  <el-button type="success" @click="toAddTeachNeed">{{text}}</el-button>
+			  <el-button type="warning"  @click="toMyNeed">我的需求</el-button>
+			  <el-button type="danger"  @click="toNeedGet" >收到/投递</el-button>
+			  <!-- <el-button type="success" @click="toAddTeachResume">{{text}}</el-button>
 			  <el-button type="warning"  @click="toMyResume">我的简历</el-button>
-			  <el-button type="danger"  @click="toResumeGet" >收到/投递</el-button>
+			  <el-button type="danger"  @click="toResumeGet" >收到/投递</el-button> -->
 			</div>
 		</div>
 	</div>
@@ -21,8 +24,9 @@ export default {
   name: "index",
   data: function () {
     return {
+		text:"新建需求",
+		needId:null,
 		data:[],
-		text:"新增简历",
 	}
   },
   methods: {
@@ -32,50 +36,89 @@ export default {
 	toShowTeachResume: function () {
 		this.$router.push("/teach/resume/show")
 	},
-	toAddTeachResume:function (){
+	toAddTeachNeed:function (){
 		if(this.data.length==0){
-			this.$router.push("/teach/resume/add")
+			this.$router.push("/teach/need/add")
 		}else {
 			this.$router.push({
-				path:"/teach/resume/recommend",
+				path:"/teach/need/recommend",
 				query:{
-					id:this.resumeId
+					id:this.needId
 				}
 			})
 		}
+	  
 	},
-	toResumeGet:function () {
+	toNeedGet:function(){
 		if(this.data.length==0){
-			this.$message.error("你还未拥有简历，请先新建简历");
+			this.$message.error("你还未拥有需求，请先新建需求");
 			return ;
 		}
 		this.$router.push({
-			path:"/teach/resume/get",
+			path:"/teach/need/get",
 			query:{
-				id:this.resumeId,
+				id:this.needId,
 			}
 		})
-		
 	},
-	toMyResume:function () {
+	toMyNeed:function(){
 		if(this.data.length==0){
-			this.$message.error("你还无简历，请先新建自己的简历")
+			this.$message.error("你还无需求，请先新建自己的需求")
 			return ;
 		}
 		let routerUrl=this.$router.resolve({
-			path:"/teach/my/resume",
+			path:"/teach/my/need",
 			query:{
-				id:this.resumeId
+				id:this.needId
 			}
 		})
 		window.open(routerUrl.href,"_blank");
 	}
+	// toAddTeachResume:function (){
+	// 	if(this.data.length==0){
+	// 		this.$router.push("/teach/resume/add")
+	// 	}else {
+	// 		this.$router.push({
+	// 			path:"/teach/resume/recommend",
+	// 			query:{
+	// 				id:this.resumeId
+	// 			}
+	// 		})
+	// 	}
+	// },
+	// toResumeGet:function () {
+	// 	if(this.data.length==0){
+	// 		this.$message.error("你还未拥有简历，请先新建简历");
+	// 		return ;
+	// 	}
+	// 	this.$router.push({
+	// 		path:"/teach/resume/get",
+	// 		query:{
+	// 			id:this.resumeId,
+	// 		}
+	// 	})
+		
+	// },
+	// toMyResume:function () {
+	// 	if(this.data.length==0){
+	// 		this.$message.error("你还无简历，请先新建自己的简历")
+	// 		return ;
+	// 	}
+	// 	let routerUrl=this.$router.resolve({
+	// 		path:"/teach/my/resume",
+	// 		query:{
+	// 			id:this.resumeId
+	// 		}
+	// 	})
+	// 	window.open(routerUrl.href,"_blank");
+	// }
   },
   created() {
-  	this.$http.get("/get/student/resumes").then(res=>{
-		this.data=res.data.data;
-		this.resumeId=this.data[0].studentResume.id
-		this.text="简历匹配";
+  	this.$http.get("/get/parent/need").then(res=>{
+  		console.log(res);
+  		this.data=res.data.data;
+  		this.needId=res.data.data[0].parentNeed.id
+  		this.text="个性匹配";
   	}).catch(err=>{
   		console.log(err);
   	})
@@ -84,6 +127,11 @@ export default {
 </script>
 
 <style scoped>
+.bg-img{
+	background-image: url(../../../assets/img/bg2.jpg) !important;
+	background-repeat: no-repeat!important; 
+	background-size:100% 100%!important;
+}
 .my-resume-btn{
 	margin: 20px 0px;
 	text-align: center;

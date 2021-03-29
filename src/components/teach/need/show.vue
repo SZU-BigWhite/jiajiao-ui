@@ -1,89 +1,104 @@
 <template>
-	<div class="content-card">
-		
-		<div class="select-class">
-		  <span>可辅导最高年级 </span>
-		  <div @click="selectClass(i)" class="s-class-span" :class="{'s-active':i==selectedClass}"
-		       v-for="(item,i) in sClass">{{ item }}
-		  </div>
+	<div class="flex-div">
+		<div class="inline-left">
+			<div class="content-card1">
+				<!-- 筛选条件 -->
+				<div class="select-class">
+				  <span>可辅导最高年级 </span>
+				  <div @click="selectClass(i)" class="s-class-span" :class="{'s-active':i==selectedClass}"
+					   v-for="(item,i) in sClass">{{ item }}
+				  </div>
+				</div>
+				<div class="select-academy">
+				  <span>最多可辅导次数 </span>
+				  <div @click="selectTimes(i)" class="s-class-span" :class="{'s-active':i==selectedTimes}"
+					   v-for="(item,i) in sTimes">{{ item }}
+				  </div>
+				</div>
+				
+				<div class="select-subject">
+				  <el-checkbox-group v-model="selectedSubject" size="small" @change="selectSubject">
+					<el-checkbox-button  v-for="subject in sSubject" :label="subject" :key="subject">{{subject}}</el-checkbox-button>
+				  </el-checkbox-group>
+				</div>
+				
+				<div class="select-time">
+				  <el-tag
+					  :key="tag"
+					  v-for="tag in selectedTime"
+					  closable
+					  :disable-transitions="false"
+					  @close="handleCloseTag(tag)">
+					{{ tag }}
+				  </el-tag>
+				  <el-button class="button-new-tag" size="small" @click="dialogFormVisible = true">+ 添加时间</el-button>
+				
+				  <div v-if="dialogFormVisible">
+					<el-dialog title="选择时间" :visible.sync="dialogFormVisible" >
+					  <el-form :model="form">
+						<el-form-item label="星期" :label-width="formLabelWidth">
+						  <el-select v-model="form.week" placeholder="选择星期">
+							<el-option label="星期一" value="星期一"></el-option>
+							<el-option label="星期二" value="星期二"></el-option>
+							<el-option label="星期三" value="星期三"></el-option>
+							<el-option label="星期四" value="星期四"></el-option>
+							<el-option label="星期五" value="星期五"></el-option>
+							<el-option label="星期六" value="星期六"></el-option>
+							<el-option label="星期日" value="星期日"></el-option>
+						  </el-select>
+						</el-form-item>
+						<el-form-item label="时间" :label-width="formLabelWidth">
+						  <el-select v-model="form.time" placeholder="请选择时间">
+							<el-option label="上午" value="上午"></el-option>
+							<el-option label="下午" value="下午"></el-option>
+							<el-option label="晚上" value="晚上"></el-option>
+						  </el-select>
+						</el-form-item>
+					  </el-form>
+					  <div slot="footer" class="dialog-footer">
+						<el-button @click="dialogFormVisible = false">取 消</el-button>
+						<el-button type="primary" @click="confirmTime">确 定</el-button>
+					  </div>
+					</el-dialog>
+				  </div>
+				</div>
+				
+				<el-menu active-text-color="#0665d0"
+						 background-color="#ffffff" :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
+						 >
+				  <el-menu-item index="1" @click="orderBySalary">{{salaryText[filter.salary]}}</el-menu-item>
+				  <el-menu-item index="2" @click="orderByUpdateTime">{{updateTimeText[filter.updateTime]}}</el-menu-item>
+				</el-menu>
+				<!-- <div class="line"></div> -->
+				<!-- 列表+页面 -->
+				<div class="card-inline">
+				  <div v-for="item in this.needDataList" class="card-item">
+					<need-card :need="item"></need-card>
+				  </div>
+				</div>
+				<div v-if="needTotal>filter.pageSize" class="page-info-bg">
+				  <el-pagination
+					  background
+					  layout="prev, pager, next"
+					  :current-page.sync="filter.pageNum"
+					  @current-change="handleCurrentChange"
+					  :page-size="filter.pageSize"
+					  :total="needTotal">
+				  </el-pagination>
+				</div>
+				
+			</div>
 		</div>
-		<div class="select-academy">
-		  <span>最多可辅导次数 </span>
-		  <div @click="selectTimes(i)" class="s-class-span" :class="{'s-active':i==selectedTimes}"
-		       v-for="(item,i) in sTimes">{{ item }}
-		  </div>
+		<div class="inline-right">
+			<div class="right-head">我的简历</div>
+			<div class="right-content">
+				<el-button class="btn-div" type="primary" @click="toAddTeachResume" plain>{{text}}简历</el-button>
+				<el-button class="btn-div" type="danger" @click="toResumeRecommend" plain>个性匹配</el-button>
+				<el-button class="btn-div" type="success" @click="toMyResume" plain>我的简历</el-button>
+				<el-button class="btn-div" type="primary" @click="toResumeGet" plain>收到/投递</el-button>
+			</div>
 		</div>
 		
-		<div class="select-subject">
-		  <el-checkbox-group v-model="selectedSubject" size="small" @change="selectSubject">
-		    <el-checkbox-button  v-for="subject in sSubject" :label="subject" :key="subject">{{subject}}</el-checkbox-button>
-		  </el-checkbox-group>
-		</div>
-		
-		<div class="select-time">
-		  <el-tag
-		      :key="tag"
-		      v-for="tag in selectedTime"
-		      closable
-		      :disable-transitions="false"
-		      @close="handleCloseTag(tag)">
-		    {{ tag }}
-		  </el-tag>
-		  <el-button class="button-new-tag" size="small" @click="dialogFormVisible = true">+ 添加时间</el-button>
-		
-		  <div v-if="dialogFormVisible">
-		    <el-dialog title="选择时间" :visible.sync="dialogFormVisible" >
-		      <el-form :model="form">
-		        <el-form-item label="星期" :label-width="formLabelWidth">
-		          <el-select v-model="form.week" placeholder="选择星期">
-		            <el-option label="星期一" value="星期一"></el-option>
-		            <el-option label="星期二" value="星期二"></el-option>
-		            <el-option label="星期三" value="星期三"></el-option>
-		            <el-option label="星期四" value="星期四"></el-option>
-		            <el-option label="星期五" value="星期五"></el-option>
-		            <el-option label="星期六" value="星期六"></el-option>
-		            <el-option label="星期日" value="星期日"></el-option>
-		          </el-select>
-		        </el-form-item>
-		        <el-form-item label="时间" :label-width="formLabelWidth">
-		          <el-select v-model="form.time" placeholder="请选择时间">
-		            <el-option label="上午" value="上午"></el-option>
-		            <el-option label="下午" value="下午"></el-option>
-		            <el-option label="晚上" value="晚上"></el-option>
-		          </el-select>
-		        </el-form-item>
-		      </el-form>
-		      <div slot="footer" class="dialog-footer">
-		        <el-button @click="dialogFormVisible = false">取 消</el-button>
-		        <el-button type="primary" @click="confirmTime">确 定</el-button>
-		      </div>
-		    </el-dialog>
-		  </div>
-		</div>
-		
-		<el-menu active-text-color="#0665d0"
-		         background-color="#ffffff" :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
-		         >
-		  <el-menu-item index="1" @click="orderBySalary">{{salaryText[filter.salary]}}</el-menu-item>
-		  <el-menu-item index="2" @click="orderByUpdateTime">{{updateTimeText[filter.updateTime]}}</el-menu-item>
-		</el-menu>
-		<div class="line"></div>
-		
-		<div class="card-inline">
-		  <div v-for="item in this.needDataList" class="card-item">
-		    <need-card :need="item"></need-card>
-		  </div>
-		</div>
-		<div v-if="needTotal>filter.pageSize" class="page-info-bg">
-		  <el-pagination
-		      background
-		      layout="prev, pager, next"
-			  :current-page.sync="filter.pageNum"
-			  @current-change="handleCurrentChange"
-		      :page-size="filter.pageSize"
-		      :total="needTotal">
-		  </el-pagination>
-		</div>
 	</div>
 </template>
 
@@ -112,17 +127,71 @@ export default {
 		needTotal:100,
 		filter:{
 			pageNum:1,
-			pageSize:2,
+			pageSize:4,
 			salary:0,
 			updateTime:0,
 			times:0,
 			ableClass:0,
 			name:[],
 			freeTimeString:[],
-		}
+		},
+		//个人需求
+		resumeId:null,
+		data:[],
+		text:"新增"
 	}
   },
   methods: {
+	toAddTeachResume:function(){
+		//跳转增加
+		if(this.resumeId==null){
+			this.$router.push("/teach/resume/add");
+		}else{		//更新
+			this.$router.push({
+				path:"/teach/resume/update",
+				query:{
+					id:this.resumeId,
+				}
+			})
+		}
+	},
+	toResumeRecommend:function(){
+		if(this.resumeId==null){
+			this.$message.error("你还无简历，请先新建自己的简历");
+			return ;
+		}
+		this.$router.push({
+			path:"/teach/resume/recommend",
+			query:{
+				id:this.resumeId
+			}
+		})
+	},
+	toMyResume:function(){
+		if(this.data.length==0){
+			this.$message.error("你还无简历，请先新建自己的简历")
+			return ;
+		}
+		let routerUrl=this.$router.resolve({
+			path:"/teach/my/resume",
+			query:{
+				id:this.resumeId
+			}
+		})
+		window.open(routerUrl.href,"_blank");
+	},
+	toResumeGet:function(){
+		if(this.data.length==0){
+			this.$message.error("你还未拥有需求，请先新建需求");
+			return ;
+		}
+		this.$router.push({
+			path:"/teach/resume/get",
+			query:{
+				id:this.resumeId,
+			}
+		})
+	},
 	selectClass: function (i) {
 	  this.selectedClass = i;
 	  this.filter.ableClass=this.selectedClass;
@@ -196,10 +265,20 @@ export default {
 	getList(){
 		this.filter.pageNum=1;
 		this.getListByCurrentPageNum();
-	}
+	},
+	
   },
   created() {
-  	this.getList()
+  	this.getList();
+	this.$http.get("/get/student/resumes").then(res=>{
+		this.data=res.data.data;
+		this.resumeId=this.data[0].studentResume.id;
+		if(this.resumeId!=null){
+			this.text="修改"
+		}
+	}).catch(err=>{
+		console.log(err);
+	})
   }
 }
 </script>
@@ -210,7 +289,15 @@ export default {
   padding: 0px;
 }
 
-
+.flex-div{
+	display: flex;
+	width: 93%;
+	height: 100%;
+	background-color: white;
+	border-radius: 6px;
+	margin: 0 auto;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
 .button-new-tag {
   /* margin-left: 10px; */
   height: 32px;
@@ -233,12 +320,18 @@ export default {
 }
 
 .content-card {
+  /* 未使用 */
   width: 93%;
   height: 100%;
   background-color: white;
   border-radius: 6px;
   margin: 0 auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
+.content-card1{
+	height: 100%;
+	/* border: 2px solid rgba(0, 0, 0, .12); */
+	/* box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); */
 }
 
 .el-pagination {
@@ -292,5 +385,37 @@ export default {
 
 .el-pagination {
   background-color: white;
+}
+
+.inline-left{
+	/* display: flex; */
+	/* flex-wrap: wrap; */
+	width: 80%;
+	/* justify-content: center; */
+}
+.inline-right{
+	text-align: center;
+	width: 20%;
+	border-left: 1px solid #ccc;
+}
+.right-head{
+	width: 100%;
+	background-color: #409EFF;
+	color: white;
+	height: 50px;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 50px;
+}
+.right-content{
+	width: 100%;
+	text-align: center;
+}
+.btn-div{
+	width: 80%;
+	width: 80%;
+	margin: 10px 0px!important;
+	height: 75px;
+	font-size: 24px;
 }
 </style>

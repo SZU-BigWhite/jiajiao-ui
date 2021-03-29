@@ -1,7 +1,7 @@
 <template>
   <div>
 	<div class="card-inline-head">
-		捐赠物品 
+		捐赠历史 
 		<span class="back el-icon-back" @click="toBack" ></span>
 	</div>
 	
@@ -58,7 +58,7 @@ export default {
   background-color: white;
   border-radius: 6px;
   margin: 0 auto;
-  background-color: #3091F2;
+  background-color: #f48181;
   color: white;
   font-size: 24px;
   line-height: 50px;

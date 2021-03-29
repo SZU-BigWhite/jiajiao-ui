@@ -4,7 +4,7 @@
     <div class="login_box">
       <!--标题-->
       <div class="login_head">
-        <div>SZUFREE</div>
+        <div>深大家教</div>
         <div>login</div>
       </div>
       <!--登录表单-->

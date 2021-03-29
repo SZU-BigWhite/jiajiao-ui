@@ -22,11 +22,11 @@
       </el-col>
     </el-row>
 
-    <div class="card-inline">
+    <div class="card-inline bg-img">
 		<div class="my-resume-btn">
 		  <el-button type="primary" @click="toStudentResume">学生简历库</el-button>
 		  <el-button type="success" @click="toParentNeed">家长需求库</el-button>
-		  <el-button type="warning"  @click="toStudentHelp">义工活动</el-button>
+		  <el-button type="warning"  @click="toStudentVolunteer">义工活动</el-button>
 		  <el-button type="danger"  @click="toStudentHelp" >校内互助</el-button>
 		</div>
     </div>
@@ -43,16 +43,16 @@ export default {
   },
   methods: {
 	toParentNeed:function()	{
-		this.$router.push("/teach/need")
+		this.$router.push("/teach/need/show")
 	},
 	toStudentResume: function()	{
 		this.$router.push("/teach/resume")
 	},
 	toStudentHelp:function(){
-		this.$router.push("/student/help")
+		this.$router.push("/student/help/list")
 	},
 	toStudentVolunteer:function(){
-		this.$router.push("/volunteer/index")
+		this.$router.push("/student/volunteer/collections")
 	}
   },
   created() {
@@ -67,6 +67,11 @@ export default {
 </script>
 
 <style scoped>
+.bg-img{
+	background-image: url(../../assets/img/bg1.jpg) !important;
+	background-repeat: no-repeat!important; 
+	background-size:100% 100%!important;
+}
 .home_content > .head > .el-col > .el-col {
   padding: 20px 0;
   border-right: solid 1px #fff;
@@ -88,9 +93,10 @@ export default {
   text-align: center;
   color: #fff;
   font-size: 30px;
-  margin-bottom: 50px;
+  margin: 0px 50px 20px 50px;
+  /* margin-bottom: 20px;
   margin-right: 50px;
-  margin-left: 50px;
+  margin-left: 50px; */
 }
 .home_content .content{
   text-align: center;

@@ -3,7 +3,7 @@
     <div class="login_box">
       <!--标题-->
       <div class="login_head">
-        <div>SZUFREE</div>
+        <div>深大家教</div>
         <div>login</div>
       </div>
       <!--登录表单-->
@@ -142,6 +142,9 @@ export default {
 .login_container {
   height: 100%;
   background-color: #e8eaf2;
+  background-image: url(../assets/img/bg1.jpg);
+  background-repeat: no-repeat; 
+  background-size:100% 100%;
 }
 
 //登录box

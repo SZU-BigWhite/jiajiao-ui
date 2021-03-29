@@ -2,13 +2,19 @@
   <div>
     <div class="card-inline-head">
 	  求助列表 
-	  <span class="back el-icon-back" @click="toBack" ></span>
     </div>
 
     <div class="card-inline">
-      <div v-for="item in this.list" class="card-item">
-        <help-card :studentHelp="item.studentHelp" :count="item.count"></help-card>
-      </div>
+	  <div class="inline-right">
+	  		<div><el-button type="warning" plain  @click="toAddStudentHelp"><i class="el-icon-circle-plus-outline"></i>寻求帮助</el-button></div>
+	  		<div><el-button type="success"  plain @click="toHelpReceiveList" ><i class="el-icon-search"></i>收到帮助</el-button></div>
+	  </div>
+      <div class="inline-left">
+		<div v-for="item in this.list" class="card-item">
+		  <help-card :studentHelp="item.studentHelp" :count="item.count"></help-card>
+		</div>
+	  </div>
+	  
     </div>
   </div>
 </template>
@@ -22,9 +28,15 @@ export default {
     }
   },
   methods:{
-	  toBack:function(){
-	  		this.$router.go(-1);
-	  	}
+	toBack:function(){
+		this.$router.go(-1);
+	},
+	toAddStudentHelp:function (){
+	  this.$router.push("/student/help/add")
+	},
+	toHelpReceiveList:function (){
+	  this.$router.push("/student/help/receive")
+	},
 
   },
   created() {
@@ -62,12 +74,29 @@ export default {
   position: relative;
 }
 
-.back {
-  position: absolute;
-  top: 13px;
-  left: 30px;
-  cursor: pointer;
-  font-weight: bold;
+.inline-left{
+	display: flex;
+	flex-wrap: wrap;
+	width: 75%;
+	justify-content: center;
 }
-
+.inline-right{
+	text-align: center;
+	width: 15%;
+	margin: 0px 20px;
+}
+.el-button{
+	/* padding: 75px 90px; */
+	margin: 20px 0px 20px 0px!important;
+	height: 50px;
+	border-radius: 6px;
+	box-shadow: 5px 5px 5px #ccc;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 24px;
+	display: inline-block;
+	height: 131px;
+	width: 100%;
+}
 </style>

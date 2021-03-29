@@ -122,7 +122,7 @@ export default {
       resumeTotal:100,
 	  filter:{
 		pageNum:1,
-		pageSize:2,
+		pageSize:4,
 		sex:0,
 		salary:0,
 		updateTime:0,
