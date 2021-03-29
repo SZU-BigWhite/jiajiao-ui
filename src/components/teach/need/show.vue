@@ -92,10 +92,10 @@
 		<div class="inline-right">
 			<div class="right-head">我的简历</div>
 			<div class="right-content">
-				<el-button class="btn-div" type="primary" @click="toAddTeachResume" plain>{{text}}简历</el-button>
-				<el-button class="btn-div" type="danger" @click="toResumeRecommend" plain>个性匹配</el-button>
-				<el-button class="btn-div" type="success" @click="toMyResume" plain>我的简历</el-button>
-				<el-button class="btn-div" type="primary" @click="toResumeGet" plain>收到/投递</el-button>
+				<el-button class="btn-div1" type="primary" @click="toAddTeachResume" plain><i class="el-icon-edit"></i>{{text}}简历</el-button>
+				<el-button class="btn-div" type="danger" @click="toResumeRecommend" plain><i class="el-icon-cloudy"></i>个性匹配</el-button>
+				<el-button class="btn-div" type="success" @click="toMyResume" plain><i class="el-icon-document"></i>我的简历</el-button>
+				<el-button class="btn-div" type="primary" @click="toResumeGet" plain><i class="el-icon-circle-check"></i>收到/投递</el-button>
 			</div>
 		</div>
 		
@@ -413,9 +413,19 @@ export default {
 }
 .btn-div{
 	width: 80%;
-	width: 80%;
 	margin: 10px 0px!important;
 	height: 75px;
 	font-size: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
+.btn-div1{
+  width: 80%;
+  margin-top: 20px!important;
+  margin-bottom: 10px;
+  height: 75px;
+  font-size: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
 </style>

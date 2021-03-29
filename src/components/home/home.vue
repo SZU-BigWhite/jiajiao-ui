@@ -24,10 +24,10 @@
 
     <div class="card-inline bg-img">
 		<div class="my-resume-btn">
-		  <el-button type="primary" @click="toStudentResume">学生简历库</el-button>
-		  <el-button type="success" @click="toParentNeed">家长需求库</el-button>
-		  <el-button type="warning"  @click="toStudentVolunteer">义工活动</el-button>
-		  <el-button type="danger"  @click="toStudentHelp" >校内互助</el-button>
+		  <el-button style="position: relative" type="primary" @click="toStudentResume"><span class="logo1 el-icon-tickets"></span>学生简历库</el-button>
+		  <el-button style="position: relative" type="success" @click="toParentNeed"><span class="logo1 el-icon-bell"></span>家长需求库</el-button>
+		  <el-button style="position: relative"  type="warning"  @click="toStudentVolunteer"><span class="logo1 el-icon-first-aid-kit"></span>义工活动</el-button>
+		  <el-button style="position: relative" type="danger"  @click="toStudentHelp" ><span class="logo1 el-icon-school"></span>校内互助</el-button>
 		</div>
     </div>
   </div>
@@ -67,6 +67,14 @@ export default {
 </script>
 
 <style scoped>
+.logo1 {
+  position: absolute;
+  top: 13px;
+  left: 30px;
+  font-weight: bold;
+  font-size: 34px;
+}
+
 .bg-img{
 	background-image: url(../../assets/img/bg1.jpg) !important;
 	background-repeat: no-repeat!important; 

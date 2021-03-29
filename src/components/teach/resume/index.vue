@@ -7,10 +7,38 @@
 
 		<div class="card-inline bg-img">
 			<div class="my-resume-btn">
-			  <el-button type="primary" @click="toShowTeachResume" >查找简历</el-button>
-			  <el-button type="success" @click="toAddTeachNeed">{{text}}</el-button>
-			  <el-button type="warning"  @click="toMyNeed">我的需求</el-button>
-			  <el-button type="danger"  @click="toNeedGet" >收到/投递</el-button>
+			  <el-button style="position: relative" type="primary" @click="toShowTeachResume">
+          <span class="left-top">查找简历</span>
+          <div class="left-bottom">
+            <span>Searching</span>
+            <div style="width: 150px" class="right-bottom"></div>
+          </div>
+          <i class="right-top el-icon-search"></i>
+        </el-button>
+			  <el-button style="position: relative" type="success" @click="toAddTeachNeed">
+          <span class="left-top">{{text}}</span>
+          <div class="left-bottom">
+            <span>Matching</span>
+            <div style="width: 150px" class="right-bottom"></div>
+          </div>
+          <i class="right-top el-icon-cloudy"></i>
+        </el-button>
+			  <el-button style="position: relative" type="warning"  @click="toMyNeed">
+          <span class="left-top">我的需求</span>
+          <div class="left-bottom">
+            <span>Needs</span>
+            <div style="width: 150px" class="right-bottom"></div>
+          </div>
+          <i class="right-top el-icon-tickets"></i>
+        </el-button>
+			  <el-button style="position: relative" type="danger"  @click="toNeedGet" >
+          <span class="left-top">收到/投递</span>
+          <div class="left-bottom">
+            <span>Receive</span>
+            <div style="width: 150px" class="right-bottom"></div>
+          </div>
+          <i class="right-top el-icon-position"></i>
+        </el-button>
 			  <!-- <el-button type="success" @click="toAddTeachResume">{{text}}</el-button>
 			  <el-button type="warning"  @click="toMyResume">我的简历</el-button>
 			  <el-button type="danger"  @click="toResumeGet" >收到/投递</el-button> -->
@@ -137,7 +165,7 @@ export default {
 	text-align: center;
 }
 .el-button{
-	padding: 75px 90px;
+  padding: 100px 120px;
 	width: 30%;
 	margin: 20px 35px!important;
 	border-radius: 6px;
@@ -168,7 +196,30 @@ export default {
   cursor: pointer;
   font-weight: bold;
 }
-
+.left-top {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  cursor: pointer;
+  font-size: 32px;
+}
+.right-top {
+  position: absolute;
+  top: 40px;
+  right: 36px;
+  cursor: pointer;
+  font-size: 50px;
+}
+.right-bottom {
+  border-bottom: 2px solid white;
+}
+.left-bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 110px;
+  cursor: pointer;
+  font-weight: 200;
+}
 
 .card-inline {
 	display: flex;

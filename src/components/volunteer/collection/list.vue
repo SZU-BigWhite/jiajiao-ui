@@ -73,7 +73,6 @@ export default {
 	height: 50px;
 	border-radius: 6px;
 	box-shadow: 5px 5px 5px #ccc;
-	color: white;
 	font-weight: bold;
 	text-align: center;
 	font-size: 24px;
