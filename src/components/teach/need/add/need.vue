@@ -33,7 +33,7 @@
               <el-button @click.native.prevent="handlePreview" v-show="preview">返回</el-button>
               <el-button @click.native.prevent="handlePreStep" v-show="preStep">上一步</el-button>
               <el-button @click.native.prevent="handleNextStep" v-show="nextStep" type="primary">下一步</el-button>
-              <el-button @click.native.prevent="handlePublish" v-show="publish" type="primary">提交表单</el-button>
+              <el-button @click.native.prevent="handlePublish" v-show="publish" type="primary">提交需求</el-button>
             </div>
           </div>
         </transition>
@@ -108,7 +108,7 @@ export default {
 		  console.log(res)
 		  this.$message.success("需求添加成功"),
 		  setTimeout(()=>{
-			  this.$router.push("/teach/need")
+			  this.$router.push("/teach/resume/show")
 		  },500)
 	  }).catch(err=>{
 		  console.log(err)

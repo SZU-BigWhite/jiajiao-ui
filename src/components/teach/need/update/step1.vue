@@ -2,14 +2,14 @@
   <div class="step1">
     <!-- element表单组件 -->
     <el-form label-position="left" label-width="100px" :model="parentNeedDetail" :rules="parentNeedDetailRules">
-      <el-form-item class="must" label="姓名" prop="name">
+      <el-form-item class="must" label="监护人" prop="name">
         <el-input class="s-name-input" v-model="parentNeedDetail.name" placeholder="称呼"></el-input>
       </el-form-item>
       <el-form-item class="must" label="微信号" prop="wechat">
         <el-input class="s-wechat-input" v-model="parentNeedDetail.wechat" placeholder="微信号或手机号"></el-input>
       </el-form-item>
 
-      <el-form-item class="must" label="年级" prop="studentClass">
+      <el-form-item class="must" label="孩子年级" prop="studentClass">
         <el-select style="width: 130px" v-model="parentNeedDetail.studentClass" placeholder="请选择年级">
           <el-option v-for="item in sAbleClass" :label="item" :value="item"></el-option>
         </el-select>
@@ -17,16 +17,8 @@
       <el-form-item class="must" label="位置" prop="location">
         <el-input class="s-name-input" v-model="parentNeedDetail.location" placeholder="上门家教所住位置"></el-input>
       </el-form-item>
-      <el-form-item class="must" label="达到时间" prop="arriveHours">
+      <el-form-item class="must" label="路程时间" prop="arriveHours">
         <el-input placeholder="到深大的时间" class="s-arriveHours-input" v-model.number="parentNeedDetail.arriveHours"></el-input> 分钟
-      </el-form-item>
-      <el-form-item class="must" label="家长态度" prop="showSelf">
-        <el-input
-            type="textarea"
-            :autosize="{ minRows: 2, maxRows: 100}"
-            placeholder="家长对孩子学习的管教程度,平时抽出多少时间教育孩子"
-            v-model="parentNeedDetail.teachBySelf">
-        </el-input>
       </el-form-item>
     </el-form>
 
@@ -48,7 +40,7 @@ export default {
         studentClass:'',
         location:'',
         arriveHours:null,
-        teachBySelf:''
+        // teachBySelf:''
       },
       sAbleClass: ['一年级','二年级','三年级','四年级','五年级','六年级', '初一', '初二', '初三', '高一', '高二', '高三'],
       parentNeedDetailRules: {

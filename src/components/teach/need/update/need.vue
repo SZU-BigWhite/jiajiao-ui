@@ -186,7 +186,7 @@ export default {
 		  console.log(res)
 		  this.$message.success("需求添加成功"),
 		  setTimeout(()=>{
-			  this.$router.push("/teach/need")
+			  this.$router.push("/teach/resume/show")
 		  },500)
 	  }).catch(err=>{
 		  console.log(err)

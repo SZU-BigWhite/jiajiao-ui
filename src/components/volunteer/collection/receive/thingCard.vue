@@ -10,9 +10,9 @@
         <el-dropdown trigger="click">
           <el-tag class="mouse" effect="dark">修改状态</el-tag>
           <el-dropdown-menu slot="dropdown" class="dropdown_menu">
-            <el-dropdown-item><a @click="setStatus(0)">未回收</a></el-dropdown-item>
-            <el-dropdown-item><a @click="setStatus(1)">已联系</a></el-dropdown-item>
-            <el-dropdown-item><a @click="setStatus(2)">已回收</a></el-dropdown-item>
+            <el-dropdown-item @click.native="setStatus(0)"><a>未回收</a></el-dropdown-item>
+            <el-dropdown-item @click.native="setStatus(1)"><a>已联系</a></el-dropdown-item>
+            <el-dropdown-item @click.native="setStatus(2)"><a>已回收</a></el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -31,6 +31,7 @@ export default {
   props:['thing','books'],
   methods:{
     setStatus:function (status){
+	  console.log(status);
       this.$http.get("/set/things/status",{
         params:{
           id:this.thing.id,

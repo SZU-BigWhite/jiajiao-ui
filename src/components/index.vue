@@ -14,7 +14,7 @@
 	        <!--下拉框-->
 	        <el-dropdown-menu slot="dropdown" class="dropdown_menu">
 	          <el-dropdown-item>个人中心</el-dropdown-item>
-	          <el-dropdown-item><a @click="logout">安全退出</a></el-dropdown-item>
+	          <el-dropdown-item @click.native="logout"><a>安全退出</a></el-dropdown-item>
 	        </el-dropdown-menu>
 	      </el-dropdown>
 	    </div>

@@ -33,7 +33,7 @@
               <el-button @click.native.prevent="handlePreview" v-show="preview">返回</el-button>
               <el-button @click.native.prevent="handlePreStep" v-show="preStep">上一步</el-button>
               <el-button @click.native.prevent="handleNextStep" v-show="nextStep" type="primary">下一步</el-button>
-              <el-button @click.native.prevent="handlePublish" v-show="publish" type="primary">提交表单</el-button>
+              <el-button @click.native.prevent="handlePublish" v-show="publish" type="primary">提交简历</el-button>
             </div>
           </div>
         </transition>
@@ -95,7 +95,7 @@ export default {
           teachGoal: store.state.teachPlan.teachGoal,
           feedback: store.state.teachPlan.feedback,
           university: store.state.educationDetail.university,
-          education: store.state.educationDetail.education,
+          education: store.state.educationDetail.education+1,
           learnMethods: store.state.educationDetail.learnMethods,
           showSelf: store.state.educationDetail.showSelf,
           motto: store.state.studentDetail.motto
@@ -108,7 +108,7 @@ export default {
       })
 	  this.$message.success("添加简历成功")
 	  setTimeout(()=>{
-		  this.$router.push("/teach/resume")
+		  this.$router.push("/teach/need/show")
 	  },500)
       // console.log('subjectList');
     },

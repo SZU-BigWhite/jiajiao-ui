@@ -24,14 +24,14 @@
               <el-form label-position="left" label-width="108px" :model="studentHelp" :rules="studentHelp">
 
                 <el-form-item class="must" label="学院" prop="ademecy">
-                  <el-input class="s-mini-input1" v-model="studentHelp.ademecy"></el-input>
+                  <el-input placeholder="所在的学院" class="s-mini-input1" v-model="studentHelp.ademecy"></el-input>
                 </el-form-item>
 
                 <el-form-item class="must" label="帮扶科目" prop="subject">
-                  <el-input class="s-mini-input" v-model="studentHelp.subject"></el-input>
+                  <el-input  placeholder="需要帮扶的科目" class="s-mini-input" v-model="studentHelp.subject"></el-input>
                 </el-form-item>
                 <el-form-item class="must" label="帮扶补偿" prop="salary">
-                  <el-input class="s-mini-input" v-model.number="studentHelp.salary"></el-input>
+                  <el-input  placeholder="时薪" class="s-mini-input" v-model.number="studentHelp.salary"></el-input>
                   元/小时
                 </el-form-item>
 
@@ -39,7 +39,7 @@
                   <el-input
                       type="textarea"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      placeholder="在这里描述一下，学习该科目面临的主要的问题"
+                      placeholder="学习该科目面临的主要的问题"
                       v-model="studentHelp.condiction">
                   </el-input>
                 </el-form-item>
@@ -56,7 +56,7 @@
 
             <div class="but-group">
               <el-button @click.native.prevent="handlePreview" >返回</el-button>
-              <el-button @click.native.prevent="handlePublish" type="primary">提交表单</el-button>
+              <el-button @click.native.prevent="handlePublish" type="primary">请求帮助</el-button>
             </div>
           </div>
         </transition>

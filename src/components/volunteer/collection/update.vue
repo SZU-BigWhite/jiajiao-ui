@@ -55,7 +55,7 @@
 
             <div class="but-group">
               <el-button @click.native.prevent="handlePreview">返回</el-button>
-              <el-button @click.native.prevent="handlePublish" type="primary">更新</el-button>
+              <el-button @click.native.prevent="handlePublish" type="primary">确认修改</el-button>
             </div>
           </div>
         </transition>

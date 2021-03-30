@@ -12,7 +12,7 @@
       <el-dialog title="捐赠内容" :visible.sync="dialogFormVisible">
         <el-form :model="form">
           <el-form-item class="must" label="微信号" :label-width="formLabelWidth">
-            <el-input class="s-mini-input" v-model="form.wechat" autocomplete="off"></el-input>
+            <el-input placeholder="能够联系到你" class="s-mini-input" v-model="form.wechat" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item class="must" label="上门时间" :label-width="formLabelWidth">
             <div class="block">

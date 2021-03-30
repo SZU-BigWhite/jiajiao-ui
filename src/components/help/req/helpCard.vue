@@ -20,12 +20,12 @@
           <el-form-item class="must" label="学习成绩" :label-width="formLabelWidth">
             <el-input class="s-mini-input" v-model="form.condiction" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item class="must" label="教学方法" prop="showSelf" :label-width="formLabelWidth">
+          <el-form-item class="must" label="帮助内容" prop="showSelf" :label-width="formLabelWidth">
             <el-input
                 class="s-mid-input"
                 type="textarea"
                 :autosize="{ minRows: 2, maxRows: 100}"
-                placeholder="你能够给予哪方面的帮助"
+                placeholder="你能够给予怎样的帮助"
                 v-model="form.helpMethod">
             </el-input>
           </el-form-item>

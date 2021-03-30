@@ -27,7 +27,7 @@
             v-model="parentConditionDetail.expectFeedback">
         </el-input>
       </el-form-item>
-      <el-form-item class="must" label="目标" prop="showSelf">
+      <el-form-item class="must" label="期待效果" prop="showSelf">
         <el-input
             type="textarea"
             :autosize="{ minRows: 4, maxRows: 100}"

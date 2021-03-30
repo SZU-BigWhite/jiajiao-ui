@@ -33,9 +33,9 @@ import axios from 'axios'
 
 //todo 上线该成http://42.193.177.25:8888/
 Vue.prototype.$http  = axios.create({
-  baseURL:  "http://42.193.177.25:8888/",
+  baseURL:  "http://localhost:8888/",
   withCredentials:  true,
-  timeout:  5000,
+  timeout:  50000,
 });
 
 //加入存储数据

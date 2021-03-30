@@ -5,19 +5,19 @@
       <el-col style="padding:20px 0;background: #33CCCC;">
         <el-col :span="6">
           {{ sum.resumeSum }}<br>
-          <span>学生简历</span>
+          <span style="cursor: pointer;" @click="toStudentResume">学生简历</span>
         </el-col>
         <el-col :span="6">
           {{ sum.needSum }}<br>
-          <span>家长需求</span>
+          <span style="cursor: pointer;"  @click="toParentNeed">家长需求</span>
         </el-col>
         <el-col :span="6">
           {{ sum.volunteerSum }}<br>
-          <span>义工活动</span>
+          <span  style="cursor: pointer;"  @click="toStudentVolunteer">义工活动</span>
         </el-col>
 		<el-col :span="6" style="border: none;">
 		  {{ sum.helpSum }}<br>
-		  <span>校内求助</span>
+		  <span  style="cursor: pointer;"  @click="toStudentHelp">校内求助</span>
 		</el-col>
       </el-col>
     </el-row>

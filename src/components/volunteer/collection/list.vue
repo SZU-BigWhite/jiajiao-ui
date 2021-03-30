@@ -10,8 +10,8 @@
 		</div>
 	  </div>
 	  <div class="inline-right">
-		  <div><el-button type="danger" plain  @click="toMyDonateThings">捐赠历史</el-button></div>
-		  <div><el-button type="success"  plain @click="toGetReceive" >义工组织</el-button></div>
+		  <div><el-button type="danger" plain  @click="toMyDonateThings">捐赠历史<i class="el-icon-medal"></i></el-button></div>
+		  <div><el-button type="success"  plain @click="toGetReceive" >义工组织<i class="el-icon-wind-power"></i></el-button></div>
 	  </div>
     </div>
   </div>

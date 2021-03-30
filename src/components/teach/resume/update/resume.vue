@@ -168,7 +168,7 @@ export default {
           teachGoal: store.state.teachPlan.teachGoal,
           feedback: store.state.teachPlan.feedback,
           university: store.state.educationDetail.university,
-          education: store.state.educationDetail.education,
+          education: store.state.educationDetail.education+1,
           learnMethods: store.state.educationDetail.learnMethods,
           showSelf: store.state.educationDetail.showSelf,
           motto: store.state.studentDetail.motto
@@ -181,7 +181,7 @@ export default {
       })
 	  this.$message.success("更新简历成功")
 	  setTimeout(()=>{
-		  this.$router.push("/teach/resume")
+		  this.$router.push("/teach/need/show")
 	  },500)
     },
     goStep: function (n) {
