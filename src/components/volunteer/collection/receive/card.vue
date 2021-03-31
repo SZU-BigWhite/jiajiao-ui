@@ -50,11 +50,11 @@ export default {
     if (this.volunteer.status == 0) {
       this.status = "未审核"
     } else if (this.volunteer.status == 1) {
-      this.status = "审核通过"
+      this.status = "通过"
     } else if (this.volunteer.status == 2) {
       this.status = "已过期"
     } else if (this.volunteer.status == 3) {
-      this.status = "审核未通过"
+      this.status = "未通过"
     }
   }
 }

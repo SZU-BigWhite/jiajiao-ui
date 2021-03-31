@@ -46,11 +46,15 @@ export default {
   justify-content: center;
   width: 93%;
   height: 100%;
-  background-color: white;
+  /* background-color: white; */
+  background-image: url(../../../assets/img/bg8.jpg);
+  background-repeat: no-repeat; 
+  background-size:100% 100%;
   border-radius: 6px;
   margin: 0 auto;
   padding-bottom: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  min-height: 600px;
 }
 .card-inline-head {
   text-align: center;
@@ -58,7 +62,7 @@ export default {
   background-color: white;
   border-radius: 6px;
   margin: 0 auto;
-  background-color: #f48181;
+  background-color: #3091F2;
   color: white;
   font-size: 24px;
   line-height: 50px;

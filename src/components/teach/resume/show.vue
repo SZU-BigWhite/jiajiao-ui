@@ -241,10 +241,6 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0px;
-  padding: 0px;
-}
 
 .button-new-tag {
   /* margin-left: 10px; */
@@ -270,7 +266,10 @@ export default {
 .content-card {
   width: 93%;
   height: 100%;
-  background-color: white;
+  /* background-color: white; */
+  background-image: url(../../../assets/img/bg3.jpg);
+  background-repeat: no-repeat;
+  background-size:100% 100%;
   border-radius: 6px;
   margin: 0 auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
@@ -312,13 +311,15 @@ export default {
 }
 
 .page-info-bg {
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 .card-inline {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 30px;
+  min-height: 400px;
 }
 
 .card-item {
@@ -326,7 +327,7 @@ export default {
 }
 
 .el-pagination {
-  background-color: white;
+  background-color: transparent;
 }
 
 </style>

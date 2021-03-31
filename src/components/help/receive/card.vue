@@ -1,11 +1,12 @@
 <template>
-  <div class="help-receive-card" @click="dialogFormVisible = true">
+  <div class="help-receive-card" v-if="show">
     <div class="card-head">微信号：{{ studentHelp.wechat }} </div>
     <div class="card-content"><span class="content-span">学习成绩</span>{{ studentHelp.condiction }}</div>
     <div class="card-content"><span class="content-span">教学方法</span>{{ studentHelp.helpMethod }}
     </div>
     <div class="card-bottom">
       <el-tag type="warning">发送时间：{{ studentHelp.createTime }}</el-tag>
+	  <el-tag class="mouse" type="warning" effect="dark" @click="refuseHelp">拒绝</el-tag>
     </div>
   </div>
 </template>
@@ -13,7 +14,29 @@
 <script>
 export default {
   name: "helpReceiveCard",
-  props:["studentHelp"]
+  props:["studentHelp"],
+  data:function(){
+	  return {
+		  show:true,
+	  }
+  },
+  methods:{
+	refuseHelp:function(){
+		this.$http.delete("/refuse/help",{
+			params:{
+				id:this.studentHelp.id
+			}
+		}).then(res=>{
+			this.$message.success("拒绝成功");
+			setTimeout(()=>{
+				this.show=false;
+			},500)
+			console.log(res);
+		}).catch(err=>{
+			console.log(err);
+		})
+	}
+  }
 }
 </script>
 
@@ -27,6 +50,9 @@ export default {
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
+.mouse{
+	cursor: pointer;
 }
 div .help-receive-card:hover {
   background-color: #f6f6f6;

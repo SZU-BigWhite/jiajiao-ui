@@ -289,7 +289,10 @@ export default {
 	display: flex;
 	width: 93%;
 	height: 100%;
-	background-color: white;
+	/* background-color: white; */
+	background-image: url(../../../assets/img/bg2.jpg);
+	background-repeat: no-repeat; 
+	background-size:100% 100%;
 	border-radius: 6px;
 	margin: 0 auto;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
@@ -366,13 +369,15 @@ export default {
 }
 
 .page-info-bg {
-  background-color: #ffffff;
+	background-color:transparent;
 }
 
 .card-inline {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 30px;
+  min-height: 400px;
 }
 
 .card-item {
@@ -380,7 +385,7 @@ export default {
 }
 
 .el-pagination {
-  background-color: white;
+  background-color:transparent;
 }
 
 .inline-left{
@@ -396,7 +401,8 @@ export default {
 }
 .right-head{
 	width: 100%;
-	background-color: #409EFF;
+	/* background-color: #409EFF; */
+	background-color:transparent;
 	color: white;
 	height: 50px;
 	font-size: 24px;

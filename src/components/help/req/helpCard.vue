@@ -15,10 +15,10 @@
       <el-dialog title="发送内容" :visible.sync="dialogFormVisible">
         <el-form :model="form">
           <el-form-item class="must" label="微信号" :label-width="formLabelWidth">
-            <el-input class="s-mini-input" v-model="form.wechat" autocomplete="off"></el-input>
+            <el-input placeholder="能够联系到你" class="s-mini-input" v-model="form.wechat" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item class="must" label="学习成绩" :label-width="formLabelWidth">
-            <el-input class="s-mini-input" v-model="form.condiction" autocomplete="off"></el-input>
+            <el-input placeholder="帮扶科目对应的成绩" class="s-mini-input" v-model="form.condiction" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item class="must" label="帮助内容" prop="showSelf" :label-width="formLabelWidth">
             <el-input

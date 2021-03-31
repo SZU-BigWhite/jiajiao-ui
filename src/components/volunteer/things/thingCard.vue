@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div class="volunteer-card" >
+    <div class="volunteer-card" v-if="show" >
       <div class="card-head">{{ name }} </div>
       <div class="card-content">捐赠物品：<span v-for="item in books">{{item}}</span></div>
       <div class="card-bottom">
         <el-tag type="success">处理状态： {{ thing.status==0?"未处理":"已处理" }}</el-tag>
         <el-tag type="danger">捐赠时间： {{ thing.createTime }}</el-tag>
+		<el-tag class="mouse" type="warning" effect="dark" @click="deleteThing">删除</el-tag>
       </div>
     </div>
   </div>
@@ -17,14 +18,31 @@ export default {
   name: "thingCard",
   data:function (){
     return  {
-      name:""
+      name:"",
+	  show:true
     }
   },
   props:['thing','books'],
   methods:{
-    
+    deleteThing:function(){
+		this.$http.delete("/delete/volunteer/things",{
+			params:{
+				id:this.thing.id
+			}
+		}).then(res=>{
+			console.log(res);
+			this.$message.success("取消捐赠成功");
+			setTimeout(()=>{
+				this.show=false;
+			},500)
+			
+		}).catch(err=>{
+			console.log(err);
+		})
+	}
   },
   created() {
+	console.log(this.thing);
     this.$http.get("/get/volunteer/collection/by/id",{
       params:{
         id:this.thing.cId

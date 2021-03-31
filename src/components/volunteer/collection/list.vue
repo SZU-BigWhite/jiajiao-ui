@@ -1,7 +1,7 @@
 <template>
   <div>
 	<div class="card-inline-head">
-		义工活动
+		义工回收
 	</div>
     <div class="card-inline">
 	  <div class="inline-left">
@@ -33,9 +33,6 @@ export default {
 	toGetReceive: function () {
 	  this.$router.push("/collection/receive")
 	},
-	toVolunteerCollectionList:function (){
-	  this.$router.push("/student/volunteer/collections")
-	},
 	toMyDonateThings:function () {
 	  this.$router.push("/student/donate/things")
 	},
@@ -59,12 +56,16 @@ export default {
   justify-content: center;
   width: 93%;
   height: 100%;
-  background-color: white;
+  /* background-color: white; */
+  background-image: url(../../../assets/img/bg6.jpg);
+  background-repeat: no-repeat;
+  background-size:100% 100%;
   /* border-radius: 6px; */
   border-radius: 0px 0px 6px 6px ;
   margin: 0 auto;
   padding-bottom: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  min-height: 600px;
 }
 
 .el-button{

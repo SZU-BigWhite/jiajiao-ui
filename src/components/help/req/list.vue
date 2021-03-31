@@ -24,7 +24,8 @@ export default {
   name: "helpReqList",
   data:function (){
     return {
-      list:null
+      list:null,
+	  myList:null,
     }
   },
   methods:{
@@ -35,14 +36,25 @@ export default {
 	  this.$router.push("/student/help/add")
 	},
 	toHelpReceiveList:function (){
-	  this.$router.push("/student/help/receive")
+	  if(this.myList==null||this.myList.length==0){
+		  this.$message.warning("你还未寻求过帮助")
+	  }else{
+		this.$router.push("/student/help/receive")
+	  }
 	},
 
   },
   created() {
     this.$http.get("/get/students/helpList").then(res=>{
       this.list=res.data.data
-    })
+    }).catch(err=>{
+	  console.log(err);
+	})
+	this.$http.get("/get/student/helpList").then(res=>{
+	  this.myList=res.data.data;
+	}).catch(err=>{
+	  console.log(err);
+	})
   }
 }
 </script>
@@ -54,11 +66,15 @@ export default {
   justify-content: center;
   width: 93%;
   height: 100%;
-  background-color: white;
+  /* background-color: white; */
+  background-image: url(../../../assets/img/bg5.jpg);
+  background-repeat: no-repeat;
+  background-size:100% 100%;
   border-radius: 6px;
   margin: 0 auto;
   padding-bottom: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  min-height: 600px;
 }
 .card-inline-head {
   text-align: center;

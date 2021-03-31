@@ -39,7 +39,7 @@
 			  </el-menu-item>
 	        <el-menu-item index="/student/volunteer/collections">
 	          <i class="el-icon-first-aid-kit"></i>
-	          <span slot="title">义工活动</span>
+	          <span slot="title">义工回收</span>
 	        </el-menu-item>
 	        <el-menu-item index="/student/help/list">
 	          <i class="el-icon-school"></i>
@@ -83,7 +83,7 @@ export default {
       this.$http.get("/logout").then(res => {
         if (res.data.status == 200) {
           this.$message.success("退出成功")
-          this.$router.push("/loginByCode");
+          this.$router.push("/login");
         } else {
           this.$message.error("你还未登录")
         }

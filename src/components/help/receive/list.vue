@@ -87,6 +87,7 @@ export default {
   /* padding-bottom: 30px; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   padding-top: 15px;
+  min-height: 600px;
 }
 .card-inline-head {
   text-align: center;

@@ -79,10 +79,14 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   height: 100%;
-  background-color: white;
+  /* background-color: white; */
+  background-image: url(../../../../assets/img/bg6.jpg);
+  background-repeat: no-repeat;
+  background-size:100% 100%;
   border-radius: 6px;
   margin: 0 auto;
   padding-bottom: 30px;
+  min-height: 600px;
 }
 .page-info-bg {
   background-color: #ffffff;

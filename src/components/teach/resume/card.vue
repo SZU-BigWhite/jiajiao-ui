@@ -1,7 +1,7 @@
 <template>
   <div class="my-card" @click="toDetail">
     <div class="card-head">{{resume.studentResume.name}} {{resume.studentResume.academyId}} {{education}}</div>
-    <div class="card-content">{{resume.studentResume.teachStress}}</div>
+    <div class="card-content" v-html="resume.studentResume.teachStress"></div>
     <div class="card-bottom">
       <el-tag>时薪：{{resume.studentResume.salary}}</el-tag>
       <el-tag type="success">{{resume.studentResume.characterCondiction}}</el-tag>
@@ -49,6 +49,7 @@ export default {
 	  }
   },
   created:function(){
+	  this.resume.studentResume.teachStress=this.resume.studentResume.teachStress.replace(/\n/g, '<br />');
 	  console.log(this.resume)
   },
   props:['resume','path']

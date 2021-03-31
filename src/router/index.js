@@ -186,18 +186,31 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-    return next();
-    //无需登录
-    // if (to.path == '/register' || to.path == '/login' || to.path == '/forgetPass')
-    //     return next()
-    // //判断登录---获取user_session
-    // var prefix="user_session="
-    // let userSession = document.cookie.indexOf(prefix);
-    // if (userSession != null) {   //已登录
-    //     return next()
-    // } else {        //未登录定向到登录页面
-    //     return next('/login')
-    // }
+    // 无需登录
+	console.log(123);
+    if (to.path == '/login' || to.path == '/loginByCode')
+        return next();
+    //判断登录---获取user_session
+    var prefix="user_session"
+    let userSession=getCookie(prefix)
+	console.log(userSession)
+    if (userSession != null) {   //已登录
+        return next();
+    } else {        //未登录定向到登录页面
+        return next('/login');
+    }
 })
+function getCookie(name){
+    var strcookie = document.cookie;//获取cookie字符串
+    var arrcookie = strcookie.split("; ");//分割
+    //遍历匹配
+    for ( var i = 0; i < arrcookie.length; i++) {
+        var arr = arrcookie[i].split("=");
+        if (arr[0] == name){
+            return arr[1];
+        }
+    }
+    return null;
+}
 
 export default router

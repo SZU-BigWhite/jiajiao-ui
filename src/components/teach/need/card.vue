@@ -1,7 +1,7 @@
 <template>
 	<div class="my-card" @click="toDetail" >
 	  <div class="card-head">{{need.parentNeed.name}}  {{classString}}  {{need.parentNeed.times}}次/周</div>
-	  <div class="card-content">{{need.parentNeed.teachReq}}</div>
+	  <div class="card-content" v-html="need.parentNeed.teachReq"></div>
 	  <div class="card-bottom">
 	    <el-tag>时薪：{{need.parentNeed.salary}}元</el-tag>
 	    <el-tag type="success">时长：{{need.parentNeed.duration}}小时</el-tag>
@@ -68,6 +68,7 @@ export default {
   },
   props:["need",'path'],
   created(){
+	this.need.parentNeed.teachReq=this.need.parentNeed.teachReq.replace(/\n/g, '<br />');
 	console.log(this.need)
   }
 }

@@ -107,6 +107,9 @@ export default {
 .login_container {
   height: 100%;
   background-color: #e8eaf2;
+  background-image: url(../assets/img/bg1.jpg);
+  background-repeat: no-repeat; 
+  background-size:100% 100%;
 }
 
 //登录box

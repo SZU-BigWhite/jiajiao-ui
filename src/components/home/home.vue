@@ -3,14 +3,15 @@
     <!--头部统计内容-->
     <el-row class="head">
       <el-col style="padding:20px 0;background: #33CCCC;">
-        <el-col :span="6">
-          {{ sum.resumeSum }}<br>
-          <span style="cursor: pointer;" @click="toStudentResume">学生简历</span>
-        </el-col>
+        
         <el-col :span="6">
           {{ sum.needSum }}<br>
           <span style="cursor: pointer;"  @click="toParentNeed">家长需求</span>
         </el-col>
+		<el-col :span="6">
+		  {{ sum.resumeSum }}<br>
+		  <span style="cursor: pointer;" @click="toStudentResume">学生简历</span>
+		</el-col>
         <el-col :span="6">
           {{ sum.volunteerSum }}<br>
           <span  style="cursor: pointer;"  @click="toStudentVolunteer">义工活动</span>
@@ -38,7 +39,12 @@ export default {
   name: "home",
   data: function () {
     return {
-      sum:null,
+      sum:{
+		helpSum:null,
+		needSum:null,
+		resumeSum:null,
+		volunteerSum:null
+	  },
     }
   },
   methods: {
