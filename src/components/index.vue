@@ -4,7 +4,7 @@
 	  <!--头部-->
 	  <el-header class="home_header">
 	    <div class="head_mid">
-	      深大家教
+	      高校家教及校内互助系统
 	    </div>
 	    <div class="head_right">
 	      <!--用户头像相关-->

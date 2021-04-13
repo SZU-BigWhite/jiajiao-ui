@@ -4,7 +4,7 @@
     <div class="login_box">
       <!--标题-->
       <div class="login_head">
-        <div>深大家教</div>
+        <div>密码登录</div>
         <div>login</div>
       </div>
       <!--登录表单-->
