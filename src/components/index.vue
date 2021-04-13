@@ -4,7 +4,7 @@
 	  <!--头部-->
 	  <el-header class="home_header">
 	    <div class="head_mid">
-	      高校家教及校内互助系统
+	      高校家教及校内互助帮扶系统
 	    </div>
 	    <div class="head_right">
 	      <!--用户头像相关-->
@@ -39,11 +39,11 @@
 			  </el-menu-item>
 	        <el-menu-item index="/student/volunteer/collections">
 	          <i class="el-icon-first-aid-kit"></i>
-	          <span slot="title">义工回收</span>
+	          <span slot="title">书籍互助</span>
 	        </el-menu-item>
 	        <el-menu-item index="/student/help/list">
 	          <i class="el-icon-school"></i>
-	          <span slot="title">校内互助</span>
+	          <span slot="title">校内帮扶</span>
 	        </el-menu-item>
 	        <!-- <el-submenu index="1">
 	          <template slot="title">

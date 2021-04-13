@@ -6,7 +6,7 @@
         
         <el-col :span="6">
           {{ sum.needSum }}<br>
-          <span style="cursor: pointer;"  @click="toParentNeed">家长需求</span>
+          <span style="cursor: pointer;"  @click="toParentNeed">家长要求</span>
         </el-col>
 		<el-col :span="6">
 		  {{ sum.resumeSum }}<br>
@@ -14,11 +14,11 @@
 		</el-col>
         <el-col :span="6">
           {{ sum.volunteerSum }}<br>
-          <span  style="cursor: pointer;"  @click="toStudentVolunteer">义工活动</span>
+          <span  style="cursor: pointer;"  @click="toStudentVolunteer">书籍互助</span>
         </el-col>
 		<el-col :span="6" style="border: none;">
 		  {{ sum.helpSum }}<br>
-		  <span  style="cursor: pointer;"  @click="toStudentHelp">校内求助</span>
+		  <span  style="cursor: pointer;"  @click="toStudentHelp">校内帮扶</span>
 		</el-col>
       </el-col>
     </el-row>
